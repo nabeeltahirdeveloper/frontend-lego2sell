@@ -1,0 +1,260 @@
+import React from "react"
+import ReactDOM from "react-dom"
+import App from "./App.jsx"
+import "./index.css"
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
+
+import Product from "./Pages/Product"
+import Basket from "./Pages/Basket.jsx"
+import Header from "./componet/Header.jsx"
+import Footer from "./componet/Footer.jsx"
+import HowWrokPage from "./componet/HowWrokPage.jsx"
+import SuccessPage from "./Pages/SuccessPage.jsx"
+import Dashboard from "./Pages/Dashboard.jsx"
+import Appceptance from "./Pages/Acceptance.jsx"
+import Terms from "./Pages/Terms.jsx"
+import Packaging from "./Pages/Packaging.jsx"
+import AboutUs from "./Pages/AboutUs.jsx"
+import Contact from "./Pages/Contact.jsx"
+import Details from "./Pages/Details.jsx"
+import SignUpForm from "./Pages/Signin.jsx"
+import Login from "./Pages/Login.jsx"
+import Admin from "./Pages/Admin.jsx"
+import PrivacyStatement from "./Pages/PrivacyStatement.jsx"
+import PasswordReset from "./Pages/PasswordReset.jsx/PasswordReset.jsx"
+import ChangePassword from "./componet/ChangePassword.jsx"
+import AdminDashboard from "./Pages/AdminDashboard.jsx"
+import CustomerOffers from "./Pages/CustomerOffers.jsx"
+import Conditions from "./Pages/Conditions.jsx"
+import AdminRoute from "./AdminRoute.jsx"
+import ReactGA from "react-ga4"
+import CustomerOffer from "./customerOffer.jsx"
+const storedUserId = localStorage.getItem("userId")
+const adminView = localStorage.getItem("adminView")
+const TRACKING_ID = "G-322ELRCXBL"
+ReactGA.initialize(TRACKING_ID)
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: (
+      <div className=" flex min-h-screen flex-col ">
+        <Header />
+        <App />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/signup/",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <SignUpForm />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/Admin/",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        {/* {isAdmin ? <Admin /> : <div>Unauthorization Persn Not allow</div>} */}
+        {/* {adminView === "admin" ? <Admin /> : <Navigate to={"/"} />} */}
+        <Admin />
+
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/login/",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Login />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/product",
+    element: (
+      <div className=" flex min-h-screen flex-col ">
+        <Header />
+        <Product />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/selling-basket",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Basket />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/check-your-details",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Details />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/how-it-works",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <HowWrokPage />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/success",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <SuccessPage />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/my-account",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+
+        <Dashboard />
+
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/Conditions",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+
+        <Conditions />
+
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/terms-and-conditions",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Terms />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/acceptance-guidelines",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Appceptance />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/packaging-guidelines",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Packaging />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/about",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <AboutUs />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/Contact",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Contact />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/privacy-statement",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <PrivacyStatement />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/forgotpassword/:id/:token",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <PasswordReset />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/forgot-password",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <ChangePassword />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/AdminDashboard",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <AdminRoute />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/customeroffers",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <CustomerOffer />
+        <Footer />
+      </div>
+    ),
+  },
+])
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+    {/* <App /> */}
+  </React.StrictMode>
+)
