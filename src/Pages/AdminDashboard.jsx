@@ -11,26 +11,20 @@ const AdminDashboard = () => {
   const [TotalOffer, setTotalOffer] = useState()
   const [error, setError] = useState(null)
   const [MintMessage, setMintMessage] = useState()
+  const storedUserId = localStorage.getItem("userId")
   // console.log(MintMessage)
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    // Data to encrypt
-    const sensitiveData = 'frontend';
-    // Encryption key (must be a secret)
-    const encryptionKey = 'legotwosell';
-    // Encrypt the data
-    const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
-
     try {
       const response = await axios.put(
         "https://api.lego2sell.com/DiscountValue",
         {
           MintValue,
           VeryGood,
+        },{
           headers: {
             "Content-Type": "application/json",
-            "source": encryptedData,
+            "user-id": storedUserId,
           },
         }
       )

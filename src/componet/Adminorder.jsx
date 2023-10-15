@@ -34,6 +34,7 @@ const Adminorder = ({ items, data, SearchValue }) => {
   var userID = items?._id
 
   const [opened, { open, close }] = useDisclosure(false)
+
   const handleDeleteAccount = async () => {
     // console.log(email)
     const email = items?.email
@@ -51,7 +52,8 @@ const Adminorder = ({ items, data, SearchValue }) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "source": encryptedData
+          "source": encryptedData,
+          "user-id": storedUserId
         },
         body: JSON.stringify({ email }),
       })
