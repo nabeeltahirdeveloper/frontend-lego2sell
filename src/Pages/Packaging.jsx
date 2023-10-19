@@ -6,7 +6,7 @@ const Packaging = () => {
   return (
     <div>
       <Helmet>
-        <title>LEGO Packaging Guidelines | Lego 2 Sell</title>
+        <title>Packaging Guidelines - Lego2Sell</title>
         <meta
           name="description"
           content="Optimize your LEGO packaging with Lego2Sell's guidelines. Ensure safe and efficient shipping for your sets. Learn more!"
