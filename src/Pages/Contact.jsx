@@ -84,10 +84,10 @@ const Contact = () => {
   return (
     <div>
       <Helmet>
-        <title>Contact Us | Get in Touch with LEGO2SELL</title>
+        <title>Contact to sell your new LEGO sets online - LEGO2SELL </title>
         <meta
           name="description"
-          content="Contact LEGO2SELL to get in touch with our dedicated team. Have questions about selling LEGO sets, our services, or need assistance? Reach out to us anytime!"
+          content="Contact LEGO2SELL for questions, support, or inquiries. We're here to assist you every step of the way! Contact us to sell lego sets online."
         />
         <meta
           name="keywords"
@@ -181,7 +181,7 @@ const Contact = () => {
           </div>
           {successMessage && (
             <h4 className="text-green-500 text-lg font-medium">
-              Email sent Succsfully
+              Email sent Successfully
             </h4>
           )}
           <button
