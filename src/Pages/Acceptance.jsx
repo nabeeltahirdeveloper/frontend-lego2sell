@@ -6,7 +6,7 @@ const Acceptance = () => {
   return (
     <div>
       <Helmet>
-        <title>Acceptance Guidelines for Selling LEGO Sets</title>
+        <title>Acceptance Guidelines - Lego2Sell</title>
         <meta
           name="description"
           content="Explore Lego2Sell's acceptance guidelines. Sell your new LEGO sets seamlessly with our expert standards. Start selling confidently!"
