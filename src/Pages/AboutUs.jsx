@@ -50,9 +50,9 @@ const AboutUs = () => {
                 all that out at lego2sell.com and just give you the dosh within
                 a day or two!
               </p>
-              <h2 className="text-red-500 text-2xl py-4 font-bold">
+              <h3 className="text-red-500 text-2xl py-4 font-bold">
                 The lego2sell.com Wow Factor
-              </h2>
+              </h3>
               <h4
                 className="text-green-500  text-2xl py-4 font-bold"
                 id="sustainability"
