@@ -38,9 +38,9 @@ const Acceptance = () => {
                 your LEGO® when we can’t accept them.
               </p>
               <div className="green-box py-8  text-sm lg:text-lg  bg-green-100 my-12 rounded-3xl px-12">
-                <h3 className="text-black py-4 font-bold">
+                <h2 className="text-black py-4 font-bold">
                   LEGO® we <span className="text-green-500">can</span> accept
-                </h3>
+                </h2>
                 <div className="flex py-2">
                   ✅
                   <div className="ml-4">
