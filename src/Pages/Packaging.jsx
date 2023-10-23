@@ -35,9 +35,9 @@ const Packaging = () => {
                 don'ts below…
               </p>
               <div className="green-box text-sm lg:text-lg  py-8 bg-green-100 my-12 rounded-3xl px-12">
-                <h3 className="text-black py-4 font-bold">
+                <h2 className="text-black py-4 font-bold">
                   Packaging <span className="text-green-500">dos</span>
-                </h3>
+                </h2>
                 <div className="flex py-2">
                   ✅
                   <div className="ml-4">
