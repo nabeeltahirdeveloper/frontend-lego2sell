@@ -68,6 +68,10 @@ function Login() {
       <Helmet>
         <meta charSet="utf-8" />
         <title>Login ccount | LEGO®</title>
+         <meta
+          name="description"
+          content="Log in to your Lego2Sell account. Manage your LEGO listings, transactions, and connect with the LEGO community. Join us now!"
+        />
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="keywords" content="Lego, sell, Lego2Sell, Lego 2 Sell" />

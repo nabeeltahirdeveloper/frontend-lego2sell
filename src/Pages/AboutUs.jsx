@@ -9,7 +9,7 @@ const AboutUs = () => {
         <title>About LEGO2SELL - Best Selling Marketplace for Legos</title>
         <meta
           name="description"
-          content="Discover LEGO2SELL, a family-run business based in Kent. Learn about our hassle-free LEGO set selling process and speedy payments. Find out how you can sell..."
+          content="Explore Lego2Sell's story and mission. Learn how we connect LEGO enthusiasts and sellers worldwide. Learn more how to sell your new lego sets online for cash."
         />
         <meta
           name="keywords"
@@ -50,9 +50,9 @@ const AboutUs = () => {
                 all that out at lego2sell.com and just give you the dosh within
                 a day or two!
               </p>
-              <h2 className="text-red-500 text-2xl py-4 font-bold">
+              <h3 className="text-red-500 text-2xl py-4 font-bold">
                 The lego2sell.com Wow Factor
-              </h2>
+              </h3>
               <h4
                 className="text-green-500  text-2xl py-4 font-bold"
                 id="sustainability"
