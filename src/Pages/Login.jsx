@@ -67,7 +67,7 @@ function Login() {
     <div className="flex items-center justify-center flex-col">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Login ccount | LEGO®</title>
+        <title>Login Acount | Sell LEGO®</title>
          <meta
           name="description"
           content="Log in to your Lego2Sell account. Manage your LEGO listings, transactions, and connect with the LEGO community. Join us now!"
