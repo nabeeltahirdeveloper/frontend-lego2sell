@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://lego2sell.com/sitemap.xmlll
+Sitemap: https://lego2sell.com/sitemap.xml
