@@ -6,7 +6,9 @@
   }  
   
 }
-
+.descriptionContainer img{
+  display: none;
+}
 /* Blog Category Card Wrapper Scrollbar */
 .Blog_category_card_wrapper__HLMC9 {
     overflow-y: auto;

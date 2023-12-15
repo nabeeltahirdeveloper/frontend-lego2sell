@@ -86,7 +86,8 @@ const BlogDetail = () => {
     try {
       const apiUrl = baseUrl + '/admin/service/api/comment';
       const response = await axios.post(apiUrl, formData);
-      console.log('Data submitted successfully:', response.data);
+      setComments([...comments, response.data.data])
+      console.log(response)
       setResponse('Your Response submitted successfully');
       setFormData({
         email: "",
@@ -218,54 +219,6 @@ const BlogDetail = () => {
                       fontSize: 12,
                       padding: 5,
 
-                    }}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="name" style={{
-                    color:"#333",
-                    fontSize: 16,
-                    fontWeight: 'normal'
-
-                  }}>Name *</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    required
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    style={{
-                      border: '1px solid #dfadacc',
-                      color: '#333',
-                      fontSize: 12,
-                      padding: 5,
-                      width: '50%',
-                      height:30
-                    }}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email" style={{
-                    color:"#333",
-                    fontSize: 16,
-                    fontWeight: 'normal'
-
-                  }}>Email *</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    required
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    style={{
-                      border: '1px solid #dfadacc',
-                      color: '#333',
-                      fontSize: 12,
-                      padding: 5,
-                      width: '50%',
-                      height:30
                     }}
                   />
                 </div>
