@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import CryptoJS from 'crypto-js';
+import baseUrl from "../context/baseUrl";
 
 const AdminDashboard = () => {
   const navigation = useNavigate()
@@ -17,7 +18,7 @@ const AdminDashboard = () => {
     e.preventDefault()
     try {
       const response = await axios.put(
-        "https://api.lego2sell.com/DiscountValue",
+        `${baseUrl}/DiscountValue`,
         {
           MintValue,
           VeryGood,
@@ -47,7 +48,7 @@ const AdminDashboard = () => {
 
       try {
         // Replace with the actual user ID
-        const response = await axios.get(`https://api.lego2sell.com/data`, {
+        const response = await axios.get(`${baseUrl}/data`, {
           headers: {
             "Content-Type": "application/json",
             "source": encryptedData,
@@ -72,7 +73,7 @@ const AdminDashboard = () => {
     // Encrypt the data
     const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
 
-    return fetch("https://api.lego2sell.com/data", {
+    return fetch(`${baseUrl}/data`, {
       headers: {
         "Content-Type": "application/json",
         "source": encryptedData,
@@ -128,30 +129,30 @@ const AdminDashboard = () => {
           <div className=" lg:flex-[0.3] 2xl:flex-[0.2] mt-0 lg:mt-44 px-2 flex-col">
             <div className=" border-[7px] ml-3 lg:ml-9 mb-8  py-4 h-full lg:h-[60vh] border-blue-500 rounded-[30px]">
               <Link
-                to={"https://api.lego2sell.com/export/csv/alldata6"}
+                to={"http://localhost:5100/export/csv/alldata6"}
                 className="flex items-center"
               >
                 <img
-                  className="w-[40%]"
+                  className="w-[20%]"
                   src="/Images/LegoCSV icon.png"
                   alt=""
                 />
-                <h3 className="text-base lg:text-xl w-[50%] text-center font-semibold">
+                <p className="   font-semibold w-full">
                   Download Sets Database
-                </h3>
+                </p>
               </Link>
               <Link
-                to={"https://api.lego2sell.com/export/csv/email"}
+                to={"http://localhost:5100/export/csv/email"}
                 className="flex items-center"
               >
                 <img
-                  className="w-[35%]"
+                  className="w-[20%]"
                   src="/Images/emaillist3dicon.png"
                   alt=""
                 />
-                <h5 className="text-base lg:text-xl   w-[50%] text-center font-semibold">
+                <p className="w-full font-semibold">
                   Download Email Database
-                </h5>
+                </p>
               </Link>
               <div className="px-6  py-6">
                 <h4 className="font-medium text-base">Mint Discount</h4>
@@ -190,7 +191,11 @@ const AdminDashboard = () => {
             </h5>
             <div className="lg:px-0 2xl:px-44 lg:flex-row flex-col w-full items-center justify-around py-6 flex px-0">
               <div className="flex flex-wrap mb-12 flex-col lg:space-y-0 space-y-8 justify-between items-center">
-                <div className="border-4 gap-4 flex items-center border-blue-500 rounded-full 2xl:w-[80%]  justify-center lg:py-6 py-4 px-6 lg:px-4">
+                <div className="border-3 gap-3 flex items-center border-blue-500 rounded-full 2xl:w-[80%]  justify-center lg:py-6 py-4 px-6 lg:px-4"
+                style={{
+                  border: '3px solid #3B82F6'
+                }}
+                >
                   <img
                     className="w-16"
                     src="/Images/People_Lego_Icon.png"
@@ -207,7 +212,7 @@ const AdminDashboard = () => {
                 </div>
                 <Link to={"/admin"} className="flex items-center flex-col">
                   <img
-                    className="lg:w-[90%] w-[60%]"
+                    className="lg:w-[40%] w-[40%]"
                     src="/Images/totalcustomers.png"
                     alt=""
                   />
@@ -217,7 +222,10 @@ const AdminDashboard = () => {
                 </Link>
               </div>
               <div className="flex flex-wrap  mb-12 flex-col lg:space-y-0 space-y-8 justify-between items-center">
-                <div className="border-4 gap-4 flex items-center border-green-500 2xl:w-[80%] justify-center rounded-full py-6 px-14">
+                <div className="border-3 gap-3 flex items-center border-green-500 2xl:w-[80%] justify-center rounded-full py-6 px-14" style={{
+                  border: '3px solid #10B981'
+          
+                }}>
                   <img
                     className="w-16"
                     src="/Images/shopping_cart_lego_icon.png"
@@ -235,7 +243,7 @@ const AdminDashboard = () => {
                   className="flex items-center flex-col"
                 >
                   <img
-                    className="lg:w-[90%] w-[60%]"
+                    className="lg:w-[40%] w-[40%]"
                     src="/Images/totalnumbericon.png"
                     alt=""
                   />
@@ -245,7 +253,11 @@ const AdminDashboard = () => {
                 </Link>
               </div>
               <div className="flex flex-wrap mb-12  flex-col lg:space-y-0 space-y-8 justify-between items-center">
-                <div className="border-4 gap-4 flex items-center border-yellow-500 2xl:w-[80%] justify-center rounded-full py-6 px-12">
+                <div className="border-3 gap-3 flex items-center border-yellow-500 2xl:w-[80%] justify-center rounded-full py-6 px-12"
+                style={{
+                  border: '3px solid #FBBF24'
+                }}
+                >
                   <img
                     className="w-16"
                     src="/Images/Pound_lego_icon.png"
@@ -267,7 +279,7 @@ const AdminDashboard = () => {
                   className="flex items-center flex-col"
                 >
                   <img
-                    className="lg:w-[90%] w-[60%]"
+                    className="lg:w-[40%] w-[40%]"
                     src="/Images/reportsicon.png"
                     alt=""
                   />
@@ -278,6 +290,40 @@ const AdminDashboard = () => {
                   </h4>
                 </div>
               </div>
+
+
+
+              <div className="flex flex-wrap mb-12 flex-col lg:space-y-0 space-y-8 justify-between items-center" style={{ marginTop: '20px',
+             }}>
+
+                <div className="border-3 gap-3 flex items-center border-green-500 2xl:w-[80%] justify-center rounded-full py-6 px-14"
+                style={{
+                  border: '3px solid #10B981'
+                }}
+                >
+                <div className="flex items-center flex-col">
+                    <h4 className="text-lg font-semibold">Blogs</h4>
+                    
+                  </div>
+                 
+                </div>
+                <Link
+                  to={"/userblogs"}
+                  className="flex items-center flex-col"
+                >
+                  <img
+                    className="lg:w-[40%] w-[40%]"
+                    src="/Images/blogs.png"
+                    alt=""
+                  />
+                  <h4 className="text-base lg:text-xl text-center font-bold">
+                    Blogs
+                  </h4>
+                </Link>
+              </div>
+
+
+
             </div>
           </div>
         </div>

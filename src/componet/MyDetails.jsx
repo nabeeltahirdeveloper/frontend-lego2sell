@@ -4,6 +4,7 @@ import { useDisclosure } from "@mantine/hooks"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import Editdetails from "./Editdetails"
+import baseUrl from "../context/baseUrl"
 
 const MyDetails = ({ setSidebarActive }) => {
   const [searchValue, onSearchChange] = useState("")
@@ -14,7 +15,7 @@ const MyDetails = ({ setSidebarActive }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`
         )
         setData(response.data.Mydetails[0])
       } catch (error) {

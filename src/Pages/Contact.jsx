@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Notification } from "@mantine/core"
 import { IconCheck } from "@tabler/icons-react"
 import { Helmet } from 'react-helmet'
+import baseUrl from "../context/baseUrl"
 
 // import nodemailer from "nodemailer"
 
@@ -64,7 +65,7 @@ const Contact = () => {
 
     try {
       const response = await fetch(
-        "https://api.lego2sell.com/contactus/submit",
+        `${baseUrl}/contactus/submit`,
         {
           method: "POST",
           headers: {

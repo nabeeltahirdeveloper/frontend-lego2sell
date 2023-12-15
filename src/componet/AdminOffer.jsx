@@ -5,6 +5,7 @@ import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib"
 import download from "downloadjs"
 import { useDisclosure } from "@mantine/hooks"
 import CryptoJS from 'crypto-js';
+import baseUrl from "../context/baseUrl"
 
 const Adminorder = ({ items, data, SearchValue, index }) => {
   const [OrderOpen, setOrderOpen] = useState()
@@ -18,7 +19,7 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
   // }, [storedUserId, Status, Status])
   const handleUpdate = () => {
     axios
-      .put(`https://api.lego2sell.com/Getorder/status/${userId}`, {
+      .put(`${baseUrl}/Getorder/status/${userId}`, {
         Status,
         orderId,
       })
@@ -50,7 +51,7 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
     const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
 
     try {
-      const response = await fetch("https://api.lego2sell.com/delete-account", {
+      const response = await fetch(`${baseUrl}/delete-account`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

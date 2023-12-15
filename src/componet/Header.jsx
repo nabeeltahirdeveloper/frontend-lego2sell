@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { charactersList } from "./FAQData"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import axios from "axios"
+import baseUrl from "../context/baseUrl"
 const Header = ({ addBasket }) => {
   const [FAQOpen, setFAQOpen] = useState()
   const [openMenu, setOpenMenu] = useState()
@@ -21,9 +22,10 @@ const Header = ({ addBasket }) => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/user/${storedUserId}`
+          `${baseUrl}/user/${storedUserId}`
         )
         setUserData(response.data)
+        console.log(userData)
         localStorage.setItem(
           "adminView",
           response.data.admin === "admin" ? "admin" : null
@@ -43,7 +45,9 @@ const Header = ({ addBasket }) => {
     const fetchUserOrders = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Getorder/${storedUserId}`
+          `${baseUrl}/Getorder/${storedUserId}`,{
+            withCredentials:true
+          }
         )
 
         if (response.status === 200) {
@@ -339,22 +343,37 @@ const Header = ({ addBasket }) => {
             >
               Account
             </button>
+            <button className="lg:text-lg text-[14px]  font-medium"
+            >
+            <Link
+            onClick={() => setFAQOpen(false)}
+            className="text-blue-600"
+            to="/blogs/"
+            >
+            Blogs
+            </Link>{" "}
+            </button>
+
+
+
+
             {userData?.admin === "admin" && (
               <button
                 onClick={() => {
                   setFAQOpen(false)
                   setMenuOpen(false)
-                  if (
-                    storedUserId === null ||
-                    storedUserId === "null" ||
-                    storedUserId === ""
-                  ) {
-                    navigation("/login/", {
-                      state: { route },
-                    })
-                  } else {
-                    navigation("/AdminDashboard")
-                  }
+                  navigation("/AdminDashboard")
+                  // if (
+                  //   storedUserId === null ||
+                  //   storedUserId === "null" ||
+                  //   storedUserId === ""
+                  // ) {
+                  //   navigation("/login/", {
+                  //     state: { route },
+                  //   })
+                  // } else {
+                  //   navigation("/AdminDashboard")
+                  // }
                 }}
                 className={`lg:text-lg text-[10px] font-medium`}
               >
@@ -572,12 +591,12 @@ const Header = ({ addBasket }) => {
                       item | £{totalPrice ? totalPrice.toFixed(2) : "0"}
                     </p>
                   </div>
-                  <svg
+                    <svg
                     width={28}
                     viewBox="0 -0.5 25 25"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
-                  >
+                    >
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g
                       id="SVGRepo_tracerCarrier"

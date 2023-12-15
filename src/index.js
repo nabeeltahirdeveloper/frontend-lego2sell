@@ -3,7 +3,9 @@ import ReactDOM from "react-dom"
 import App from "./App.jsx"
 import "./index.css"
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom"
-
+import Blog from "./Pages/Blog"
+import BlogDetail from "./Pages/BlogDetail"
+import BlogList from "./Pages/BlogList"
 import Product from "./Pages/Product"
 import Basket from "./Pages/Basket.jsx"
 import Header from "./componet/Header.jsx"
@@ -25,6 +27,11 @@ import PasswordReset from "./Pages/PasswordReset.jsx/PasswordReset.jsx"
 import ChangePassword from "./componet/ChangePassword.jsx"
 import AdminDashboard from "./Pages/AdminDashboard.jsx"
 import CustomerOffers from "./Pages/CustomerOffers.jsx"
+import UserBlog from "./Pages/UserBlog.jsx"
+import BlogEdit from "./Pages/BlogEdit.jsx"
+import UserManagement from "./Pages/UserManagement.jsx"
+import UserCategory from "./Pages/UserCategory.jsx"
+import UserComments from "./Pages/UserComments.jsx"
 import Conditions from "./Pages/Conditions.jsx"
 import AdminRoute from "./AdminRoute.jsx"
 import ReactGA from "react-ga4"
@@ -201,6 +208,45 @@ const router = createBrowserRouter([
       </div>
     ),
   },
+
+  {
+    path: "/blogs",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <Blog />
+        <Footer />
+      </div>
+    ),
+  },
+
+
+  {
+    path: "/blogdetails",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <BlogDetail />
+        <Footer />
+      </div>
+    ),
+  },
+  
+
+  {
+    path: "/bloglist",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <BlogList />
+        <Footer />
+      </div>
+    ),
+  },
+
+
+
+
   {
     path: "/privacy-statement",
     element: (
@@ -251,6 +297,67 @@ const router = createBrowserRouter([
       </div>
     ),
   },
+
+  {
+  path: "/userblogs",
+  element: (
+    <div className="h-screen flex min-h-screen flex-col ">
+      <Header />
+      <UserBlog />
+      <Footer />
+    </div>
+  ),
+},
+
+{
+  path: "/blogedit",
+  element: (
+    <div className="h-screen flex min-h-screen flex-col ">
+      <Header />
+      <BlogEdit />
+      <Footer />
+    </div>
+  ),
+},
+
+
+
+{
+  path: "/usermanagement",
+  element: (
+    <div className="h-screen flex min-h-screen flex-col ">
+      <Header />
+      <UserManagement />
+      <Footer />
+    </div>
+  ),
+},
+
+{
+  path: "/usercategory",
+  element: (
+    <div className="h-screen flex min-h-screen flex-col ">
+      <Header />
+      <UserCategory />
+      <Footer />
+    </div>
+  ),
+},
+
+
+{
+  path: "/usercomments",
+  element: (
+    <div className="h-screen flex min-h-screen flex-col ">
+      <Header />
+      <UserComments />
+      <Footer />
+    </div>
+  ),
+},
+
+
+
 ])
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

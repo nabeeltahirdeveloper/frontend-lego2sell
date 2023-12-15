@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet"
 import { useLocation } from "react-router-dom"
 import Editdetails from "./Editdetails"
 import { useDisclosure } from "@mantine/hooks"
+import baseUrl from "../context/baseUrl"
 // import Select from "react-select"
 const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
   const [searchValue, onSearchChange] = useState("")
@@ -38,7 +39,7 @@ const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.lego2sell.com/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`
         )
         const jsonData = await response.json()
         // Assuming you have a 'setData' function to set the fetched data

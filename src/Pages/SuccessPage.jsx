@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom"
 // import PDFModificationExample from "../componet/PDFComplete"
 import PDFModificationExample from "../componet/PDFComplete"
 import { useDisclosure } from "@mantine/hooks"
+import baseUrl from "../context/baseUrl"
 
 const SuccessPage = () => {
   const location = useLocation()
@@ -24,7 +25,7 @@ const SuccessPage = () => {
     const fetchUserOrders = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Getorder/${storedUserId}`
+          `${baseUrl}/Getorder/${storedUserId}`
         )
 
         if (response.status === 200) {

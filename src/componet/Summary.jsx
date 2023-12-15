@@ -4,6 +4,7 @@ import { Checkbox, Group, Loader, Radio } from "@mantine/core"
 import axios from "axios"
 import { Country, State, City } from "country-state-city"
 import { Helmet } from "react-helmet"
+import baseUrl from "../context/baseUrl"
 const Summary = ({
   SearchValue,
   condition,
@@ -52,7 +53,7 @@ const Summary = ({
     async function fetchOrders() {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Getorder/${storedUserId}`
+          `${baseUrl}/Getorder/${storedUserId}`
         )
         setOrderitems(response.data)
       } catch (error) {
@@ -67,10 +68,10 @@ const Summary = ({
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`
         )
         setDetails(response.data.Mydetails[0])
-        const response1 = await fetch("https://api.lego2sell.com/find-lego", {
+        const response1 = await fetch(`${baseUrl}/find-lego`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -99,7 +100,7 @@ const Summary = ({
     e.preventDefault()
     try {
       const response = await axios.post(
-        `https://api.lego2sell.com/Getorder/${storedUserId}`,
+        `${baseUrl}/Getorder/${storedUserId}`,
         payload
       )
       const offerId = response.data.offerId
@@ -125,7 +126,7 @@ const Summary = ({
 
   const handleSearch = async () => {
     try {
-      const response = await fetch("https://api.lego2sell.com/find-lego", {
+      const response = await fetch(`${baseUrl}/find-lego`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

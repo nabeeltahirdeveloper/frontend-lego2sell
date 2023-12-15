@@ -3,6 +3,7 @@ import { useDisclosure } from "@mantine/hooks"
 import React, { useEffect, useState } from "react"
 import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib"
 import download from "downloadjs"
+import baseUrl from "../context/baseUrl"
 const OrderCards = ({
   timestamp,
   length,
@@ -20,7 +21,7 @@ const OrderCards = ({
   // console.log("go8", getMyDetails)
   const handleSearch = async () => {
     try {
-      const response = await fetch("https://api.lego2sell.com/find-lego", {
+      const response = await fetch(`${baseUrl}/find-lego`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -6,6 +6,7 @@ import { useDisclosure } from "@mantine/hooks"
 import { Helmet } from "react-helmet"
 import { useMediaQuery } from "react-responsive"
 import ReactGA from "react-ga4"
+import baseUrl from "./context/baseUrl"
 const App = () => {
   const [e, setE] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -27,7 +28,7 @@ const App = () => {
     try {
       setIsLoading(true)
 
-      const response = await fetch("https://api.lego2sell.com/find-lego", {
+      const response = await fetch(`${baseUrl}/find-lego`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,13 +97,13 @@ const App = () => {
                     fetchpriority="high"
                   />
                 </div>
-                <Modal
+                  <Modal
                   size="lg"
                   opened={opened}
                   onClose={close}
                   title="Error"
                   centered
-                >
+                  >
                   <div className="flex items-center justify-center">
                     <img
                       className="w-3/4"
@@ -158,15 +159,13 @@ const App = () => {
                   transitionProps={{ duration: 200 }}
                   label="To search your LEGO® set just type in the LEGO® ID code found on all LEGO® sets and hit enter or the search button. (Example: 77941)"
                 >
-                  <button
+                <button
                     variant="outline"
                     onClick={() => setOpened((o) => !o)}
                     className={`${
                       opened1 ? "mt-16 lg:mt-0 " : ""
                     }text-base  font-medium text-gray-400`}
-                  >
-                    Search help
-                  </button>
+                >Search help</button>
                 </Tooltip>
               </div>
             </div>

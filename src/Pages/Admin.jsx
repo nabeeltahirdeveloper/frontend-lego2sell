@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react"
 import Adminorder from "../componet/Adminorder"
 import { useNavigate } from "react-router-dom"
+import baseUrl from "../context/baseUrl"
 
 const Admin = () => {
   const [data, setData] = useState()
+  
   const fetchInfo = () => {
-    return fetch("https://api.lego2sell.com/GetOrder")
+    return fetch(`${baseUrl}/GetOrder`)
       .then((res) => res.json())
       .then((d) => setData(d.data))
   }

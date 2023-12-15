@@ -4,6 +4,7 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import CryptoJS from 'crypto-js';
+import baseUrl from "../context/baseUrl"
 
 const ChangePassword = () => {
   const [validUrl, setValidUrl] = useState()
@@ -20,7 +21,7 @@ const ChangePassword = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/contactus/submit`
+          `${baseUrl}/contactus/submit`
         )
         setData(response.data.Mydetails[0])
       } catch (error) {
@@ -44,7 +45,7 @@ const ChangePassword = () => {
 
     try {
       const response = await axios.post(
-        "https://api.lego2sell.com/sendpasswordlink",
+        `${baseUrl}/sendpasswordlink`,
         {
           email: email?.toLowerCase(),
           headers: {

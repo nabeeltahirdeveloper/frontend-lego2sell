@@ -4,6 +4,7 @@ import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet"
 import ReactGA from "react-ga4"
+import baseUrl from "../context/baseUrl"
 const Product = () => {
   const [condition, setCondition] = useState()
   const [damageOpen, setDamageOpen] = useState()
@@ -22,7 +23,7 @@ const Product = () => {
       try {
         // Replace with the actual user ID
         const response = await axios.get(
-          `https://api.lego2sell.com/DiscountValueGet`
+          `${baseUrl}/DiscountValueGet`
         )
         setDiscountValue(response.data)
       } catch (error) {
@@ -81,7 +82,7 @@ const Product = () => {
     })
     try {
       const response = await axios.post(
-        `https://api.lego2sell.com/get_Quote/${storedUserId}`,
+        `${baseUrl}/get_Quote/${storedUserId}`,
         payload
       )
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import AdminOffer from "../componet/AdminOffer"
 import { useNavigate } from "react-router-dom"
 import CryptoJS from 'crypto-js';
+import baseUrl from "../context/baseUrl";
 
 const CustomerOffers = () => {
   const [data, setData] = useState()
@@ -13,7 +14,7 @@ const CustomerOffers = () => {
     // Encrypt the data
     const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
 
-    return fetch("https://api.lego2sell.com/GetorderValue", {
+    return fetch(`${baseUrl}/GetorderValue`, {
       headers: {
         "Content-Type": "application/json",
         "source": encryptedData,

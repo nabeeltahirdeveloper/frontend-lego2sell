@@ -15,6 +15,7 @@ import Country from "../componet/Country"
 import CountryCity from "../componet/Country"
 import { Helmet } from "react-helmet"
 import CryptoJS from 'crypto-js';
+import baseUrl from "../context/baseUrl"
 
 const SignUpForm = () => {
   const [email, setEmail] = useState("")
@@ -108,7 +109,7 @@ const SignUpForm = () => {
       // Encrypt the data
       const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
 
-      const response = await fetch("https://api.lego2sell.com/signup", {
+      const response = await fetch(`${baseUrl}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -129,7 +130,7 @@ const SignUpForm = () => {
       setEmail("")
       setPassword("")
       const response1 = await axios.post(
-        `https://api.lego2sell.com/MyDetails/${userId}`,
+        `${baseUrl}/MyDetails/${userId}`,
         payload
       )
       localStorage.setItem("userId", userId)
@@ -143,7 +144,7 @@ const SignUpForm = () => {
       // Navigate to another route
       try {
         const response = await fetch(
-          `https://api.lego2sell.com/Mydetails/${userId}`
+          `${baseUrl}/Mydetails/${userId}`
         )
         const jsonData = await response.json()
         // console.log(jsonData.Mydetails[0])

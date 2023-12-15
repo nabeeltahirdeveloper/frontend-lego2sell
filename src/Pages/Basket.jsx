@@ -3,6 +3,7 @@ import { useDisclosure } from "@mantine/hooks"
 import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 import { Link, useLocation, useNavigate } from "react-router-dom"
+import baseUrl from "../context/baseUrl"
 
 const Basket = () => {
   const location = useLocation()
@@ -22,7 +23,7 @@ const Basket = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://api.lego2sell.com/find-lego", {
+        const response = await fetch(`${baseUrl}/find-lego`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -47,7 +48,7 @@ const Basket = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://api.lego2sell.com/calculate-price",
+          `${baseUrl}/calculate-price`,
           {
             method: "POST",
             headers: {

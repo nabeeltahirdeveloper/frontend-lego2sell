@@ -4,6 +4,7 @@ import download from "downloadjs"
 import { useDisclosure } from "@mantine/hooks"
 import { Modal } from "@mantine/core"
 import axios from "axios"
+import baseUrl from "../context/baseUrl"
 // import { Modal } from "flowbite"
 // import pdf from "../../public/SellyournewsetsatLEGO2sell.pdf"
 const PDFModificationExample = ({ orderId, date, opened, open, close }) => {
@@ -14,7 +15,7 @@ const PDFModificationExample = ({ orderId, date, opened, open, close }) => {
   const SearchValue = localStorage.getItem("SearchValue")
   const handleSearch = async () => {
     try {
-      const response = await fetch("https://api.lego2sell.com/find-lego", {
+      const response = await fetch(`${baseUrl}/find-lego`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,10 +40,10 @@ const PDFModificationExample = ({ orderId, date, opened, open, close }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`
         )
         setDetails(response.data.Mydetails[0])
-        const response1 = await fetch("https://api.lego2sell.com/find-lego", {
+        const response1 = await fetch(`${baseUrl}/find-lego`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -108,7 +109,7 @@ const PDFModificationExample = ({ orderId, date, opened, open, close }) => {
     const fetchUserOrders = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Getorder/${storedUserId}`
+          `${baseUrl}/Getorder/${storedUserId}`
         )
 
         if (response.status === 200) {

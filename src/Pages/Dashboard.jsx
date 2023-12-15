@@ -9,6 +9,7 @@ import { useForm } from "@mantine/form"
 import ChangePassword from "../componet/ChangePassword"
 import ReactDropdown from "react-dropdown"
 import "react-dropdown/style.css"
+import baseUrl from "../context/baseUrl"
 const Dashboard = (props) => {
   const [orderitems, setOrderitems] = useState()
   const navigation = useNavigate()
@@ -24,7 +25,7 @@ const Dashboard = (props) => {
     const fetchUserOrders = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Getorder/${storedUserId}`
+          `${baseUrl}/Getorder/${storedUserId}`
         )
 
         if (response.status === 200) {

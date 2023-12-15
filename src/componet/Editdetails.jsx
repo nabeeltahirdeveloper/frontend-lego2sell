@@ -12,6 +12,7 @@ import axios from "axios"
 import React, { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import CountryCity from "./Country"
+import baseUrl from "../context/baseUrl"
 
 const Editdetails = ({ close, setSidebarActive, opened, data }) => {
   const [email, setEmail] = useState("")
@@ -72,7 +73,7 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
   const handleSubmit = async (values) => {
     try {
       const response3 = await axios.put(
-        `https://api.lego2sell.com/update-email/${storedUserId}`,
+        `${baseUrl}/update-email/${storedUserId}`,
         {
           newEmail: form.values.email,
         }
@@ -102,7 +103,7 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
       }
 
       const response1 = await axios.post(
-        `https://api.lego2sell.com/MyDetails/${storedUserId}`,
+        `${baseUrl}/MyDetails/${storedUserId}`,
         payload
       )
       // console.log("sdsds", response1.data)

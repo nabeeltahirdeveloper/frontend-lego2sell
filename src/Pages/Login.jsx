@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import axios from "axios"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { Helmet } from "react-helmet"
+import baseUrl from "../context/baseUrl"
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -27,7 +28,7 @@ function Login() {
     e.preventDefault()
 
     try {
-      const response = await fetch("https://api.lego2sell.com/login", {
+      const response = await fetch(`${baseUrl}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +68,7 @@ function Login() {
     <div className="flex items-center justify-center flex-col">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Login Acount | Sell LEGO®</title>
+        <title>Login ccount | LEGO®</title>
          <meta
           name="description"
           content="Log in to your Lego2Sell account. Manage your LEGO listings, transactions, and connect with the LEGO community. Join us now!"

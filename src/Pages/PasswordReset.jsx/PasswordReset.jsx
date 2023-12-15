@@ -5,6 +5,7 @@ import { Loader, Modal } from "@mantine/core"
 import PasswordStrengthMeter from "../Password"
 import { useDisclosure } from "@mantine/hooks"
 import CryptoJS from 'crypto-js';
+import baseUrl from "../../context/baseUrl"
 
 const PasswordReset = () => {
   const [validUrl, setValidUrl] = useState(false)
@@ -14,7 +15,7 @@ const PasswordReset = () => {
   const [msg, setMsg] = useState("")
   const [error, setError] = useState("")
   const param = useParams()
-  const url = `https://api.lego2sell.com/forgotpassword/${param.id}/${param.token}`
+  const url = `${baseUrl}/forgotpassword/${param.id}/${param.token}`
 
   useEffect(() => {
     const verifyUrl = async () => {

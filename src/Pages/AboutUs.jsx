@@ -6,7 +6,7 @@ const AboutUs = () => {
   return (
     <div>
       <Helmet>
-        <title>About LEGO2SELL - Best Selling Marketplace for Lego</title>
+        <title>About LEGO2SELL - Best Selling Marketplace for Legos</title>
         <meta
           name="description"
           content="Explore Lego2Sell's story and mission. Learn how we connect LEGO enthusiasts and sellers worldwide. Learn more how to sell your new lego sets online for cash."
@@ -44,10 +44,10 @@ const AboutUs = () => {
               </p>
 
               <p className="py-4">
-                Yes, you may get a bit more on ebay® or Amazon® but you can have a
-                lot of hassle and many hoops to jump through with lengthy sales and payment 
-                times, customer support or returns and then there are still selling fees, 
-                We cut all that out at lego2sell.com and just give you the cash within
+                Yes, you may get a bit more on ebay® or Amazon® but you have a
+                lot of hassle with lengthy sales and payment times, customer
+                support or returns and then there are still selling fees, We cut
+                all that out at lego2sell.com and just give you the dosh within
                 a day or two!
               </p>
               <h3 className="text-red-500 text-2xl py-4 font-bold">
