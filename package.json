@@ -44,6 +44,9 @@
     "web-vitals": "^2.1.4",
     "zxcvbn": "^4.4.2"
   },
+  "resolutions": {
+    "strip-ansi": "6.0.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -69,6 +72,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "tailwindcss": "^3.3.3"
   }
 }
