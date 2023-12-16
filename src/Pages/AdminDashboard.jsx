@@ -126,7 +126,7 @@ const AdminDashboard = () => {
     <div>
       <div className="">
         <div className="flex flex-col-reverse lg:flex-row">
-          <div className=" lg:flex-[0.3] 2xl:flex-[0.2] mt-0 lg:mt-44 px-2 flex-col">
+          <div className="  lg:flex-[0.3] 2xl:flex-[0.2] sm:mt-0 lg:mt-44 px-2 flex-col">
             <div className=" border-[7px] ml-3 lg:ml-9 mb-8  py-4 h-full lg:h-[60vh] border-blue-500 rounded-[30px]">
               <Link
                 to={"http://localhost:5100/export/csv/alldata6"}
@@ -137,7 +137,7 @@ const AdminDashboard = () => {
                   src="/Images/LegoCSV icon.png"
                   alt=""
                 />
-                <p className="   font-semibold w-full">
+                <p className=" text-[black] text-[20px] text-center  font-semibold w-full">
                   Download Sets Database
                 </p>
               </Link>
@@ -150,7 +150,7 @@ const AdminDashboard = () => {
                   src="/Images/emaillist3dicon.png"
                   alt=""
                 />
-                <p className="w-full font-semibold">
+                <p className="w-full font-semibold text-[black] text-[20px] text-center">
                   Download Email Database
                 </p>
               </Link>
