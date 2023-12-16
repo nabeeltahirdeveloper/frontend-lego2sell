@@ -210,6 +210,7 @@ const Blog = () => {
                           style={{
                             backgroundColor: blog.categoryName.color,
                             color: "black",
+                            fontSize: 11
                           }}
                           href={`/bloglist?catId=${blog?.categoryId}`}
                         >
@@ -277,6 +278,7 @@ const Blog = () => {
                           style={{
                               backgroundColor: blog.categoryName.color,
                               color: "black",
+                              fontSize: 11
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
                           >
@@ -348,6 +350,7 @@ const Blog = () => {
                           style={{
                             backgroundColor: blog.categoryName.color,
                             color: "black",
+                            fontSize: 11
                           }}
                           href={`/bloglist?catId=${blog?.categoryId}`}
                           onClick={(e) => {
