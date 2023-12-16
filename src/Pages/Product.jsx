@@ -1,38 +1,37 @@
-import React, { useEffect, useState } from "react"
-import { Loader, Modal } from "@mantine/core"
-import axios from "axios"
-import { useLocation, useNavigate } from "react-router-dom"
-import { Helmet } from "react-helmet"
-import ReactGA from "react-ga4"
-import baseUrl from "../context/baseUrl"
+import React, { useEffect, useState } from "react";
+import { Loader, Modal } from "@mantine/core";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import ReactGA from "react-ga4";
 const Product = () => {
-  const [condition, setCondition] = useState()
-  const [damageOpen, setDamageOpen] = useState()
-  const [productCondition, setProductCondition] = useState()
-  const location = useLocation()
-  const [isLoading, setIsLoading] = useState(true)
-  const data = location.state && location.state.data
-  const SearchValue = location.state && location.state.e
-  const navigation = useNavigate()
-  const [isFormValid, setIsFormValid] = useState(true)
-  const [DiscountValue, setDiscountValue] = useState()
-  const [setCondtinmessage, setSetCondtinmessage] = useState(true)
+  const [condition, setCondition] = useState();
+  const [damageOpen, setDamageOpen] = useState();
+  const [productCondition, setProductCondition] = useState();
+  const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
+  const data = location.state && location.state.data;
+  const SearchValue = location.state && location.state.e;
+  const navigation = useNavigate();
+  const [isFormValid, setIsFormValid] = useState(true);
+  const [DiscountValue, setDiscountValue] = useState();
+  const [setCondtinmessage, setSetCondtinmessage] = useState(true);
 
   useEffect(() => {
     async function fetchOrders() {
       try {
         // Replace with the actual user ID
         const response = await axios.get(
-          `${baseUrl}/DiscountValueGet`
-        )
-        setDiscountValue(response.data)
+          `https://api.lego2sell.com/DiscountValueGet`
+        );
+        setDiscountValue(response.data);
       } catch (error) {
         // console.log(error)
       }
     }
-    ReactGA.send(window.location.pathname)
-    fetchOrders()
-  }, [])
+    ReactGA.send(window.location.pathname);
+    fetchOrders();
+  }, []);
   const ConditionData = [
     {
       img: "/mint.png",
@@ -45,73 +44,73 @@ const Product = () => {
       title: "Very Good",
     },
     { img: "/Images/damaged.png", Discount: "no", title: "Damaged" },
-  ]
-  const [seletedvalue, setSeletedvalue] = useState()
+  ];
+  const [seletedvalue, setSeletedvalue] = useState();
   // console.log(ConditionData)
   const [formData, setFormData] = useState({
     SetCondition: "",
     email: "",
     ifcondition: "",
-  })
-  const storedUserId = localStorage.getItem("userId")
+  });
+  const storedUserId = localStorage.getItem("userId");
   // console.log("demo", storedUserId)
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // Perform form validation
     if (!formData.email || !formData.ifcondition) {
-      setIsFormValid(false)
-      return
+      setIsFormValid(false);
+      return;
     }
     if (!productCondition) {
-      setSetCondtinmessage(false)
-      return
+      setSetCondtinmessage(false);
+      return;
     }
 
-    localStorage.setItem("condition", condition)
-    localStorage.setItem("SearchValue", SearchValue)
+    localStorage.setItem("condition", condition);
+    localStorage.setItem("SearchValue", SearchValue);
     const payload = {
       SetCondition: formData.SetCondition,
       email: formData.email,
       ifSetcondition: formData.ifcondition,
-    }
+    };
     ReactGA.send({
       category: payload.email,
       value: payload.SetCondition,
       action: "Demo",
-    })
+    });
     try {
       const response = await axios.post(
-        `${baseUrl}/get_Quote/${storedUserId}`,
+        `https://api.lego2sell.com/get_Quote/${storedUserId}`,
         payload
-      )
+      );
 
       // console.log("workingsdsd", response.data)
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
     // console.log(formData)
 
     navigation(`/selling-basket/`, {
       state: { SearchValue, condition, productCondition },
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     setTimeout(() => {
-      setIsLoading(false)
-    }, 100)
+      setIsLoading(false);
+    }, 100);
     if (formData.SetCondition === "no") {
-      setDamageOpen(true)
-    } else setDamageOpen(false)
-  }, [formData])
+      setDamageOpen(true);
+    } else setDamageOpen(false);
+  }, [formData]);
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center mx-auto my-auto ">
         <Loader />
       </div>
-    )
+    );
   }
 
   return (
@@ -230,14 +229,15 @@ const Product = () => {
                 </h4>
                 <div className="flex items-center justify-between">
                   {/* {formData.SetCondition === "no"} */}
-                  {ConditionData.map((value, index) => (
-                    <label>
+                  {ConditionData.map((value, index) => {
+                    return(
+                    <label className={` ${
+                      productCondition === value.title
+                        ? "border-2 border-blue-500 rounded-xl "
+                        : ""
+                    }`}>
                       <img
-                        className={`md:w-[100px] cursor-pointer ${
-                          productCondition === value.title
-                            ? "border-2 border-blue-500 rounded-xl "
-                            : ""
-                        } object-contain h-[70px]`}
+                        className={`md:w-[100px] cursor-pointer object-contain h-[70px]`}
                         src={value.img}
                         alt="mint"
                       />
@@ -247,17 +247,17 @@ const Product = () => {
                           setFormData({
                             ...formData,
                             SetCondition: value.Discount,
-                          })
+                          });
 
-                          setCondition(value.Discount)
-                          setProductCondition(value.title)
+                          setCondition(value.Discount);
+                          setProductCondition(value.title);
                         }}
                         name="SetCondition"
                         type="checkbox"
                         className="hidden"
                       />
                     </label>
-                  ))}
+                  )})}
 
                   {damageOpen && (
                     <Modal
@@ -423,7 +423,7 @@ const Product = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

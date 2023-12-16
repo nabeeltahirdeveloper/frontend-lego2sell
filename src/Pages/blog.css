@@ -9,6 +9,15 @@
 .descriptionContainer img{
   display: none;
 }
+
+.blogContainerMain{
+  transition: all 0.25s ease-in-out;
+
+}
+.blogContainerMain:hover{
+  transform: translateY(-10px);
+}
+
 /* Blog Category Card Wrapper Scrollbar */
 .Blog_category_card_wrapper__HLMC9 {
     overflow-y: auto;

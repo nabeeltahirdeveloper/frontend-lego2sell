@@ -206,10 +206,9 @@ const Blog = () => {
                           />
                         </div>
                         <a
-                          className="text-black rounded-full py-2 px-4  font-bold animate-up "
+                          className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                           style={{
                             backgroundColor: blog.categoryName.color,
-                            border: `1px solid gray`,
                             color: "black",
                           }}
                           href={`/bloglist?catId=${blog?.categoryId}`}
@@ -274,12 +273,10 @@ const Blog = () => {
                         </div>
                         <div className="col-8">
                           <a
-                            className=" text-black rounded-full py-2 px-3 mt-6  font-bold text-sm  animate-left catrgory_bar"
-                            style={{
+                          className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
+                          style={{
                               backgroundColor: blog.categoryName.color,
-                              border: `1px solid gray`,
                               color: "black",
-                              textDecoration: "none ",
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
                           >
@@ -332,7 +329,7 @@ const Blog = () => {
               </h4>
               <div className="row justify-start flex-wrap">
                 {blogs?.map((blog) => (
-                  <div className="  w-[380px] h-[700px] overflow-hidden mb-10  col-12 col-md-6 col-lg-4 col-xl-4    blogs_card ">
+                  <div className="blogContainerMain  w-[380px] h-[700px] overflow-hidden mb-10  col-12 col-md-6 col-lg-4 col-xl-4    blogs_card ">
                     <div className=" h-full mb-5    rounded-sm">
                       <Link
                         to={`/blogdetails?blogId=${blog._id}`}
@@ -347,10 +344,9 @@ const Blog = () => {
                           />
                         </div>
                         <a
-                          className="text-black rounded-full py-2 px-3  font-bold text-sm animate-up "
+                          className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                           style={{
                             backgroundColor: blog.categoryName.color,
-                            border: `1px solid gray`,
                             color: "black",
                           }}
                           href={`/bloglist?catId=${blog?.categoryId}`}
