@@ -106,14 +106,14 @@ const Blog = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="border px-6 py-2 w-full md:w-[30%] text-xl font-medium outline-none rounded-l-xl"
+            className="border px-6 py-2 w-full md:w-[20%] text-md font-medium outline-none rounded-l-xl"
             required
             value={searchValue}
             onChange={handleInputChange}
           />
           <button
             type="submit"
-            className=" px-2 text-xl py-[10px] rounded-r-xl bg-blue-500 text-white "
+            className=" px-2 text-md py-[10px] rounded-r-xl bg-blue-500 text-white "
           >
             Search
           </button>
