@@ -229,12 +229,17 @@ const BlogDetail = () => {
             :
             (
               <div>
-                <h1 className='text-center'>Please Login to comment</h1>
-                <div className='flex justify-center gap-5'>
+                <h1  style={{
+                    color:"#333",
+                    fontSize: 16,
+                    fontWeight: 'bold'
+
+                  }}>Please Login to comment</h1>
+                <div className='flex gap-5'>
                   <Link to='/login' className='btn btn-primary' style={{
                     color: 'white'
                   }}>Login</Link>
-                  <Link to='/register' className='btn btn-primary' style={{
+                  <Link to='/signup' className='btn btn-primary' style={{
                     color: 'white'
                   }}>Register</Link>
                   </div>

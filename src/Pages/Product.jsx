@@ -230,34 +230,37 @@ const Product = () => {
                 <div className="flex items-center justify-between">
                   {/* {formData.SetCondition === "no"} */}
                   {ConditionData.map((value, index) => {
-                    return(
-                    <label className={` ${
-                      productCondition === value.title
-                        ? "border-2 border-blue-500 rounded-xl "
-                        : ""
-                    }`}>
-                      <img
-                        className={`md:w-[100px] cursor-pointer object-contain h-[70px]`}
-                        src={value.img}
-                        alt="mint"
-                      />
+                    return (
+                      <label
+                        className={` ${
+                          productCondition === value.title
+                            ? "border-2 border-blue-500 rounded-xl "
+                            : ""
+                        }`}
+                      >
+                        <img
+                          className={`md:w-[100px] cursor-pointer object-contain h-[70px]`}
+                          src={value.img}
+                          alt="mint"
+                        />
 
-                      <input
-                        onChange={(e) => {
-                          setFormData({
-                            ...formData,
-                            SetCondition: value.Discount,
-                          });
+                        <input
+                          onChange={(e) => {
+                            setFormData({
+                              ...formData,
+                              SetCondition: value.Discount,
+                            });
 
-                          setCondition(value.Discount);
-                          setProductCondition(value.title);
-                        }}
-                        name="SetCondition"
-                        type="checkbox"
-                        className="hidden"
-                      />
-                    </label>
-                  )})}
+                            setCondition(value.Discount);
+                            setProductCondition(value.title);
+                          }}
+                          name="SetCondition"
+                          type="checkbox"
+                          className="hidden"
+                        />
+                      </label>
+                    );
+                  })}
 
                   {damageOpen && (
                     <Modal
@@ -267,6 +270,14 @@ const Product = () => {
                       opened
                       onClose={() => setDamageOpen(false)}
                     >
+                      <div className="flex items-center justify-center">
+                        <img
+                          className="w-3/4"
+                          src="/Images/SearchErrorMessage.jpg"
+                          alt=""
+                          loading="lazy"
+                        />
+                      </div>
                       <div className="py-2">
                         <div className="mt-8 text-xl font-medium">Sorry!</div>
                         <p className="font-normal text-gray-400 ">

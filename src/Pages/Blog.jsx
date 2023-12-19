@@ -217,7 +217,7 @@ const Blog = () => {
                           {blog.categoryName.name}
                         </a>
                         <h2
-                          className="my-3 Blog_new_article_title__CusWh"
+                          className="my-3 Blog_new_article_title__CusWh textHeading"
                           style={{
                             minHeight: "auto",
                             fontSize: "24px",
@@ -266,9 +266,10 @@ const Blog = () => {
                         <div className="col-4 px-0 ">
                           <div className="h-[135px] w-[100%] overflow-hidden  object-contain latest_blog_image_container">
                             <img
-                              className="h-full w-[100%] lazy object-cover  "
+                              className="h-full w-[100%] max-h-[170px] lazy object-cover  "
                               src={blog.image}
                               alt="Top 5 Air Fryer Cookbooks"
+                              style={{height: 120, width: 170, objectFit: "cover"}}
                             />
                           </div>
                         </div>
@@ -289,7 +290,7 @@ const Blog = () => {
                             key={blog._id}
                           >
                             <h2
-                              className="my-3 Blog_new_article_title__CusWh "
+                              className="my-3 Blog_new_article_title__CusWh textHeading"
                               style={{
                                 fontSize: "18px",
                                 lineHeight: "21.6px",
@@ -360,7 +361,7 @@ const Blog = () => {
                           {blog.categoryName.name}
                         </a>
                         <h2
-                          className=" my-3 Blog_new_article_title__CusWh  "
+                          className=" my-3 Blog_new_article_title__CusWh  textHeading"
                           style={{
                             fontSize: "24px",
                             lineHeight: "28px",

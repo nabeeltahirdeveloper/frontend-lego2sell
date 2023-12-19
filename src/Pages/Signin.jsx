@@ -23,8 +23,8 @@ const SignUpForm = () => {
   const [repeatpassword, setRepeatpassword] = useState()
   const navigation = useNavigate()
   const location = useLocation()
-  const isLogin = location.state.isLogin
-  const productCondition = location.state.productCondition
+  const isLogin = location.state?.isLogin ?? ""
+  const productCondition = location.state?.productCondition
 
   const [Marketingpreferences, setMarketingpreferences] = useState(false)
 
