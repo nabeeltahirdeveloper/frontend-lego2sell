@@ -13,7 +13,7 @@ const Blog = () => {
 
 
   useEffect(() => {
-  const apiUrl = 'http://localhost:5100/admin/api/blog';
+  const apiUrl = 'https://backend-api-steel.vercel.app/admin/api/blog';
   axios.get(`${baseUrl}/admin/api/blog`)
   .then(response => {
   setBlogs(response.data.data);

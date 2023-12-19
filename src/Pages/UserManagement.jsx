@@ -34,7 +34,7 @@ const UserManagement = () => {
               console.log('Blog deleted successfully:', response.data);
         
               // Refresh the blog list after deleting a blog
-              const updatedUsers = await axios.get('http://localhost:5100/GetUsers');
+              const updatedUsers = await axios.get('https://backend-api-steel.vercel.app/GetUsers');
               setUsers(updatedUsers.data.data);
 
               

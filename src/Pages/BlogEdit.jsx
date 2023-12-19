@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
 const UserBlog = () => {
-    const currentUrl = 'http://localhost:5100';
+    const currentUrl = 'https://backend-api-steel.vercel.app';
     const [blogs, setBlogs] = useState([]);
     const location = useLocation();
     const [categories, setCategory] = useState([]);

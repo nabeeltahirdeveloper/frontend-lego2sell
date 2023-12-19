@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 import baseUrl from "../context/baseUrl";
 
 const UserComments = () => {
-    const currentUrl = 'http://localhost:5100';
+    const currentUrl = 'https://backend-api-steel.vercel.app';
     const [comments, setComments] = useState([]);
     const [userData, setUserData] = useState(null)
     const [loading, setLoading] = useState(true) // Track loading state

@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 import baseUrl from "../context/baseUrl";
 
 const UserCategory = () => {
-    const currentUrl = 'http://localhost:5100';
+    const currentUrl = 'https://backend-api-steel.vercel.app';
     const [blogs, setBlogs] = useState([]);
     const [apiResponse, setResponse] = useState([]);
     const [userData, setUserData] = useState(null)
