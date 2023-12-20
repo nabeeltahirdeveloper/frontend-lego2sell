@@ -135,7 +135,7 @@ const Blog = () => {
                     fontFamily: "Source Sans 3",
                   }}
                 >
-                  Latest News & Helpful Guides
+Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                 </h1>
                 <p
                   className="Blog_blog_header_sub_title__B40oZ"
@@ -145,9 +145,9 @@ const Blog = () => {
                     fontFamily: "Source Sans 3",
                   }}
                 >
-                  Here you'll find all of our latest news and views - including
-                  top tips, handy guides, and fun content for our fellow LEGO®
-                  lovers!
+                  Here You Will Discover An Array Of Top Tips and Tricks As Well As Handy Guides Tailored For LEGO® Enthusiasts!
+
+
                 </p>
               </div>
             </div>
