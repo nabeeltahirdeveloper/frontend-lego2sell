@@ -176,7 +176,9 @@ const Blog = () => {
 
       {postSectionVisible && (
         <div>
-          <section className="blog blog_list pb-3">
+          <section className="blog blog_list pb-5" style={{
+            marginBottom: '3rem !important'
+          }}>
             <div className="container sm:container-fluid ">
               <h3
                 className="mb-4"
