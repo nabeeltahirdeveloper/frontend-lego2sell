@@ -113,7 +113,9 @@ const Blog = () => {
           />
           <button
             type="submit"
-            className=" px-2 text-md py-[10px] rounded-r-xl bg-blue-500 text-white "
+            className=" px-2 text-md py-[10px] rounded-r-xl bg-blue-500 text-white " style={{
+              height: 42
+            }}
           >
             Search
           </button>
