@@ -17,9 +17,14 @@ const BlogDetail = () => {
   const [comments, setComments] = useState([]);
   const storedUserId = localStorage.getItem("userId");
   const [data, setData] = useState()
+  const [isBlocked, setIsBlocked] = useState(false)
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const userResponse = await axios.get(
+          `${baseUrl}/user/${storedUserId}`
+        )
+        setIsBlocked(userResponse.data?.blocked)
         const response = await axios.get(
           `${baseUrl}/Mydetails/${storedUserId}`
         )
@@ -84,6 +89,11 @@ const BlogDetail = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("isBlocked", isBlocked)
+      if (isBlocked) {
+        setResponse('You are blocked by admin');
+        return
+      }
       const apiUrl = baseUrl + '/admin/service/api/comment';
       const response = await axios.post(apiUrl, formData);
       setComments([...comments, response.data.data])

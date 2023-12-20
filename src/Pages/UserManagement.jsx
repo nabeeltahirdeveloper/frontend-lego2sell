@@ -28,8 +28,10 @@ const UserManagement = () => {
 
   const handleDelete = async (userId) => {
     try {
-      const apiUrl = baseUrl + "/GetUsers/" + userId;
-      const response = await axios.delete(apiUrl);
+      const apiUrl = baseUrl + "/BlockUsers/";
+      const response = await axios.post(apiUrl, {
+        userId: userId,
+        });
       console.log("Blog deleted successfully:", response.data);
 
       // Refresh the blog list after deleting a blog
@@ -103,7 +105,7 @@ const UserManagement = () => {
                           onClick={() => handleDelete(user._id)}
                           className="w-full bg-red-500 text-white font-semibold p-2 rounded"
                         >
-                          Delete
+                          {user?.blocked ? "Blocked" : "Block"}
                         </button>
                       </td>
                     </tr>
