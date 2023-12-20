@@ -152,12 +152,12 @@ const Blog = () => {
           </div>
 
           <div className="category-container  mt-5">
-            <div className="my-2  justify-center items-center flex">
+            <div className="my-2  justify-center items-center flex flex-wrap ">
               {categories?.map((category, index) => (
                 <a
                   href={`/bloglist?catId=${category._id}`}
                   key={category._id}
-                  className={`Blog_category_card__i_8G3  text-black `}
+                  className={`Blog_category_card__i_8G3  text-black mt-2 `}
                   style={{
                     color: "black",
                     backgroundColor: category?.color,
@@ -176,7 +176,7 @@ const Blog = () => {
 
       {postSectionVisible && (
         <div>
-          <section className="blog blog_list pb-5">
+          <section className="blog blog_list pb-3">
             <div className="container sm:container-fluid ">
               <h3
                 className="mb-4"
@@ -188,16 +188,16 @@ const Blog = () => {
               >
                 Featured Posts
               </h3>
-              <div className="row gap-0">
+              <div className="flex lg:flex-row flex-col gap-10">
                 {singleBlogs?.map((blog) => (
-                  <div className="col-12 col-md-6 col-lg-7">
+                  <div className="col-12 col-lg-7 ml-[-15px] mr-[-15px]">
                     <a
                       href={`/blogdetails?blogId=${blog._id}`}
                       key={blog._id}
                       title="Book Flipping: How to Buy and Resell Books for Profit"
                       className="Blog_new_article_card_link__28EiO"
                     >
-                      <div className="Blog_new_article_card__qD7wR h-full mb-5 pr-lg-">
+                      <div className="Blog_new_article_card__qD7wR h-full pb-8 flex flex-col justify-between">
                         <div className="Blog_image_container__9bzik mb-4">
                           <img
                             className="lazy blog-image"
@@ -205,17 +205,19 @@ const Blog = () => {
                             alt="Book Flipping: How to Buy and Resell Books for Profit"
                           />
                         </div>
-                        <a
-                          className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
-                          style={{
-                            backgroundColor: blog.categoryName.color,
-                            color: "black",
-                            fontSize: 11
-                          }}
-                          href={`/bloglist?catId=${blog?.categoryId}`}
-                        >
-                          {blog.categoryName.name}
-                        </a>
+                        <div>
+                          <a
+                            className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
+                            style={{
+                              backgroundColor: blog.categoryName.color,
+                              color: "black",
+                              fontSize: 11,
+                            }}
+                            href={`/bloglist?catId=${blog?.categoryId}`}
+                          >
+                            {blog.categoryName.name}
+                          </a>
+                        </div>
                         <h2
                           className="my-3 Blog_new_article_title__CusWh textHeading"
                           style={{
@@ -260,30 +262,34 @@ const Blog = () => {
                 ))}
 
                 {latestBlogs?.length > 0 ? (
-                  <div className="col-12 col-md-6 col-lg-5 ">
+                  <div className="flex flex-col justify-between gap-3">
                     {latestBlogs?.map((blog) => (
-                      <div className="row  mb-3 single_latest_blog">
+                      <div className="row single_latest_blog">
                         <div className="col-4 px-0 ">
                           <div className="h-[135px] w-[100%] overflow-hidden  object-contain latest_blog_image_container">
                             <img
                               className="h-full w-[100%] max-h-[170px] lazy object-cover  "
                               src={blog.image}
                               alt="Top 5 Air Fryer Cookbooks"
-                              style={{height: 120, width: 170, objectFit: "cover"}}
+                              style={{
+                                height: 120,
+                                width: 170,
+                                objectFit: "cover",
+                              }}
                             />
                           </div>
                         </div>
                         <div className="col-8">
                           <a
-                          className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
-                          style={{
+                            className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
+                            style={{
                               backgroundColor: blog.categoryName.color,
                               color: "black",
-                              fontSize: 11
+                              fontSize: 11,
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
                           >
-                            {blog.categoryName.name}
+                            {blog.categoryName.name}1214
                           </a>
                           <Link
                             to={`/blogdetails?blogId=${blog._id}`}
@@ -351,7 +357,7 @@ const Blog = () => {
                           style={{
                             backgroundColor: blog.categoryName.color,
                             color: "black",
-                            fontSize: 11
+                            fontSize: 11,
                           }}
                           href={`/bloglist?catId=${blog?.categoryId}`}
                           onClick={(e) => {

@@ -43,19 +43,33 @@ const UserComments = () => {
           };
 
   return (
-    <div className="">
-       <div >
-
-<a className="Blog_category_card_small__KhtWu Blog_category_card_1 py-4 text-black "
-href="/usermanagement">User Management</a>
-<a className="Blog_category_card_small__KhtWu Blog_category_card_2 py-4 text-black"
-href="/usercategory">Categories</a>
-<a className="Blog_category_card_small__KhtWu Blog_category_card_3 py-4 text-black"
-href="/usercomments">Comments</a>
-<a className="Blog_category_card_small__KhtWu Blog_category_card_1 py-4 text-black "
-href="/userblogs">Blogs</a>
-</div>
-
+    <div className="flex lg:flex-row flex-col mt-8">
+    <div className="max-h-[468px] mt-8 flex flex-col justify-start gap-5 ml-4 h-full bg-slate-50 lg:border-[8px] border-[0px] px-4 py-24 border-blue-500 rounded-[30px]">
+      <a
+        className="Blog_category_card_small__KhtWu Blog_category_card_1 py-4 text-black md:m-0 mx-auto w-[350px] "
+        href="/usermanagement"
+      >
+        User Management
+      </a>
+      <a
+        className="Blog_category_card_small__KhtWu Blog_category_card_2 py-4 text-black md:m-0 mx-auto w-[350px]"
+        href="/usercategory"
+      >
+        Categories
+      </a>
+      <a
+        className="Blog_category_card_small__KhtWu Blog_category_card_3 py-4 text-black md:m-0 mx-auto w-[350px]"
+        href="/usercomments"
+      >
+        Comments
+      </a>
+      <a
+        className="Blog_category_card_small__KhtWu Blog_category_card_1 py-4 text-black md:m-0 mx-auto w-[350px]"
+        href="/blogs"
+      >
+        Blogs
+      </a>
+    </div>
 
 
      <div className="container mx-auto mt-8">
