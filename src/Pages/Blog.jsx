@@ -96,6 +96,24 @@ const Blog = () => {
       day: "numeric",
     });
   };
+
+  function hexToRgba(hex, alpha = 1) {
+    const hexRegex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+    const result = hexRegex.exec(hex);
+
+    if (!result) {
+      return null;
+    }
+
+    const [, r, g, b] = result.map((val) => parseInt(val, 16));
+
+    if (alpha < 0 || alpha > 1) {
+      return null; // Invalid alpha value
+    }
+
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  }
+
   return (
     <div className="container-fluid mx-auto mt-2 pt-4">
       <div className="col-12 text-center standard_page_content my-8">
@@ -113,8 +131,9 @@ const Blog = () => {
           />
           <button
             type="submit"
-            className=" px-2 text-md py-[10px] rounded-r-xl bg-blue-500 text-white " style={{
-              height: 42
+            className=" px-2 text-md py-[10px] rounded-r-xl bg-blue-500 text-white "
+            style={{
+              height: 42,
             }}
           >
             Search
@@ -135,7 +154,8 @@ const Blog = () => {
                     fontFamily: "Source Sans 3",
                   }}
                 >
-Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
+                  Explore Our Latest News, Reviews <br /> and Comprehensive
+                  Insights.
                 </h1>
                 <p
                   className="Blog_blog_header_sub_title__B40oZ"
@@ -145,9 +165,8 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                     fontFamily: "Source Sans 3",
                   }}
                 >
-                  Here You Will Discover An Array Of Top Tips and Tricks As Well As Handy Guides Tailored For LEGO® Enthusiasts!
-
-
+                  Here You Will Discover An Array Of Top Tips and Tricks As Well
+                  As Handy Guides Tailored For LEGO® Enthusiasts!
                 </p>
               </div>
             </div>
@@ -159,13 +178,14 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                 <a
                   href={`/bloglist?catId=${category._id}`}
                   key={category._id}
-                  className={`Blog_category_card__i_8G3  text-black mt-2 `}
+                  className={`  text-black mt-2  text-[17px] py-[7px]  px-6 rounded-[44px] `}
                   style={{
                     color: "black",
-                    backgroundColor: category?.color,
-                    border: `1px solid gray`,
                     fontWeight: 700,
                     fontFamily: "Verdana",
+                    border: `2px solid ${category?.color}`,
+                    borderColor: category?.color,
+                    backgroundColor: hexToRgba(category?.color, 0.5),
                   }}
                 >
                   {category.name}
@@ -178,9 +198,12 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
 
       {postSectionVisible && (
         <div>
-          <section className="blog blog_list pb-5" style={{
-            marginBottom: '3rem !important'
-          }}>
+          <section
+            className="blog blog_list pb-5"
+            style={{
+              marginBottom: "3rem !important",
+            }}
+          >
             <div className="container sm:container-fluid ">
               <h3
                 className="mb-4"
@@ -213,9 +236,14 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                           <a
                             className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                             style={{
-                              backgroundColor: blog.categoryName.color,
                               color: "black",
                               fontSize: 11,
+                              border: `2px solid ${blog.categoryName?.color}`,
+                              borderColor: blog.categoryName?.color,
+                              backgroundColor: hexToRgba(
+                                blog.categoryName?.color,
+                                0.5
+                              ),
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
                           >
@@ -252,7 +280,7 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                             alt="WeBuyBooks"
                           />
                           <div className="ml-3">
-                            <div className="Blog_new_article_profile__xlVqE">
+                            <div className="Blog_new_article_profile__xlVqE font-bold">
                               Lego2Sell
                             </div>
                             <div className="Blog_new_article_posted__X5fva">
@@ -287,13 +315,18 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                           <a
                             className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                             style={{
-                              backgroundColor: blog.categoryName.color,
                               color: "black",
                               fontSize: 11,
+                              border: `2px solid ${blog.categoryName?.color}`,
+                              borderColor: blog.categoryName?.color,
+                              backgroundColor: hexToRgba(
+                                blog.categoryName?.color,
+                                0.5
+                              ),
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
                           >
-                            {blog.categoryName.name}1214
+                            {blog.categoryName.name}
                           </a>
                           <Link
                             to={`/blogdetails?blogId=${blog._id}`}
@@ -332,7 +365,7 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
             </div>
           </section>
 
-          <section className="blog blog_list pb-5" id="recentPostSection">
+          <section className="blog blog_list" id="recentPostSection">
             <div className="container sm-container-fluid ">
               <h4
                 className="mb-4"
@@ -359,9 +392,14 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                         <a
                           className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                           style={{
-                            backgroundColor: blog.categoryName.color,
                             color: "black",
                             fontSize: 11,
+                            border: `2px solid ${blog.categoryName?.color}`,
+                            borderColor: blog.categoryName?.color,
+                            backgroundColor: hexToRgba(
+                              blog.categoryName?.color,
+                              0.5
+                            ),
                           }}
                           href={`/bloglist?catId=${blog?.categoryId}`}
                           onClick={(e) => {
@@ -383,7 +421,7 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                         </h2>
 
                         <div
-                          className="  overflow-hidden descriptionContainer"
+                          className="mb-4 descriptionContainer"
                           dangerouslySetInnerHTML={{
                             __html: truncateText(blog.description, 20),
                           }}
@@ -403,7 +441,7 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                             alt="WeBuyBooks"
                           />
                           <div className="ml-3">
-                            <div className="Blog_new_article_profile__xlVqE">
+                            <div className="Blog_new_article_profile__xlVqE font-bold">
                               Lego2Sell
                             </div>
                             <div className="Blog_new_article_posted__X5fva">
@@ -473,7 +511,7 @@ Explore Our Latest News, Reviews <br/> and Comprehensive Insights.
                           alt="WeBuyBooks"
                         />
                         <div className="ml-3">
-                          <div className="Blog_new_article_profile__xlVqE">
+                          <div className="Blog_new_article_profile__xlVqE font-bold">
                             Lego2Sell
                           </div>
                           <div className="Blog_new_article_posted__X5fva">
