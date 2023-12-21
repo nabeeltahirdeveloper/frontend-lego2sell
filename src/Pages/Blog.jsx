@@ -146,10 +146,9 @@ const Blog = () => {
             <div className="col-12 text-center standard_page_content">
               <div className="Blog_blog_header_title__u2hU5">
                 <h1
-                  className="category_title  "
+                  className="category_title lg:text-[60px] text-[35px] "
                   style={{
                     color: "#093664",
-                    fontSize: "60px",
                     fontWeight: "700",
                     fontFamily: "Source Sans 3",
                   }}
