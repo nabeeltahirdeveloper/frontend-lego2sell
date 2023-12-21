@@ -84,7 +84,7 @@ const OrderCards = ({
     <div className="py-3">
       <div
         onClick={open}
-        className="mb-4 last:mb-0 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-6 px-4 lg:px-8 cursor-pointer"
+        className="last:mb-0 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-6 px-4 lg:px-8 cursor-pointer"
       >
         <div className="flex items-center justify-between">
           <div className="mr-auto font-medium">

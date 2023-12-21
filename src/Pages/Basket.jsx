@@ -200,7 +200,16 @@ const Basket = () => {
                 }
               }}
               type="button"
-              className="hover:scale-[1.05] transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-xl bg-blue-500 hover:bg-white hover:text-black  hover:border text-white font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
+              className="hover:scale-[1.05]  transition-all mt-4 w-full text-center lg:ml-0 flex items-center justify-center px-6 lg:px-9 rounded-xl bg-blue-500 hover:bg-white hover:text-black  hover:border font-bold text-[15px] h-[49px] lg:h-[65px]  xl:text-[18px]"
+              style={{
+                color:'white',
+                ":hover": {
+                  backgroundColor: "white",
+                  color: "black",
+                },
+                
+              }}
+                  
             >
               Accept Offer
             </button>

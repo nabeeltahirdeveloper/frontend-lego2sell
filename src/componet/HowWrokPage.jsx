@@ -197,10 +197,14 @@ const HowWrokPage = () => {
         </section>
         <section className="py-10 lg:px-0 px-6 flex items-center justify-center lg:pb-20 lg:pt-20 bg-[#F8F8FE] overflow-hidden">
           <div className=" text-center max-w-7xl">
-            <h2 className="h1 font-bold text-3xl mb-16">
+            <h2 className="h1 font-bold text-3xl mb-16" style={{
+              marginBottom: "4rem",
+              fontWeight: 700,
+              fontSize: '1.875rem'
+            }}>
               Sell Your New LEGO® Sets In 4 Easy Steps….
             </h2>
-            <div className="relative mb-16">
+            <div className="relative mb-16 mt-">
               <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#EAEAFC] ml-[-2px]" />
               <div
                 className="react-reveal relative flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12"
@@ -238,7 +242,7 @@ const HowWrokPage = () => {
                     }}
                   />
                 </div>
-                <div className="order-2 lg:order-1 text-left">
+                <div className="order-1 lg:order-1 text-left">
                   <div className="text-lg  lg:text-2xl font-bold lg:mb-8 mb-2">
                     <span className="text-[#4ccd5b]">1. </span>Search Your LEGO®
                     code
@@ -470,7 +474,7 @@ const HowWrokPage = () => {
                     </span>
                   </span>
                 </div>
-                <div data-aos="fade-up" className="order-2 lg:order-1 text-left">
+                <div data-aos="fade-up" className="order-1 lg:order-1 text-left">
                   <div className="text-lg  lg:text-2xl font-bold lg:mb-8 mb-2">
                     <span className="text-[#4ccd5b]">3. </span> Send it to us
                   </div>

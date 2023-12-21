@@ -129,7 +129,10 @@ const Dashboard = (props) => {
               {DashboardSidebar?.map((value, index) => (
                 <button
                   onClick={() => setSidebarActive(index)}
-                  class="pb-5 lg:block items-start flex last:pb-0 relative"
+                  class="lg:block items-start flex last:pb-0 relative"
+                  style={{
+                    paddingBottom:'1.25rem '
+                  }}
                 >
                   {SidebarActive === index && (
                     <div class="text-xl text-blue-500 hidden lg:block absolute top-[4px] left-[-18px]">
@@ -163,12 +166,17 @@ const Dashboard = (props) => {
                           }
                         : ""
                     }
+                    style={{
+                      fontSize: "1.125rem",
+                      fontWeight:700
+                    }}
                     title={value?.title}
                     class={` text-[14px] lg:text-lg lg:bg-transparent px-4 font-medium lg:font-bold lg:px-0 py-1 lg:py-0 rounded-full bg-blue-500 ${
                       SidebarActive === index
-                        ? "lg:text-blue-500 text-white"
-                        : "lg:text-black text-white"
+                        ? "lg:text-blue-500 text-black"
+                        : "lg:text-black text-black"
                     } `}
+                    
                   >
                     {value?.title}
                   </button>
@@ -214,7 +222,7 @@ const Dashboard = (props) => {
                             navigation("/")
                             window.location.reload()
                           }
-                        : console.log("demo")
+                        : console.log("demo", value)
                     }
                     title={value?.title}
                     class={` text-[14px] w-max flex lg:text-lg lg:bg-transparent px-4 font-medium lg:font-bold lg:px-0 py-1 lg:py-0 rounded-full bg-blue-500 ${
@@ -236,10 +244,15 @@ const Dashboard = (props) => {
         <div className="flex flex-col px-6 lg:px-24 w-full  lg:flex-row">
           {SidebarActive === 0 && (
             <div className="w-full lg:pl-20 py-12 lg:py-24">
-              <h1 className="text-3xl lg:text-4xl font-extrabold h1 mb-6">
+              <h1 className="text-3xl lg:text-4xl font-extrabold h1 mb-6" style={{
+                fontSize:'2.25rem',
+                fontWeight:800
+              }}>
                 My dashboard
               </h1>
-              <p className="mb-8 text-[#373845] font-bold">
+              <p className="mb-8 text-[#373845] font-bold" style={{
+                fontWeight:700
+              }}>
                 Packages you're sending
               </p>
 

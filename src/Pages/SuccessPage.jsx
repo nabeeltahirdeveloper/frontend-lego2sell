@@ -47,8 +47,15 @@ const SuccessPage = () => {
     fetchUserOrders()
   }, [storedUserId, setOrderitems])
   return (
-    <div>
-      <section className="lg:pt-24 px-6 py-10">
+    <div style={{
+      marginBottom:'6rem !important'
+    
+    }}>
+      <section className="lg:pt-24 px-6 py-10"
+      style={{
+        marginBottom:'6rem !important'
+      
+      }}>
         <div className=" md:text-center">
           <div className="text-5xl flex items-center justify-center lg:text-6xl mb-8">
             <svg
@@ -83,12 +90,20 @@ const SuccessPage = () => {
           </div>
         </div>
       </section>
-      <section className="lg:py-10 py-0 lg:pb-24">
-        <div className="">
+      <section className="lg:py-10 py-0 lg:pb-24" style={{
+        marginBottom:'6rem !important'
+      }}>
+        <div className="" style={{
+          marginBottom:'6rem !important',
+          paddingBottom:'6rem !important'
+        
+        }}>
           <h2 className="h3 px-6 mb-8 text-center">
             What you need to do next...
           </h2>
-          <div className="relative">
+          <div className="relative py-24" style={{
+            paddingBottom:'6rem !important'
+          }} >
             <div className="grid grid-rows-3 md:grid-rows-2 md:grid-cols-2 lg:grid-rows-none lg:grid-cols-3 gap-16">
               <div className="flex flex-col items-center justify-start text-center">
                 <div className="flex items-center justift-center h-[190px]">
