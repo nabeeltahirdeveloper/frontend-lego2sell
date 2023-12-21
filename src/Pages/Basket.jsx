@@ -60,10 +60,11 @@ const Basket = () => {
 
         const priceData = await response.json()
         if (priceData.body.price52 === null) {
+          
           open(true)
           setTimeout(() => {
             navigation("/")
-          }, 10000)
+          }, 50000)
         }
         // console.log(priceData.body)
         const originalPrice = priceData.body.price.min_price
@@ -103,7 +104,13 @@ const Basket = () => {
         <Modal opened={opened} onClose={close} title="Woops" centered>
           {/* Modal content */}
           <div className="">
-            <h3 className="py-6 px-2">
+          <img
+                      className="w-full"
+                      src="/Images/SearchErrorMessage.jpg"
+                      alt=""
+                      loading="lazy"
+                    />
+            <p className="text-gray-400 text-base font-normal py-4">
               We are sorry but we can not seem to find a price for that set! If
               you still want to check please contact{" "}
               <Link
@@ -112,7 +119,7 @@ const Basket = () => {
               >
                 support@lego2sell.com
               </Link>
-            </h3>
+            </p>
           </div>
         </Modal>
         <div className="flex flex-col lg:flex-row items-center justify-between">
