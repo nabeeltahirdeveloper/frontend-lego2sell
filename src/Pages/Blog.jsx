@@ -261,14 +261,14 @@ const Blog = () => {
                           {blog.title}
                         </h2>
                         <div
-                          className="mt-16 descriptionContainer"
+                          className="descriptionContainer"
                           dangerouslySetInnerHTML={{
                             __html: truncateText(blog.description, 30),
                           }}
                           style={{ font: "16px", height: 100 }}
                         />
 
-                        <div className="d-flex items-center mt-auto">
+                        <div className="d-flex items-center pt-17">
                           <img
                             src="/favicon.png"
                             style={{
