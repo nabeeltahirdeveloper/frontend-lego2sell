@@ -261,7 +261,7 @@ const Blog = () => {
                           {blog.title}
                         </h2>
                         <div
-                          className=" descriptionContainer"
+                          className="mt-16 descriptionContainer"
                           dangerouslySetInnerHTML={{
                             __html: truncateText(blog.description, 30),
                           }}
