@@ -44,12 +44,20 @@ display: -webkit-box;
   text-wrap: wrap;
 
 }
-.blog-description img {
+.blog-description-new img {
   height: 252px;
   width: 100% !important;
   object-fit: cover;
   margin: 20px 0px;
 }
+.blog-description-new p{
+  font-size: 19.2px !important;
+}
+.blog-description-new h1{
+  font-size: 28px !important;
+  font-weight: 700;
+}
+
 .blog-description{
   font-family: 'Source Sans Pro', sans-serif;
 }

@@ -152,7 +152,7 @@ const BlogDetail = () => {
                         dangerouslySetInnerHTML={{
                           __html: blog.description,
                         }}
-                        className='mt-5  blog-description'
+                        className='mt-5  blog-description-new'
                         style={{
                           color: '#000',
                           fontSize: 12
