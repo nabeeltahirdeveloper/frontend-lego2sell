@@ -446,7 +446,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 .Blog_new_article_card__qD7wR .Blog_new_article_title__CusWh {
   font-weight: 700;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 18px !important;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

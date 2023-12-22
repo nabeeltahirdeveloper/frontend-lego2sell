@@ -343,7 +343,7 @@ const Blog = () => {
                             <h2
                               className="my-3 Blog_new_article_title__CusWh textHeading"
                               style={{
-                                fontSize: "18px",
+                                fontSize: "18px !important",
                                 lineHeight: "21.6px",
                                 color: "#093664",
                                 textDecoration: "none",
