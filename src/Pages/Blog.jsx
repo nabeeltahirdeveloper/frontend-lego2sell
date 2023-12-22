@@ -224,7 +224,7 @@ const Blog = () => {
                       className="Blog_new_article_card_link__28EiO"
                     >
                       <div className="Blog_new_article_card__qD7wR h-full pb-8 flex flex-col justify-between">
-                        <div className="Blog_image_container__9bzik mb-4">
+                        <div className="Blog_image_container__9bzik mb-2">
                           <img
                             className="lazy blog-image"
                             src={blog.image}
@@ -265,10 +265,10 @@ const Blog = () => {
                           dangerouslySetInnerHTML={{
                             __html: truncateText(blog.description, 30),
                           }}
-                          style={{ font: "16px", height: 100 }}
+                          style={{ font: "16px", height: 48, overflow: "hidden" }}
                         />
 
-                        <div className="d-flex items-center " style={{marginTop: "100px",}}>
+                        <div className="d-flex items-center " >
                           <img
                             src="/favicon.png"
                             style={{
@@ -293,13 +293,19 @@ const Blog = () => {
                 ))}
 
                 {latestBlogs?.length > 0 ? (
-                  <div className="flex flex-col justify-between gap-3">
+                  <div className="flex flex-col" style={{
+                    gap: "1.5rem"
+                  }}>
                     {latestBlogs?.map((blog) => (
                       <div className="row single_latest_blog">
-                        <div className="col-4 px-0 ">
-                          <div className="h-[135px] w-[100%] overflow-hidden  object-contain latest_blog_image_container">
+                        <div className="col-4 px-0 " style={{
+                          height: 120
+                        }}>
+                          <div className="h-[135px] w-[100%] overflow-hidden  object-contain latest_blog_image_container" style={{
+                            aspectRatio: '16/13'
+                          }}>
                             <img
-                              className="h-full w-[100%] max-h-[170px] lazy object-cover  "
+                              className="h-full w-[100%] max-h-[135px] lazy object-cover  "
                               src={blog.image}
                               alt="Top 5 Air Fryer Cookbooks"
                               style={{
@@ -310,7 +316,9 @@ const Blog = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-8">
+                        <div className="col-8" style={{
+                          height: 110,
+                        }}>
                           <a
                             className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                             style={{
@@ -322,6 +330,7 @@ const Blog = () => {
                                 blog.categoryName?.color,
                                 0.5
                               ),
+                              
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
                           >
