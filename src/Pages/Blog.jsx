@@ -261,7 +261,7 @@ const Blog = () => {
                           {blog.title}
                         </h2>
                         <div
-                          className="Blog_new_article_excerpt__iOBYt single_blog_description descriptionContainer"
+                          className=" descriptionContainer"
                           dangerouslySetInnerHTML={{
                             __html: truncateText(blog.description, 30),
                           }}
@@ -493,7 +493,7 @@ const Blog = () => {
                         {result.title}
                       </h2>
                       <div
-                        className="Blog_new_article_excerpt__iOBYt"
+                        className="descriptionContainer"
                         dangerouslySetInnerHTML={{
                           __html: truncateText(result.description, 8),
                         }}
