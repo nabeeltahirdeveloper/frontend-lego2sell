@@ -268,13 +268,14 @@ const Blog = () => {
                           style={{ font: "16px", height: 100 }}
                         />
 
-                        <div className="d-flex items-center mt-17">
+                        <div className="d-flex items-center ">
                           <img
                             src="/favicon.png"
                             style={{
                               width: "50px",
                               height: "50px",
                               borderRadius: "50px",
+                              marginTop: "100px",
                             }}
                             alt="WeBuyBooks"
                           />
