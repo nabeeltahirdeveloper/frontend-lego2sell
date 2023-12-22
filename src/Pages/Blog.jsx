@@ -268,7 +268,7 @@ const Blog = () => {
                           style={{ font: "16px", height: 100 }}
                         />
 
-                        <div className="d-flex items-center pt-17">
+                        <div className="d-flex items-center mt-17">
                           <img
                             src="/favicon.png"
                             style={{
