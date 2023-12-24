@@ -58,6 +58,10 @@ display: -webkit-box;
   font-weight: 700;
 }
 
+.blog-description-new h2{
+  font-size: 28px !important;
+  font-weight: 700;
+}
 .blog-description{
   font-family: 'Source Sans Pro', sans-serif;
 }
