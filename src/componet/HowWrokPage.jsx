@@ -217,8 +217,8 @@ const HowWrokPage = () => {
                   animationName: "react-reveal-401627926166202-1",
                 }}
               >
-                <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-0 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
+                <div className="absolute left-[20px] lg:left-[50%] top-5 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <img
                     data-aos="fade-up"
                     alt="Step marker"
@@ -307,7 +307,7 @@ const HowWrokPage = () => {
               </div>
               <div className="react-reveal relative flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12">
                 <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-0 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <span
                     style={{
                       boxSizing: "border-box",
@@ -358,7 +358,7 @@ const HowWrokPage = () => {
                     </span>
                   </span>
                 </div>
-                <div className="order-2 lg:order-2 text-left">
+                <div className="sm:order-1 lg:order-2 text-left">
                   <div className="text-lg  lg:text-2xl font-bold lg:mb-8 mb-2">
                     <span className="text-[#4ccd5b]">2. </span>Get an instant
                     offer
@@ -368,7 +368,7 @@ const HowWrokPage = () => {
                     and get your shipping information.
                   </p>
                 </div>
-                <div className="order-1 lg:order-1">
+                <div className=" sm:order-2 lg:order-1">
                   <span
                     style={{
                       boxSizing: "border-box",
@@ -421,9 +421,9 @@ const HowWrokPage = () => {
                   </span>
                 </div>
               </div>
-              <div className="react-reveal relative flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12">
+              <div className="react-reveal relative lg:flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12">
                 <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-0 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <span
                     style={{
                       boxSizing: "border-box",
@@ -537,7 +537,7 @@ const HowWrokPage = () => {
               </div>
               <div className="react-reveal relative flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12">
                 <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-0 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <span
                     style={{
                       boxSizing: "border-box",
@@ -587,7 +587,7 @@ const HowWrokPage = () => {
                     </span>
                   </span>
                 </div>
-                <div data-aos="fade-up" className="order-2 lg:order-2 text-left">
+                <div data-aos="fade-up" className="sm:order-1 lg:order-2 text-left">
                   <div className="text-lg lg:text-2xl font-bold lg:mb-8 mb-2">
                     <span className="text-[#4ccd5b]">4. </span> Get paid
                   </div>
@@ -597,7 +597,7 @@ const HowWrokPage = () => {
                     as quickly as the very next day!
                   </p>
                 </div>
-                <div className="order-1 lg:order-1">
+                <div className="sm:order-2 lg:order-1">
                   <span
                     style={{
                       boxSizing: "border-box",

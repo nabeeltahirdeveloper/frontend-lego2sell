@@ -64,7 +64,7 @@ const Basket = () => {
           open(true)
           setTimeout(() => {
             navigation("/")
-          }, 50000)
+          }, 5000)
         }
         // console.log(priceData.body)
         const originalPrice = priceData.body.price.min_price
@@ -101,7 +101,11 @@ const Basket = () => {
         />
       </Helmet>
       <div className="border w-full flex-1 py-6 px-4 lg:px-12  border-gray-300 rounded-xl">
-        <Modal opened={opened} onClose={close} title="Woops" centered>
+        <Modal opened={opened} onClose={()=>{
+          close()
+          navigation("/")
+        
+        }} title="Woops" centered>
           {/* Modal content */}
           <div className="">
           <img
