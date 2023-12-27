@@ -40,7 +40,8 @@ function Login() {
         throw new Error("Error: " + responseData.message)
       }
 
-      const userId = responseData.userId
+      const userId = responseData?.userId
+      const token = responseData?.token
       // console.log("Sign-up successful. User ID:", userId)
 
       // Reset form inputs
@@ -49,6 +50,7 @@ function Login() {
 
       // Save the user ID in localStorage
       localStorage.setItem("userId", userId)
+      localStorage.setItem("token", token)
       sessionStorage.setItem("userId", JSON.stringify(userId))
       // Navigate to another route
       if (isLogin === "/selling-basket/") {

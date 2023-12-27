@@ -125,6 +125,9 @@ const SignUpForm = () => {
       // Sign-up successful
       const responseData = await response.json()
       const userId = responseData.userId
+      const token = responseData?.token
+
+      localStorage?.setItem("token", token)
 
       // Reset form inputs
       setEmail("")

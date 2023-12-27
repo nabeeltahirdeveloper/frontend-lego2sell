@@ -55,7 +55,8 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "source": encryptedData
+          "source": encryptedData,
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ email }),
       })

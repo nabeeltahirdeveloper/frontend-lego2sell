@@ -54,11 +54,13 @@ const Adminorder = ({ items, data, SearchValue }) => {
         headers: {
           "Content-Type": "application/json",
           "source": encryptedData,
-          "user-id": storedUserId
+          "user-id": storedUserId,
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+
         },
         body: JSON.stringify({ email }),
       })
-      window.location.reload()
+      // window.location.reload()
       const data = await response.json()
       // console.log(data)
       if (response.ok) {
