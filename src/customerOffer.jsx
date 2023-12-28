@@ -4,6 +4,7 @@ import { Navigate } from "react-router-dom"
 import AdminDashboard from "./Pages/AdminDashboard"
 import { Loader } from "@mantine/core"
 import CustomerOffers from "./Pages/CustomerOffers"
+import baseUrl from "./context/baseUrl"
 
 const CustomerOffer = () => {
   const [userData, setUserData] = useState(null)
@@ -14,7 +15,7 @@ const CustomerOffer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/user/${storedUserId}`
+          `${baseUrl}/user/${storedUserId}`
         )
         setUserData(response.data)
         setLoading(false) // Data fetched, set loading to false
