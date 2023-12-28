@@ -34,8 +34,11 @@ const UserCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("token");
       const apiUrl = baseUrl + "/admin/service/api/category";
-      const response = await axios.post(apiUrl, formData);
+      const response = await axios.post(apiUrl, formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       console.log("Data submitted successfully:", response.data);
       setResponse("Data submitted successfully");
       const updatedBlogs = await axios.get(
@@ -87,7 +90,6 @@ const UserCategory = () => {
   return (
     <div className="">
       <div className="  mt-8 mb-5">
-       
         <div className="flex lg:flex-row flex-col items-center">
           <div className="flex flex-col justify-start gap-5 ml-4 h-full bg-slate-50 lg:border-[8px] border-[0px] px-4 py-24 border-blue-500 rounded-[30px]">
             <a
@@ -116,65 +118,65 @@ const UserCategory = () => {
             </a>
           </div>
           <div className="container">
-          <h3>Categories</h3>
-        <h3>{apiResponse}</h3>
-          <form className="max-w-md mx-auto p-6 bg-white rounded shadow">
-            <div className="mb-4">
-              <label
-                htmlFor="title"
-                className="block text-gray-600 font-semibold"
-              >
-                Category Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded mt-1"
-                required
-              />
-              <label
-                htmlFor="Color"
-                className="block text-gray-600 font-semibold mt-2"
-              >
-                Background Color
-              </label>
-              <div className="d-flex ">
+            <h3>Categories</h3>
+            <h3>{apiResponse}</h3>
+            <form className="max-w-md mx-auto p-6 bg-white rounded shadow">
+              <div className="mb-4">
+                <label
+                  htmlFor="title"
+                  className="block text-gray-600 font-semibold"
+                >
+                  Category Name
+                </label>
                 <input
                   type="text"
-                  id="Color"
-                  name="color"
-                  value={formData.color}
-                  onChange={(e) =>
-                    setFormData({ ...formData, color: e.target.value })
-                  }
-                  className="w-[85%] p-2 border border-gray-300 rounded "
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
                   required
                 />
-                <input
-                  type="color"
-                  id="Color"
-                  name="color"
-                  value={formData.color}
-                  onChange={(e) =>
-                    setFormData({ ...formData, color: e.target.value })
-                  }
-                  className=" h-10  border border-gray-300 rounded "
-                  required
-                />
+                <label
+                  htmlFor="Color"
+                  className="block text-gray-600 font-semibold mt-2"
+                >
+                  Background Color
+                </label>
+                <div className="d-flex ">
+                  <input
+                    type="text"
+                    id="Color"
+                    name="color"
+                    value={formData.color}
+                    onChange={(e) =>
+                      setFormData({ ...formData, color: e.target.value })
+                    }
+                    className="w-[85%] p-2 border border-gray-300 rounded "
+                    required
+                  />
+                  <input
+                    type="color"
+                    id="Color"
+                    name="color"
+                    value={formData.color}
+                    onChange={(e) =>
+                      setFormData({ ...formData, color: e.target.value })
+                    }
+                    className=" h-10  border border-gray-300 rounded "
+                    required
+                  />
+                </div>
               </div>
-            </div>
 
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="w-full bg-blue-500 text-white font-semibold p-2 rounded"
-            >
-              Submit
-            </button>
-          </form>
+              <button
+                type="submit"
+                onClick={handleSubmit}
+                className="w-full bg-blue-500 text-white font-semibold p-2 rounded"
+              >
+                Submit
+              </button>
+            </form>
           </div>
         </div>
 

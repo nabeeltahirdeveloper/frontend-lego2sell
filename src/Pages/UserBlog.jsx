@@ -82,14 +82,18 @@ const UserBlog = () => {
       const formData1 = new FormData();
       formData1.append("image", image1);
       setLoading(true);
-
+      const token = localStorage.getItem("token");
       const response = await axios
-        .post(baseUrl + "/upload", formData1)
+        .post(baseUrl + "/upload", formData1, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
         .then((response) => {
           console.log("Image uploaded successfully:", response.data.imageUrl);
           formData.image = response.data.imageUrl;
           const apiUrl = baseUrl + "/admin/api/blog";
-          const response1 = axios.post(apiUrl, formData);
+          const response1 = axios.post(apiUrl, formData, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
           setResponse("Data submitted successfully");
         })
         .catch((error) => {
