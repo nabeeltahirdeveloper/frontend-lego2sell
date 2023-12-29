@@ -426,7 +426,7 @@ let router = createBrowserRouter(
         <Header />
         {/* {isAdmin ? <Admin /> : <div>Unauthorization Persn Not allow</div>} */}
         {/* {adminView === "admin" ? <Admin /> : <Navigate to={"/"} />} */}
-        {!loading && (userData?.admin ? <Admin /> : <Navigate to="/" />)}
+        {!loading && (userData?.admin === "admin" ? <Admin /> : <Navigate to="/" />)}
           
 
         <Footer />
@@ -641,7 +641,7 @@ let router = createBrowserRouter(
     element: (
       <div className="h-screen flex min-h-screen flex-col ">
         <Header />
-        {!loading && (userData?.admin ? <AdminRoute /> : <Navigate to="/" />)}
+        {!loading && (userData?.admin === "admin" ? <AdminRoute /> : <Navigate to="/" />)}
         <Footer />
       </div>
     ),
@@ -662,7 +662,7 @@ let router = createBrowserRouter(
   element: (
     <div className="h-screen flex min-h-screen flex-col ">
       <Header />
-      {!loading && (userData?.admin ? <UserBlog /> : <Navigate to="/" />)}
+      {!loading && (userData?.admin === "admin" ? <UserBlog /> : <Navigate to="/" />)}
       <Footer />
     </div>
   ),
@@ -673,7 +673,7 @@ let router = createBrowserRouter(
   element: (
     <div className="h-screen flex min-h-screen flex-col ">
       <Header />
-      {!loading && (userData?.admin ? <BlogEdit /> : <Navigate to="/" />)}
+      {!loading && (userData?.admin === "admin" ? <BlogEdit /> : <Navigate to="/" />)}
       <Footer />
     </div>
   ),
@@ -686,7 +686,7 @@ let router = createBrowserRouter(
   element: (
     <div className="h-screen flex min-h-screen flex-col ">
       <Header />
-      {!loading && (userData?.admin ? <UserManagement /> : <Navigate to="/" />)}
+      {!loading && (userData?.admin === "admin" ? <UserManagement /> : <Navigate to="/" />)}
       <Footer />
     </div>
   ),
@@ -697,7 +697,7 @@ let router = createBrowserRouter(
   element: (
     <div className="h-screen flex min-h-screen flex-col ">
       <Header />
-      {!loading && (userData?.admin ? <UserCategory /> : <Navigate to="/" />)}
+      {!loading && (userData?.admin === "admin" ? <UserCategory /> : <Navigate to="/" />)}
       <Footer />
     </div>
   ),
@@ -709,7 +709,7 @@ let router = createBrowserRouter(
   element: (
     <div className="h-screen flex min-h-screen flex-col ">
       <Header />
-      {!loading && (userData?.admin ? <UserComments /> : <Navigate to="/" />)}
+      {!loading && (userData?.admin === "admin" ? <UserComments /> : <Navigate to="/" />)}
       <Footer />
     </div>
   ),
