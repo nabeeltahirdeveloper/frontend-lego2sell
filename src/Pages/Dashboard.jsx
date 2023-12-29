@@ -50,7 +50,7 @@ const Dashboard = (props) => {
     const fetchUserOrders = async () => {
       try {
         const response = await axios.get(
-          `https://api.lego2sell.com/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`
         )
 
         if (response.status === 200) {
@@ -108,7 +108,7 @@ const Dashboard = (props) => {
   const handleUpdateMarketingPreferences = async () => {
     try {
       const response = await axios.put(
-        `https://api.lego2sell.com/Mydetails/Marketingpreferences/${storedUserId}`,
+        `${baseUrl}/Mydetails/Marketingpreferences/${storedUserId}`,
         {
           Marketingpreferences: marketper.label,
         }
