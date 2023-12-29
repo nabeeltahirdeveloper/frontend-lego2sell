@@ -132,7 +132,7 @@ display: -webkit-box;
 .blog-image{
     width: 100%;
     height: 500px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     border: 1px solid   #e6e6e6;
     box-shadow: 1px 1px 3px rgba(143, 142, 142, 0.363);
@@ -453,7 +453,7 @@ font-family: Verdana, Geneva, Tahoma, sans-serif;
 .Blog_image_container__9bzik img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .Blog_new_article_card__qD7wR .Blog_new_article_title__CusWh {
   font-weight: 700;

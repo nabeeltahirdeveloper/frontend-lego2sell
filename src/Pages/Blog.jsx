@@ -224,9 +224,9 @@ const Blog = () => {
                       className="Blog_new_article_card_link__28EiO"
                     >
                       <div className="Blog_new_article_card__qD7wR h-full pb-8 flex flex-col justify-between">
-                        <div className="Blog_image_container__9bzik mb-2">
+                        <div className="Blog_image_container__9bzik mb-2 object-contain">
                           <img
-                            className="lazy blog-image"
+                            className="lazy blog-image object-contain"
                             src={blog.image}
                             alt="Book Flipping: How to Buy and Resell Books for Profit"
                           />
@@ -311,7 +311,7 @@ const Blog = () => {
                               style={{
                                 height: 120,
                                 width: 170,
-                                objectFit: "cover",
+                                objectFit: "contain",
                               }}
                             />
                           </div>
