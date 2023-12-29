@@ -69,7 +69,7 @@ const UserManagement = () => {
             </a>
             <a
               className="Blog_category_card_small__KhtWu Blog_category_card_1 py-4 text-black md:m-0 mx-auto w-[350px]"
-              href="/blogs"
+              href="/userblogs"
             >
               Blogs
             </a>

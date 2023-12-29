@@ -172,7 +172,7 @@ const Blog = () => {
           </div>
 
           <div className="category-container  mt-5">
-            <div className="my-2  justify-center items-center flex flex-wrap ">
+            <div className="my-2  justify-center gap-2 items-center flex flex-wrap ">
               {categories?.map((category, index) => (
                 <a
                   href={`/bloglist?catId=${category._id}`}
@@ -323,13 +323,14 @@ const Blog = () => {
                             className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                             style={{
                               color: "black",
-                              fontSize: 11,
+                              fontSize: 9,
                               border: `2px solid ${blog.categoryName?.color}`,
                               borderColor: blog.categoryName?.color,
                               backgroundColor: hexToRgba(
                                 blog.categoryName?.color,
                                 0.5
                               ),
+                              height: 22,
                               
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
@@ -392,7 +393,7 @@ const Blog = () => {
                       >
                         <div className=" mb-4">
                           <img
-                            className="lazy  h-[349px] w-[100%] object-cover blogs_section_image"
+                            className="lazy  h-[349px] w-[100%] object-contain blogs_section_image"
                             src={blog.image}
                             alt="11 Best Comic Books of All Time: Honouring National Comic Book Day"
                           />
