@@ -21,46 +21,49 @@ const UserBlog = () => {
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const idFromUrl = searchParams.get("blogId");
-
-    if (idFromUrl) {
-      const apiUrl = currentUrl + "/admin/api/blog/" + idFromUrl;
-      axios
-        .get(apiUrl)
-        .then((response) => {
-          setBlogs((prevBlog) => response.data.data || prevBlog);
-          setFormData({
-            ...formData,
-            description: response.data.data.description,
-            categoryId: response.data.data.categoryId,
-            title: response.data.data.title,
-            categoryName: response.data.data.categoryName,
-            image: response.data.data.image,
-          });
-        })
-        .catch((error) => {
-          console.error("Error fetching blog details:", error);
-        });
-    }
-  }, [location.search]);
-
   const [formData, setFormData] = useState({
     userId: storedUserId,
     userName: "test",
     categoryId: "",
     categoryName: {
-      name: "",
-      color: "",
-    },
-    title: "",
-    image: "",
-    description: "",
-  });
+    name: "",
+    color: "",
+  },
+  title: "",
+  image: "",
+  description: "",
+});
+const [timer, setTimer] = useState(null);
 
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const idFromUrl = searchParams.get("blogId");
+
+    
+  
+  if (idFromUrl) {
+    const apiUrl = currentUrl + "/admin/api/blog/" + idFromUrl;
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setBlogs((prevBlog) => response.data.data || prevBlog);
+        setFormData({
+          ...formData,
+          description: response.data.data.description,
+          categoryId: response.data.data.categoryId,
+          title: response?.data?.data?.title,
+          categoryName: response.data.data.categoryName,
+          image: response.data.data.image,
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching blog details:", error);
+      });
+  }
+}, [location.search]);
   const handleChange = (e) => {
+    console.log("formData e", e)
     if (e.target.type === "file") {
       // Handle file input
       const selectedImage = e.target.files[0];
@@ -80,6 +83,7 @@ const UserBlog = () => {
   };
 
   const handleChangeCategory = (event) => {
+    console.log("formData cate")
     const selectedCategoryId = event.target.value;
     const selectedCategory = categories.find(
       (category) => category._id === selectedCategoryId
@@ -99,8 +103,23 @@ const UserBlog = () => {
   };
 
   const handleEditorChange = (content) => {
-    setFormData({ ...formData, description: content });
-  };
+    console.log("formData content:", content);
+    // if (formData.description) {
+      setFormData(prevFormData => ({ ...prevFormData, description: content }));
+      
+    // }
+    // else{
+
+    //   if (timer) clearTimeout(timer);
+    //   const newTimer = setTimeout(() => {
+    //     setFormData(prevFormData => ({ ...prevFormData, description: content }));
+    //   }, 2000);
+    //   setTimer(newTimer);
+    // }
+};
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -134,6 +153,8 @@ const UserBlog = () => {
       console.error("Error submitting data:", error);
     }
   };
+
+  console.log("formData", formData)
 
   useEffect(() => {
     const apiUrl = currentUrl + "/admin/service/api/category";
@@ -217,7 +238,7 @@ const UserBlog = () => {
               type="text"
               id="title"
               name="title"
-              value={formData.title}
+              value={formData?.title}
               onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded mt-1"
             />
