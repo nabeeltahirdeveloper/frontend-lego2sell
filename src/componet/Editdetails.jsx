@@ -72,13 +72,20 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
   const storedUserId = localStorage.getItem("userId")
   const handleSubmit = async (values) => {
     try {
+      const token = localStorage.getItem("token");
+
       const response3 = await axios.put(
         `${baseUrl}/update-email/${storedUserId}`,
         {
           newEmail: form.values.email,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
         }
       )
       // console.log("New Email", response3)
+      const newToken = response3?.data?.token
+      localStorage.setItem("token", newToken)
       const payload = {
         email: form.values.email,
         paymentMethod: PaymentDetails,
@@ -104,7 +111,9 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
 
       const response1 = await axios.post(
         `${baseUrl}/MyDetails/${storedUserId}`,
-        payload
+        payload, {
+          headers: { Authorization: `Bearer ${newToken}` },
+        }
       )
       // console.log("sdsds", response1.data)
       // Navigate to another route
@@ -112,7 +121,7 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
       console.error("An error occurred:", error)
       // Handle the error as needed
     }
-    window.location.reload()
+    // window.location.reload()
     setSidebarActive(2)
     // setFormData(values)
     window.scrollTo({ top: 0, behavior: "smooth" })
