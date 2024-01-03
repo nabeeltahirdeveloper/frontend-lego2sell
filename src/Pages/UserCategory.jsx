@@ -71,10 +71,13 @@ const UserCategory = () => {
 
   const handleDelete = async (blogId) => {
     try {
+      const token = localStorage.getItem("token");
       const apiUrl = baseUrl + "/admin/service/api/category/" + blogId;
-      const response = await axios.delete(apiUrl);
+      const response = await axios.delete(apiUrl, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       console.log("Category deleted successfully:", response.data);
-
+      alert("Category Deleted Successfully");
       // Refresh the blog list after deleting a blog
       const updatedBlogs = await axios.get(
         currentUrl + "/admin/service/api/category"

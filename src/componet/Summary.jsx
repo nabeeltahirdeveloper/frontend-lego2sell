@@ -360,8 +360,7 @@ const Summary = ({
               <div className="flex py-4 gap-1">
                 <Checkbox onChange={() => setAcceptOffer(!acceptOffer)} />
                 <p>
-                  {`I accept the offer of   £
-                          ${price} and the `}
+                  {`I accept the offer of   £${price} and the `}
                   <span>terms and conditions*</span>
                 </p>
               </div>

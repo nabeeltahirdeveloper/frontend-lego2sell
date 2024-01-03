@@ -223,7 +223,10 @@ const Blog = () => {
                       title="Book Flipping: How to Buy and Resell Books for Profit"
                       className="Blog_new_article_card_link__28EiO"
                     >
-                      <div className="Blog_new_article_card__qD7wR h-full pb-8 flex flex-col justify-between">
+                      <div
+                        className="Blog_new_article_card__qD7wR pb-8 flex flex-col justify-between"
+                        style={{ height: "calc(100% - 20px)" }}
+                      >
                         <div className="Blog_image_container__9bzik mb-2 object-contain">
                           <img
                             className="lazy blog-image object-contain"
@@ -265,16 +268,20 @@ const Blog = () => {
                           dangerouslySetInnerHTML={{
                             __html: truncateText(blog.description, 30),
                           }}
-                          style={{ font: "16px", height: 48, overflow: "hidden" }}
+                          style={{
+                            font: "16px",
+                            height: 48,
+                            overflow: "hidden",
+                          }}
                         />
 
-                        <div className="d-flex items-center " >
+                        <div className="d-flex items-center mt-[20px]">
                           <img
                             src="/favicon.png"
                             style={{
                               width: "50px",
                               height: "50px",
-                              borderRadius: "50px"
+                              borderRadius: "50px",
                             }}
                             alt="WeBuyBooks"
                           />
@@ -293,17 +300,26 @@ const Blog = () => {
                 ))}
 
                 {latestBlogs?.length > 0 ? (
-                  <div className="flex flex-col" style={{
-                    gap: "1.5rem"
-                  }}>
+                  <div
+                    className="flex flex-col"
+                    style={{
+                      gap: "1.5rem",
+                    }}
+                  >
                     {latestBlogs?.map((blog) => (
                       <div className="row single_latest_blog">
-                        <div className="col-4 px-0 " style={{
-                          height: 120
-                        }}>
-                          <div className="h-[135px] w-[100%] overflow-hidden  object-contain latest_blog_image_container" style={{
-                            aspectRatio: '16/13'
-                          }}>
+                        <div
+                          className="col-4 px-0 "
+                          style={{
+                            height: 120,
+                          }}
+                        >
+                          <div
+                            className="h-[135px] w-[100%] overflow-hidden  object-contain latest_blog_image_container"
+                            style={{
+                              aspectRatio: "16/13",
+                            }}
+                          >
                             <img
                               className="h-full w-[100%] max-h-[135px] lazy object-cover  "
                               src={blog.image}
@@ -316,9 +332,12 @@ const Blog = () => {
                             />
                           </div>
                         </div>
-                        <div className="col-8" style={{
-                          height: 110,
-                        }}>
+                        <div
+                          className="col-8"
+                          style={{
+                            height: 110,
+                          }}
+                        >
                           <a
                             className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                             style={{
@@ -331,7 +350,6 @@ const Blog = () => {
                                 0.5
                               ),
                               height: 22,
-                              
                             }}
                             href={`/bloglist?catId=${blog?.categoryId}`}
                           >

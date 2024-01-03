@@ -556,7 +556,7 @@ const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-blue-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   <h2>
-                    {price ? <h2>{` £ ${price}`}</h2> : <Loader size="xs" />}
+                    {price ? <h2>{` £${price}`}</h2> : <Loader size="xs" />}
                   </h2>
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">

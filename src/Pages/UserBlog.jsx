@@ -129,10 +129,13 @@ const UserBlog = () => {
 
   const handleDelete = async (blogId) => {
     try {
+      const token = localStorage.getItem("token");
       const apiUrl = baseUrl + "/admin/api/blog/" + blogId;
-      const response = await axios.delete(apiUrl);
+      const response = await axios.delete(apiUrl,{
+        headers: { Authorization: `Bearer ${token}` },
+      });
       console.log("Blog deleted successfully:", response.data);
-
+      alert("Blog deleted successfully");
       // Refresh the blog list after deleting a blog
       const updatedBlogs = await axios.get(baseUrl + "/admin/api/blog");
       setBlogs(updatedBlogs.data.data);

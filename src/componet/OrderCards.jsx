@@ -102,7 +102,7 @@ const OrderCards = ({
             {Status}
           </div>
           <div className="text-blue-500 font-bold mr-6 hidden md:flex">
-            £{Price}
+            £{Price?.toFixed(2)}
           </div>
           <div className="text-blue-500 text-lg">
             <svg
