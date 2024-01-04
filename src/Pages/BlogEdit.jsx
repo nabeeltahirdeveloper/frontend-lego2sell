@@ -32,6 +32,7 @@ const UserBlog = () => {
   title: "",
   image: "",
   description: "",
+  blogId: "",
 });
 const [timer, setTimer] = useState(null);
 
@@ -55,6 +56,7 @@ const [timer, setTimer] = useState(null);
           title: response?.data?.data?.title,
           categoryName: response.data.data.categoryName,
           image: response.data.data.image,
+          blogId: response.data.data._id,
         });
       })
       .catch((error) => {
@@ -143,9 +145,14 @@ const [timer, setTimer] = useState(null);
           });
       }
 
+      const token = localStorage.getItem("token");
+
+
       const apiUrl = currentUrl + "/admin/api/blog";
       console.log(formData);
-      const response1 = axios.put(apiUrl, formData);
+      const response1 = axios.put(apiUrl, formData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setResponse("Data Updated successfully");
 
     } catch (error) {
