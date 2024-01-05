@@ -26,6 +26,7 @@ const UserBlog = () => {
       color: "",
     },
     title: "",
+    subTitle: "",
     image: "",
     description: "",
   });
@@ -72,6 +73,9 @@ const UserBlog = () => {
 
   const handleEditorChange = (content) => {
     setFormData({ ...formData, description: content });
+  };
+  const handleSubEditorChange = (content) => {
+    setFormData({ ...formData, subTitle: content });
   };
 
   const handleSubmit = async (e) => {
@@ -234,6 +238,7 @@ const UserBlog = () => {
                   className="w-full p-2 border border-gray-300 rounded mt-1"
                 />
               </div>
+              
               <div className="mb-4">
                 <label
                   htmlFor="image"
@@ -248,7 +253,31 @@ const UserBlog = () => {
                   required
                 />
               </div>
-              <div className="mb-6">
+              <div className="mb-4">
+                <label
+                  htmlFor="title"
+                  className="block text-gray-600 font-semibold"
+                >
+                  Sub Title
+                </label>
+                <div>
+                <input
+                  type="text"
+                  id="subTitle"
+                  name="subTitle"
+                  value={formData.subTitle}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                />
+                </div>
+              </div>
+              <div className="mb-6 mt-5">
+                <label
+                  htmlFor="description"
+                  className="block text-gray-600 font-semibold"
+                >
+                  Description
+                </label>
                 <div>
                   <ReactQuill
                     theme="snow"

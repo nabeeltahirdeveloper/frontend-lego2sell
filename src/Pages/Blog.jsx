@@ -263,10 +263,10 @@ const Blog = () => {
                         >
                           {blog.title}
                         </h2>
-                        <div
+                         <div
                           className="descriptionContainer"
                           dangerouslySetInnerHTML={{
-                            __html: truncateText(blog.description, 30),
+                            __html:blog?.subTitle && truncateText(blog?.subTitle, 30),
                           }}
                           style={{
                             font: "16px",
@@ -450,7 +450,7 @@ const Blog = () => {
                         <div
                           className="mb-4 descriptionContainer"
                           dangerouslySetInnerHTML={{
-                            __html: truncateText(blog.description, 20),
+                            __html: blog?.subTitle && truncateText(blog?.subTitle, 20),
                           }}
                           style={{
                             height: "100px",

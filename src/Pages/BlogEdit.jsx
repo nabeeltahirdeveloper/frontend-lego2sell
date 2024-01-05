@@ -57,6 +57,7 @@ const [timer, setTimer] = useState(null);
           categoryName: response.data.data.categoryName,
           image: response.data.data.image,
           blogId: response.data.data._id,
+          subTitle: response.data.data.subTitle,
         });
       })
       .catch((error) => {
@@ -264,7 +265,25 @@ const [timer, setTimer] = useState(null);
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
+                <label
+                  htmlFor="title"
+                  className="block text-gray-600 font-semibold"
+                >
+                  Sub Title
+                </label>
+                <div>
+                <input
+                  type="text"
+                  id="subTitle"
+                  name="subTitle"
+                  value={formData.subTitle}
+                  onChange={handleChange}
+                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                />
+                </div>
+              </div>
+          <div className="mb-6 mt-5">
             <div>
               <ReactQuill
                 theme="snow"
