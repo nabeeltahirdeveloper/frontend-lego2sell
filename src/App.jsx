@@ -168,6 +168,34 @@ const App = () => {
                 >Search help</button>
                 </Tooltip>
               </div>
+              <div className="flex mt-5 w-full justify-center flex-col items-center">
+                <p style={{
+                  
+                  fontWeight: 'bold',
+                  fontSize: '1.5rem'
+                }}>The best place to sell new <span style={{
+                  color: '#428ABD',
+                }}>
+                  
+                  LEGO®&nbsp;
+                  </span>  
+                   sets online.
+                </p>
+                <p style={{
+                  
+                  fontWeight: 'bold',
+                  fontSize: '1.5rem'
+                }}>
+Turn your sets to cash in 4 easy steps…
+</p>
+
+<img
+                      className="w-1/4 mt-3"
+                      src="/Images/legoYoutubeImage.png"
+                      alt=""
+                      loading="lazy"
+                    />
+              </div>
             </div>
           </div>
         </div>
