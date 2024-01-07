@@ -266,7 +266,7 @@ const Blog = () => {
                          <div
                           className="descriptionContainer"
                           dangerouslySetInnerHTML={{
-                            __html:blog?.subTitle && truncateText(blog?.subTitle, 30),
+                            __html:blog?.subTitle && blog?.subTitle,
                           }}
                           style={{
                             font: "16px",
@@ -337,32 +337,34 @@ const Blog = () => {
                           style={{
                             height: 110,
                           }}
-                        >
+                          >
                           <a
                             className="text-[11px] p rounded-full px-[10px] py-1  font-bold text-sm animate-up border-[1px] border-[grey]"
                             style={{
                               color: "black",
                               fontSize: 9,
+                              marginLeft: 15,
                               border: `2px solid ${blog.categoryName?.color}`,
                               borderColor: blog.categoryName?.color,
                               backgroundColor: hexToRgba(
                                 blog.categoryName?.color,
                                 0.5
-                              ),
-                              height: 22,
-                            }}
-                            href={`/bloglist?catId=${blog?.categoryId}`}
-                          >
+                                ),
+                                height: 22,
+                              }}
+                              href={`/bloglist?catId=${blog?.categoryId}`}
+                              >
                             {blog.categoryName.name}
                           </a>
                           <Link
                             to={`/blogdetails?blogId=${blog._id}`}
                             key={blog._id}
-                          >
+                            >
                             <h2
                               className="my-3 Blog_new_article_title__CusWh textHeading"
                               style={{
                                 fontSize: "18px !important",
+                                paddingLeft: 15,
                                 lineHeight: "21.6px",
                                 color: "#093664",
                                 textDecoration: "none",
@@ -402,8 +404,12 @@ const Blog = () => {
               </h4>
               <div className="row justify-start flex-wrap">
                 {blogs?.map((blog) => (
-                  <div className="blogContainerMain  w-[380px] h-[700px] overflow-hidden mb-10  col-12 col-md-6 col-lg-4 col-xl-4    blogs_card ">
-                    <div className=" h-full mb-5    rounded-sm">
+                  <div className="blogContainerMain  w-[380px] overflow-hidden mb-12  col-12 col-md-6 col-lg-4 col-xl-4    blogs_card "
+                  style={{
+                    padding: 0
+                  }}
+                  >
+                    <div className=" h-full    rounded-sm">
                       <Link
                         to={`/blogdetails?blogId=${blog._id}`}
                         key={blog._id}
@@ -450,7 +456,7 @@ const Blog = () => {
                         <div
                           className="mb-4 descriptionContainer"
                           dangerouslySetInnerHTML={{
-                            __html: blog?.subTitle && truncateText(blog?.subTitle, 20),
+                            __html: blog?.subTitle && blog?.subTitle,
                           }}
                           style={{
                             height: "100px",
@@ -523,7 +529,7 @@ const Blog = () => {
                       <div
                         className="descriptionContainer"
                         dangerouslySetInnerHTML={{
-                          __html: truncateText(result.description, 8),
+                          __html: result.description,
                         }}
                       />
 
