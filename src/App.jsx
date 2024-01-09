@@ -216,7 +216,16 @@ const App = () => {
                 </Tooltip>
                 <br />
               </div>
-              <div className="flex mt-5 w-full justify-center flex-col items-center">
+              <div className="flex mt-5 w-full justify-center flex-col items-center" >
+                <div
+                style={{
+                  maxWidth: 1338,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}
+                >
                 <p
                   style={{
                     fontWeight: "bold",
@@ -251,9 +260,21 @@ const App = () => {
                   ></video>
                   <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full" />
                 </div>
+                </div>
               </div>
 
-              <div>
+              <div
+              className="flex mt-5 w-full justify-center flex-col items-center"
+            
+                
+              >
+                <div style={{
+                  maxWidth: 1338,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'column',
+                }}>
                 <div
                   style={{
                     display: "flex",
@@ -1083,6 +1104,7 @@ style={{
                       </Button>
                     </Link>
                   </div>
+                </div>
                 </div>
               </div>
             </div>
