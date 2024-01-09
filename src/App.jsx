@@ -219,7 +219,7 @@ const App = () => {
                 <p style={{
 
                   fontWeight: 'bold',
-                  fontSize: '1.5rem'
+                  fontSize: 55,
                 }}>The best place to sell new <span style={{
                   color: '#428ABD',
                 }}>
@@ -231,17 +231,13 @@ const App = () => {
                 <p style={{
 
                   fontWeight: 'bold',
-                  fontSize: '1.5rem'
+                  fontSize: '2rem',
+                  marginBottom: 40
                 }}>
                   Turn your sets to cash in 4 easy steps…
                 </p>
 
-                <img
-                  className="w-1/4 mt-3"
-                  src="/Images/legoYoutubeImage.png"
-                  alt=""
-                  loading="lazy"
-                />
+                <video className="w-2/4 rounded-lg mb-[48px]" src="/Lego to Sell Home Page Video.mp4"></video>
               </div>
 
               <div>
@@ -249,10 +245,9 @@ const App = () => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  marginTop: '3rem',
                   flexDirection: 'row',
-                  marginLeft: 50,
-                  marginRight: 50,
+                  marginLeft: 184,
+                  marginRight: 184,
                   gap: 50,
                   flexWrap: width > 1024 ? 'nowrap' : 'wrap',
                 }}>
@@ -760,13 +755,14 @@ As easy as that!
                     News And Reviews
 
                   </h2>
-                  <div className="blogs-container flex justify-center gap-5 flex-wrap"
+                  <div className="blogs-container flex justify-center gap-5"
                   style={{
                     backgroundColor: '#fff',
                     marginTop: 20,
                     marginBottom: 20,
                     marginLeft: width > 1024 ? 80 : 0,
                     marginRight: width > 1024 ? 80 : 0,
+                    flexWrap: width > 1024 ? 'nowrap' : 'wrap',
                   }}
                   >
                     {
@@ -782,7 +778,10 @@ As easy as that!
                             <img src={blog.image} alt=""
                             
                             style={{
-                              width: width > 1024 ? 100 : "100%",
+                              width: width > 1024 ? 'auto' : "100%",
+                              height: width > 1024 ? 200 : "auto",
+                              objectFit: 'cover',
+
                             }}
                             />
                           </div>
