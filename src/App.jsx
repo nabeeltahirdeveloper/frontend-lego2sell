@@ -242,7 +242,7 @@ const App = () => {
                 >
                   Turn your sets to cash in 4 easy steps…
                 </p>
-                <div className="w-2/4 rounded-lg mb-[65px]">
+                <div className="w-2/4 rounded-lg mb-[95px]">
                   <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full mb-[-20px]" />
                   <video
                     className=""
@@ -464,23 +464,25 @@ style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    marginTop: "3rem",
+                    marginTop: "6rem",
                     // flexDirection: 'column'
                     marginLeft: 50,
                     marginRight: 50,
                     gap: 50,
-                    marginBottom: width > 1024 ? "7rem" : "2rem",
+                    marginBottom: width > 1024 ? "3rem" : "2rem",
                   }}
                 >
                   <h2
                     style={{
                       fontWeight: "bold",
                       fontSize: "2.5rem",
-                      wordSpacing: "0.5rem",
-                      letterSpacing: "0.2rem",
                     }}
                   >
-                    Why Sell Your LEGO® With{" "}
+                    Why Sell Your LEGO<span style={{
+                      fontSize: "1rem",
+                      position: 'absolute',
+                      marginLeft: -5,
+                    }}>®</span>&nbsp;With{" "}
                     <span
                       style={{
                         color: "#ff3131",
@@ -532,37 +534,77 @@ style={{
                     marginRight: 50,
                     flexWrap: width > 1024 ? "nowrap" : "wrap",
                     justifyContent: "center",
-                    alignItems: "center",
+                    alignItems: "flex-end",
+                    marginBottom: width > 1024 ? "10rem" : "2rem",
                   }}
                 >
                   <div
                     className="leftSection mr-5"
                     style={{
                       width: width > 1024 ? "50%" : "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "flex-end",
+                      height: "100%",
                     }}
                   >
                     <h2
                       style={{
-                        fontSize: "2.6rem",
-                        marginBottom: 20,
+                        fontSize: 34,
+                        marginBottom: 30,
                       }}
                     >
                       We are the UK’s first and only dedicated Buyer of New
-                      LEGO® Sets!
+                      LEGO<span
+                          
+                          style={{
+                            fontSize: "1.1rem",
+                            position: 'absolute',
+                            // marginLeft: -1,
+                            marginTop: 5
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp; Sets!
                     </h2>
-                    <p>
+                    <p style={{
+                      marginBottom: 30,
+                    }}>
                       We have a unique data engine that searches multiple price
-                      databases of New LEGO® being sold over the last 6 months
+                      databases of New LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp;&nbsp; being sold over the last 6 months
                       to give you the best second hand buy price on the market
                       for your sets.
                       <br />
                       <br />
                       With our cloud database that is updated daily we can give
-                      you instant current market value quotes for your new LEGO®
-                      sets.
+                      you instant current market value quotes for your new LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp;&nbsp;sets.
                       <br />
                       <br />
-                      And if our AI engine can not give you are price just email
+                      And if our AI engine can not give you a price just email
                       Info@lego2sell.com for a bespoke quote.
                     </p>
                     <div
@@ -581,6 +623,10 @@ style={{
                       >
                         <Button
                           // className="w-full"
+                          onClick={()=>{
+                            // move to top of the page
+                            window.scrollTo(0, 0);
+                          }}
                           variant="filled"
                           color="red"
                           size="lg"
@@ -590,7 +636,20 @@ style={{
                             width: "100%",
                           }}
                         >
-                          Sell LEGO®
+                          Sell LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            marginRight: 1,
+                            marginTop: -5
+                            // position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>
                         </Button>
                       </div>
 
@@ -626,14 +685,16 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "center" : "flex-end",
-                          alignItems: width > 1024 ? "center" : "flex-start",
+                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          alignItems: width > 1024 ? "flex-start" : "flex-start",
                           paddingLeft: 5,
                           paddingRight: 5,
                           background: "#EAFED1",
                           paddingBottom: 20,
                           height: 250,
                           width: width > 1024 ? 200 : "auto",
+                          paddingTop: 20,
+
                         }}
                       >
                         <div
@@ -654,11 +715,12 @@ style={{
                           <h3
                             className="card1-title"
                             style={{
-                              fontSize: width > 1024 ? "0.7rem" : "1rem",
-                              marginLeft: width > 1024 ? 0 : 10,
+                              fontSize: width > 1024 ? "0.9rem" : "1rem",
+                              marginLeft: width > 1024 ? -6 : 10,
+                              
                             }}
                           >
-                            High payouts
+                            High Payouts
                           </h3>
                         </div>
                         <p
@@ -669,7 +731,18 @@ style={{
                           }}
                         >
                           We pride ourselves on offering some of the highest
-                          price for your LEGO® Sets online.
+                          price for your LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp;&nbsp;Sets online.
                         </p>
                       </div>
                       <div
@@ -677,9 +750,9 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "center" : "flex-end",
-                          alignItems: width > 1024 ? "center" : "flex-start",
-                          paddingLeft: 5,
+                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          alignItems: width > 1024 ? "flex-start" : "flex-start",
+                          paddingLeft: 10,
                           paddingRight: 5,
                           background: "#CFEBFA",
                           paddingBottom: 20,
@@ -692,27 +765,30 @@ style={{
                           className="card1-image"
                           style={{
                             display: "flex",
-                            alignItems: width > 1024 ? "self-end" : "center",
+                            alignItems: width > 1024 ? "center" : "center",
                             gap: 10,
                             marginTop: 10,
                             flexDirection: width > 1024 ? "row" : "column",
+                          paddingTop: 20,
+                          
+
                           }}
                         >
                           <img
                             src="/Images/LEGO REd Parcel Icon alt.png"
                             alt=""
                             style={{
-                              width: 30,
+                              width: 40,
                             }}
                           />
                           <h3
                             className="card1-title"
                             style={{
-                              fontSize: width > 1024 ? "0.7rem" : "1rem",
+                              fontSize: width > 1024 ? "0.9rem" : "1rem",
                               marginLeft: width > 1024 ? 0 : 10,
                             }}
                           >
-                            Postage refund
+                            Postage Refund
                           </h3>
                         </div>
                         <p
@@ -720,6 +796,10 @@ style={{
                           style={{
                             textAlign: width > 1024 ? "center" : "left",
                             marginLeft: width > 1024 ? 0 : 10,
+                            marginTop: 20,
+                            width: width > 1024 ? "140px" : "auto",
+                            alignSelf: "center",
+
                           }}
                         >
                           We refund you up to £2.49 to cover the cost of postage
@@ -739,13 +819,14 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "center" : "flex-end",
-                          alignItems: width > 1024 ? "center" : "flex-start",
+                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          alignItems: width > 1024 ? "flex-start" : "flex-start",
                           paddingLeft: 5,
                           paddingRight: 5,
                           background: "#F7BBC0",
                           paddingBottom: 20,
                           height: 250,
+                          paddingTop: 20,
                           width: width > 1024 ? 200 : "auto",
                         }}
                       >
@@ -756,6 +837,8 @@ style={{
                             alignItems: "center",
                             gap: 10,
                             flexDirection: width > 1024 ? "row" : "column",
+                            marginBottom: 10,
+                            marginLeft: width > 1024 ? 10 : 10,
                           }}
                         >
                           <img
@@ -768,13 +851,13 @@ style={{
                           <h3
                             className="card1-title"
                             style={{
-                              fontSize: width > 1024 ? "0.7rem" : "1rem",
+                              fontSize: width > 1024 ? ".9rem" : "1rem",
                               marginLeft: width > 1024 ? 0 : 10,
                             }}
                           >
                             Next & Same
                             <br />
-                            day payments
+                            Day Payments
                           </h3>
                         </div>
                         <p
@@ -782,10 +865,11 @@ style={{
                           style={{
                             textAlign: width > 1024 ? "center" : "left",
                             marginLeft: width > 1024 ? 0 : 10,
+                            width: width > 1024 ? "150px" : "auto",
+                            alignSelf: "center",
                           }}
                         >
-                          We pride ourselves on offering some of the highest
-                          price for your LEGO® Sets online.
+                          Need your money in a hurry? We’ll send your money the same day we receive and check your Sets!
                         </p>
                       </div>
                       <div
@@ -793,8 +877,8 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "center" : "flex-end",
-                          alignItems: width > 1024 ? "center" : "flex-start",
+                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          alignItems: width > 1024 ? "flex-start" : "flex-start",
                           paddingLeft: 5,
                           paddingRight: 5,
                           background: "#FEF8DE",
@@ -812,6 +896,9 @@ style={{
                             gap: 10,
                             marginTop: 10,
                             flexDirection: width > 1024 ? "row" : "column",
+                            paddingTop: 20,
+                            marginLeft: width > 1024 ? 5 : 10,
+                            marginBottom: 10,
                           }}
                         >
                           <img
@@ -824,11 +911,11 @@ style={{
                           <h3
                             className="card1-title"
                             style={{
-                              fontSize: width > 1024 ? "0.7rem" : "1rem",
+                              fontSize: width > 1024 ? "0.9rem" : "1rem",
                               marginLeft: width > 1024 ? 0 : 10,
                             }}
                           >
-                            Totally hassle-free
+                            Totally Hassle-Free
                           </h3>
                         </div>
                         <p
@@ -836,6 +923,9 @@ style={{
                           style={{
                             textAlign: width > 1024 ? "center" : "left",
                             marginLeft: width > 1024 ? 0 : 10,
+                            marginTop: 10,
+                            width: width > 1024 ? "150px" : "auto",
+                            alignSelf: "center",
                           }}
                         >
                           Just accept the offer
