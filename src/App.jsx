@@ -18,6 +18,23 @@ const App = () => {
 
   const [topFourBlogs, setTopFourBlogs] = useState([])
   const storedUserId = localStorage.getItem("userId")
+
+
+  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
   useEffect(() => {
     ReactGA.send(window.location.pathname)
     const SendAnalytics = () => {
@@ -233,12 +250,17 @@ const App = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   marginTop: '3rem',
-                  // flexDirection: 'column'
+                  flexDirection: 'row',
                   marginLeft: 50,
                   marginRight: 50,
                   gap: 50,
+                  flexWrap: width > 1024 ? 'nowrap' : 'wrap',
                 }}>
-                  <div className="w-1/4 flex flex-col items-center justify-center">
+                  <div className="flex flex-col items-center justify-center"
+                  style={{
+                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
+                  }}
+                  >
 
                     <img
                       className="w-2/4"
@@ -253,9 +275,12 @@ const App = () => {
                     </h2>
                     <p
                       className="text-center"
+                      style={{
+                        maxWidth: 250,
+                      }}
                     >Pop your LEGO bricks in a bag and weigh them. Then choose the closest weight on our website or app.</p>
                   </div>
-                  <div>
+                  {width > 1024 &&  <div>
                     <img
                       src="/Images/Blue Aroow Alt flipped.png"
                       style={{
@@ -266,8 +291,12 @@ const App = () => {
                       }}
                       alt=""
                       loading="lazy" />
-                  </div>
-                  <div className="w-1/4 flex flex-col items-center justify-center">
+                  </div>}
+                  <div className="flex flex-col items-center justify-center"
+                  style={{
+                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
+                  }}
+                  >
 
                     <img
                       className="w-2/4"
@@ -282,9 +311,12 @@ const App = () => {
                     </h2>
                     <p
                       className="text-center"
+                      style={{
+                        maxWidth: 250,
+                      }}
                     >We’ll offer you a great price for your new LEGO® sets! Simply accept and checkout to continue.</p>
                   </div>
-                  <div>
+                  {width > 1024 && <div>
                     <img
                       src="/Images/Blue Aroow Alt.png"
                       style={{
@@ -295,8 +327,12 @@ const App = () => {
                       }}
                       alt=""
                       loading="lazy" />
-                  </div>
-                  <div className="w-1/4 flex flex-col items-center justify-center">
+                  </div>}
+                  <div className="flex flex-col items-center justify-center"
+                  style={{
+                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
+                  }}
+                  >
 
                     <img
                       className="w-2/4"
@@ -311,9 +347,12 @@ const App = () => {
                     </h2>
                     <p
                       className="text-center"
+                      style={{
+                        maxWidth: 250,
+                      }}
                     >Package up your LEGO® and take it to your local postage drop off point and we will pay you up to £2.49 for all accepted sets.</p>
                   </div>
-                  <div>
+                  {width > 1024 &&  <div>
                     <img
                       src="/Images/Blue Aroow Alt flipped.png"
                       style={{
@@ -324,8 +363,12 @@ const App = () => {
                       }}
                       alt=""
                       loading="lazy" />
-                  </div>
-                  <div className="w-1/4 flex flex-col items-center justify-center">
+                  </div>}
+                  <div className="flex flex-col items-center justify-center"
+                  style={{
+                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
+                  }}
+                  >
 
                     <img
                       className="w-2/4"
@@ -340,6 +383,9 @@ const App = () => {
                     </h2>
                     <p
                       className="text-center"
+                      style={{
+                        maxWidth: 250,
+                      }}
                     >Choose either bank transfer or PayPal and we’ll send your money the same day we receive and check your bricks!</p>
                   </div>
 
@@ -355,13 +401,12 @@ const App = () => {
                   marginLeft: 50,
                   marginRight: 50,
                   gap: 50,
-                  marginBottom: '7rem',
+                  marginBottom: width > 1024 ? '7rem' : '2rem',
 
                 }}>
                   <h2 style={{
                     fontWeight: 'bold',
                     fontSize: '1.5rem',
-                    wordSpacing: '0.5rem',
 
                   }}>
                     Why Sell Your LEGO® With <span
@@ -383,7 +428,7 @@ const App = () => {
                     >?</span>
 
                   </h2>
-                  <div>
+                  {width > 1024 && <div>
                     <img src="/Images/downArrow.png" alt=""
                       style={{
                         width: 100,
@@ -392,15 +437,20 @@ const App = () => {
 
                       }}
                     />
-                  </div>
+                  </div>}
                 </div>
 
                 <div style={{
                   display: 'flex',
                   marginLeft: 50,
                   marginRight: 50,
+                  flexWrap: width > 1024 ? 'nowrap' : 'wrap',
                 }}>
-                  <div className="leftSection w-1/2 mr-5">
+                  <div className="leftSection mr-5"
+                  style={{
+                    width: width > 1024 ? '50%' : '100%',
+                  }}
+                  >
                     <h2 style={{
                       fontSize: '1.6rem',
                       marginBottom: 20,
@@ -425,9 +475,11 @@ const App = () => {
                       <div className="button" style={{
                         marginLeft: -20,
                         marginTop: 20,
+                        width: "100%",
+
                       }}>
                         <Button
-                          className="w-full"
+                          // className="w-full"
                           variant="filled"
 
                           color="red"
@@ -435,6 +487,7 @@ const App = () => {
                           radius="xl"
                           style={{
                             background: 'red ',
+                            width: "100%",
                           }}
                         >
                           Sell LEGO®
@@ -442,13 +495,13 @@ const App = () => {
                       </div>
 
 
-                      <img src="/Images/Duplo Bricks alt.png" alt=""
+                     {width > 1024 &&  <img src="/Images/Duplo Bricks alt.png" alt=""
 
                         style={{
                           width: 100,
 
                         }}
-                      />
+                      />}
 
 
                     </div>
@@ -457,23 +510,35 @@ const App = () => {
                   </div>
 
 
-                  <div className="rightSection w-1/2 flex gap-5">
+                  <div className="rightSection flex gap-5"
+                  style={{
+                    width: width > 1024 ? '50%' : '100%',
+                    flexWrap: width > 768 ? 'nowrap' : 'wrap',
+                  
+                  }}
+                  >
 
-                    <div className="card1-column w-1/3">
+                    <div className="card1-column "
+                    style={{
+                      width: width > 1024 ? '33.33%' :width > 768 ?  '50%' : '100%',
+                    }}
+                    >
                       
                         <div className="card1" style={{
                           display: 'flex',
                           flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
+                          justifyContent: width > 1024 ? 'center' : 'flex-end',
+                          alignItems: width > 1024 ? 'center' : 'flex-start',
                           paddingLeft: 5,
                           paddingRight: 5,
                           background: '#EAFED1',
                           paddingBottom: 20,
+                          height: width > 1024 ? "auto" : 250,
                         }}>
                           <div className="card1-image" style={{
                             display: 'flex',
                             alignItems: 'center',
+                            flexDirection: width > 1024 ?  'row' : 'column' 
                           }}>
                             <img src="/Images/LEGO POINTS alt.png" alt=""
                             style={{
@@ -482,102 +547,141 @@ const App = () => {
                             }}
                             />
                             <h3 className="card1-title" style={{
-                              fontSize: '0.7rem',
+                              fontSize: width > 1024 ? "0.7rem" : '1rem',
+                              marginLeft: width > 1024 ? 0 : 10,
                             }}>High payouts</h3>
                           </div>
-                            <p className="card1-body text-center">
+                            <p className="card1-body"
+                            style={{
+                              textAlign: width > 1024 ? 'center' : 'left',
+                              marginLeft: width > 1024 ? 0 : 10,
+
+                            }}
+                            >
                             We pride ourselves on offering some of the highest price for your LEGO® Sets online.
                             </p>
                         </div>
                         <div className="card1" style={{
                           display: 'flex',
                           flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
+                          justifyContent: width > 1024 ? 'center' : 'flex-end',
+                          alignItems: width > 1024 ? 'center' : 'flex-start',
                           paddingLeft: 5,
                           paddingRight: 5,
                           background: '#CFEBFA',
                           paddingBottom: 20,
                           marginTop: 20,
+                          height: width > 1024 ? "auto" : 250,
+
                         }}>
                           <div className="card1-image" style={{
                             display: 'flex',
-                            alignItems: 'self-end',
+                            alignItems: width > 1024 ? 'self-end': 'center',
                             gap: 10,
                             marginTop: 10,
+                            flexDirection: width > 1024 ?  'row' : 'column' 
 
                           }}>
                             <img src="/Images/LEGO REd Parcel Icon alt.png" alt=""
                             style={{
                               width: 30,
+                              
                             
                             }}
                             />
                             <h3 className="card1-title" style={{
-                              fontSize: '0.7rem',
+                              fontSize: width > 1024 ? "0.7rem" : '1rem',
+                              marginLeft: width > 1024 ? 0 : 10,
                             }}>Postage refund</h3>
                           </div>
-                            <p className="card1-body text-center">
+                            <p className="card1-body"
+                            style={{
+                              
+                              textAlign: width > 1024 ? 'center' : 'left',
+                              marginLeft: width > 1024 ? 0 : 10,
+                            }}
+                            >
                             We refund you up to £2.49 to cover the cost of postage
                             </p>
                         </div>
                 
 
                     </div>
-                    <div className="card2-column w-1/3"
+                    <div className="card2-column "
+
+
                     style={{
-                      marginTop: 30,
+                      marginTop:width > 1024 &&  30,
+                      width: width > 1024 ? '33.33%' : width > 768 ?  '50%' : '100%',
+
                     }}
                     >
                       
                         <div className="card1" style={{
                           display: 'flex',
                           flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
+                          justifyContent: width > 1024 ? 'center' : 'flex-end',
+                          alignItems: width > 1024 ? 'center' : 'flex-start',
                           paddingLeft: 5,
                           paddingRight: 5,
                           background: '#F7BBC0',
                           paddingBottom: 20,
+                          height: width > 1024 ? "auto" : 250,
+
                         }}>
                           <div className="card1-image" style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: 10
+                            gap: 10,
+                            flexDirection: width > 1024 ?  'row' : 'column' 
+
                           }}>
                             <img src="/Images/Lego Clock alt.png" alt=""
                             style={{
                               width: 50,
+                              
                             
                             }}
                             />
                             <h3 className="card1-title" style={{
-                              fontSize: '0.7rem',
-                            }}>Next & Same
+
+fontSize: width > 1024 ? "0.7rem" : '1rem',
+marginLeft: width > 1024 ? 0 : 10,
+}}>Next & Same
                             <br />
                             day payments
                             </h3>
                           </div>
-                            <p className="card1-body text-center">
+                            <p className="card1-body"
+                            style={{
+                              
+                              textAlign: width > 1024 ? 'center' : 'left',
+                              marginLeft: width > 1024 ? 0 : 10,
+                            }}
+                            >
                             We pride ourselves on offering some of the highest price for your LEGO® Sets online.
                             </p>
                         </div>
                         <div className="card1" style={{
                           display: 'flex',
                           flexDirection: 'column',
-                          justifyContent: 'center',
-                          alignItems: 'center',
+                          justifyContent: width > 1024 ? 'center' : 'flex-end',
+                          alignItems: width > 1024 ? 'center' : 'flex-start',
                           paddingLeft: 5,
                           paddingRight: 5,
                           background: '#FEF8DE',
                           paddingBottom: 20,
                           marginTop: 20,
+                          height: width > 1024 ? "auto" : 250,
+
                         }}>
                           <div className="card1-image" style={{
                             display: 'flex',
-                            alignItems: 'self-end',
+                            alignItems: width > 1024 ? 'self-end': 'center',
                             gap: 10,
                             marginTop: 10,
+                            flexDirection: width > 1024 ?  'row' : 'column'
+                            
 
                           }}>
                             <img src="/Images/happy LEGO face alt.png" alt=""
@@ -587,16 +691,24 @@ const App = () => {
                             }}
                             />
                             <h3 className="card1-title" style={{
-                              fontSize: '0.7rem',
-                            }}>Totally hassle-free</h3>
+                              fontSize: width > 1024 ? "0.7rem" : '1rem',
+                              marginLeft: width > 1024 ? 0 : 10,
+}}>Totally hassle-free</h3>
                           </div>
-                            <p className="card1-body text-center">
+                            <p className="card1-body"
+                            style={{
+                                
+                                textAlign: width > 1024 ? 'center' : 'left',
+                                marginLeft: width > 1024 ? 0 : 10,
+                            }}
+                            >
                             Just accept the offer
                             <ul
                             style={{
                               listStyleType:'disc',
                               marginTop: 10,
                               fontWeight: 'bold',
+                              marginLeft:  20,
                             }}
                             >
                               <li>Box it</li>
@@ -611,7 +723,7 @@ As easy as that!
 
                     </div>
 
-                    <div className="third-col w-1/3 flex items-center">
+                    {width > 1024 && <div className="third-col w-1/3 flex items-center">
 
                       <img src="/Images/LEGO bricks alt.png" style={{
                         width: "70%",
@@ -619,7 +731,7 @@ As easy as that!
                       
                       }} alt="" />
 
-                    </div>
+                    </div>}
 
                   </div>
                 </div>
@@ -627,7 +739,7 @@ As easy as that!
 
                <div className="blogs"
                style={{
-                backgroundColor: '#EAFED1',
+                backgroundColor: width > 1024 ? '#EAFED1' : '#fff',
                 display: 'flex',
                 alignItems: 'center',
                 flexDirection: 'column',
@@ -648,33 +760,40 @@ As easy as that!
                     News And Reviews
 
                   </h2>
-                  <div className="blogs-container flex justify-center gap-5 "
+                  <div className="blogs-container flex justify-center gap-5 flex-wrap"
                   style={{
                     backgroundColor: '#fff',
                     marginTop: 20,
                     marginBottom: 20,
-                    marginLeft: 80,
-                    marginRight: 80,
+                    marginLeft: width > 1024 ? 80 : 0,
+                    marginRight: width > 1024 ? 80 : 0,
                   }}
                   >
                     {
                       topFourBlogs.map((blog, index) => (
-                        <div className="blog-card w-1/4 flex flex-col items-center" key={index}>
+                        <div className="blog-card flex flex-col items-center "
+                        style={{
+                          width: width > 1024 ? '25%' : '100%',
+                        }}
+                        key={index}>
                           <div className="" style={{
-                            height: 100,
+                            height: width > 1024 ? 200 : "auto",
                           }}>
                             <img src={blog.image} alt=""
                             
                             style={{
-                              width: 100
+                              width: width > 1024 ? 100 : "100%",
                             }}
                             />
                           </div>
-                          <div className="blog-content">
+                          <div className="" style={{
+                            width: width > 1024 ? "auto" : "100%",
+                          
+                          }}>
                             <h3
                             style={{
                               fontWeight: 'bold',
-                              fontSize: '.7rem',
+                              fontSize: width > 1024 ? ".7rem" : '1rem',
                               marginTop: 10,
                             }}
 
@@ -690,6 +809,7 @@ As easy as that!
                     style={{
                       alignSelf: 'flex-start',
                       marginLeft: 80,
+                      marginBottom: 20
                     }}
                     > 
                       <Link to="/blogs">
