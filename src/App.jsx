@@ -475,7 +475,7 @@ const App = () => {
                       <div className="button" style={{
                         marginLeft: -20,
                         marginTop: 20,
-                        width: "100%",
+                        width: width > 1024 ? 'auto' : '100%',
 
                       }}>
                         <Button
