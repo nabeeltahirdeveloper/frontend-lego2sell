@@ -1,52 +1,52 @@
-import React, { useEffect, useRef, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import "./App.css"
-import { Button, Loader, Modal, Tooltip } from "@mantine/core"
-import { useDisclosure } from "@mantine/hooks"
-import { Helmet } from "react-helmet"
-import { useMediaQuery } from "react-responsive"
-import ReactGA from "react-ga4"
-import baseUrl from "./context/baseUrl"
-import axios from "axios"
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./App.css";
+import { Button, Loader, Modal, Tooltip } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { Helmet } from "react-helmet";
+import { useMediaQuery } from "react-responsive";
+import ReactGA from "react-ga4";
+import baseUrl from "./context/baseUrl";
+import axios from "axios";
 const App = () => {
-  const [e, setE] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const [opened, { open, close }] = useDisclosure(false)
-  const navigation = useNavigate()
+  const [e, setE] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [opened, { open, close }] = useDisclosure(false);
+  const navigation = useNavigate();
 
-  const [opened1, setOpened] = useState(false)
+  const [opened1, setOpened] = useState(false);
 
-  const [topFourBlogs, setTopFourBlogs] = useState([])
-  const storedUserId = localStorage.getItem("userId")
+  const [topFourBlogs, setTopFourBlogs] = useState([]);
+  const storedUserId = localStorage.getItem("userId");
 
-
-  const [width, setWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
 
   useEffect(() => {
-    ReactGA.send(window.location.pathname)
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    ReactGA.send(window.location.pathname);
     const SendAnalytics = () => {
       ReactGA.send({
         hitType: "pageview",
         page: window.location.pathname,
-      })
-    }
-  }, [])
+      });
+    };
+  }, []);
   const handleSearch = async () => {
     try {
-      setIsLoading(true)
+      setIsLoading(true);
 
       const response = await fetch(`${baseUrl}/find-lego`, {
         method: "POST",
@@ -54,43 +54,42 @@ const App = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ itemCode: e }),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
-      localStorage.setItem("SearchValue", e)
+      localStorage.setItem("SearchValue", e);
       if (data.message === "SUCCESS") {
         navigation(`/product/`, {
           state: { data, e },
-        })
+        });
       } else {
-        open(true)
-        setE("")
+        open(true);
+        setE("");
         // alert("Could not find the LEGO you are looking for.")
       }
     } catch {
-      open(true)
+      open(true);
       // alert("Could not find the LEGO you are looking for.")
     } finally {
-      setIsLoading(false) // Set loading state back to false
+      setIsLoading(false); // Set loading state back to false
     }
-  }
+  };
   const handleInputChange = (event) => {
-    const inputValue = event.target.value
-    const numericValue = inputValue.replace(/\D/g, "") // Remove non-digit characters
+    const inputValue = event.target.value;
+    const numericValue = inputValue.replace(/\D/g, ""); // Remove non-digit characters
 
-    setE(numericValue)
-  }
+    setE(numericValue);
+  };
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      handleSearch()
+      handleSearch();
     }
-  }
+  };
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
-  })
-
+  });
 
   useEffect(() => {
     const apiUrl = baseUrl + "/admin/api/blog/";
@@ -116,7 +115,6 @@ const App = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
-
 
   return (
     <div>
@@ -187,7 +185,7 @@ const App = () => {
                     required
                   />
                 </div>
-                <button type="submit" onClick={handleSearch}>
+                <button className="mb-2" type="submit" onClick={handleSearch}>
                   <img
                     className="_search-btn_hj7zo_15"
                     src="/Images/search-img-6ce3ac56.png"
@@ -195,8 +193,6 @@ const App = () => {
                     loading="lazy"
                   />
                 </button>
-                <br />
-                <br />
 
                 <Tooltip
                   color="blue"
@@ -210,53 +206,71 @@ const App = () => {
                   <button
                     variant="outline"
                     onClick={() => setOpened((o) => !o)}
-                    className={`${opened1 ? "mt-16 lg:mt-0 " : ""
-                      }text-base  font-medium text-gray-400`}
-                  >Search help</button>
+                    className={`${
+                      opened1 ? "mt-16 lg:mt-0 " : ""
+                    }text-base  font-medium text-gray-400`}
+                  >
+                    Search help
+                  </button>
                 </Tooltip>
+                <br />
               </div>
               <div className="flex mt-5 w-full justify-center flex-col items-center">
-                <p style={{
-
-                  fontWeight: 'bold',
-                  fontSize: 55,
-                }}>The best place to sell new <span style={{
-                  color: '#428ABD',
-                }}>
-
+                <p
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: 42,
+                  }}
+                >
+                  The best place to sell new{" "}
+                  <span
+                    style={{
+                      color: "#428ABD",
+                    }}
+                  >
                     LEGO®&nbsp;
                   </span>
                   sets online.
                 </p>
-                <p style={{
-
-                  fontWeight: 'bold',
-                  fontSize: '2rem',
-                  marginBottom: 40
-                }}>
+                <p
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "2rem",
+                    marginBottom: 40,
+                  }}
+                >
                   Turn your sets to cash in 4 easy steps…
                 </p>
-
-                <video className="w-2/4 rounded-lg mb-[48px]" src="/Lego to Sell Home Page Video.mp4"></video>
+                <div className="w-2/4 rounded-lg mb-[48px]">
+                  <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full mb-[-20px]" />
+                  <video
+                    className=""
+                    src="/Lego to Sell Home Page Video.mp4"
+                  ></video>
+                  <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full" />
+                </div>
               </div>
 
               <div>
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  flexDirection: 'row',
-                  marginLeft: 184,
-                  marginRight: 184,
-                  gap: 50,
-                  flexWrap: width > 1024 ? 'nowrap' : 'wrap',
-                }}>
-                  <div className="flex flex-col items-center justify-center"
+                <div
                   style={{
-                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    flexDirection: "row",
+                    marginLeft: 84,
+                    marginRight: 84,
+                    gap: 20,
+                    flexWrap: width > 1300 ? "nowrap" : "wrap",
                   }}
+                >
+                  <div
+                    className="flex flex-col items-center justify-center"
+                    style={{
+                      width:
+                        width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                    }}
                   >
-
                     <img
                       className="w-2/4"
                       src="/Images/LEGO search alt.png"
@@ -264,35 +278,47 @@ const App = () => {
                       loading="lazy"
                     />
                     <h2>
-                      <span style={{
-                        color: 'red',
-                      }}>1.</span> Search your LEGO® Code
+                      <span
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        1.
+                      </span>{" "}
+                      Search your LEGO® Code
                     </h2>
                     <p
                       className="text-center"
                       style={{
                         maxWidth: 250,
                       }}
-                    >Pop your LEGO bricks in a bag and weigh them. Then choose the closest weight on our website or app.</p>
+                    >
+                      Pop your LEGO bricks in a bag and weigh them. Then choose
+                      the closest weight on our website or app.
+                    </p>
                   </div>
-                  {width > 1024 &&  <div>
-                    <img
-                      src="/Images/Blue Aroow Alt flipped.png"
-                      style={{
-                        width: 100,
-                        marginTop: -80,
-                        marginLeft: -50,
-                        position: 'absolute',
-                      }}
-                      alt=""
-                      loading="lazy" />
-                  </div>}
-                  <div className="flex flex-col items-center justify-center"
-                  style={{
-                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
-                  }}
+                  {width > 1300 && (
+                    <div>
+                      <img
+                        src="/Images/Blue Aroow Alt flipped.png"
+                        style={{
+                          width: 100,
+                          marginTop: -80,
+                          marginLeft: -50,
+                          position: "absolute",
+                        }}
+                        alt=""
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div
+                    className="flex flex-col items-center justify-center"
+                    style={{
+                      width:
+                        width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                    }}
                   >
-
                     <img
                       className="w-2/4"
                       src="/Images/iphone Payments alt.webp"
@@ -300,35 +326,47 @@ const App = () => {
                       loading="lazy"
                     />
                     <h2>
-                      <span style={{
-                        color: 'red',
-                      }}>2.</span> Get an instant offer
+                      <span
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        2.
+                      </span>{" "}
+                      Get an instant offer
                     </h2>
                     <p
                       className="text-center"
                       style={{
                         maxWidth: 250,
                       }}
-                    >We’ll offer you a great price for your new LEGO® sets! Simply accept and checkout to continue.</p>
+                    >
+                      We’ll offer you a great price for your new LEGO® sets!
+                      Simply accept and checkout to continue.
+                    </p>
                   </div>
-                  {width > 1024 && <div>
-                    <img
-                      src="/Images/Blue Aroow Alt.png"
-                      style={{
-                        width: 100,
-                        marginTop: -30,
-                        marginLeft: -50,
-                        position: 'absolute',
-                      }}
-                      alt=""
-                      loading="lazy" />
-                  </div>}
-                  <div className="flex flex-col items-center justify-center"
-                  style={{
-                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
-                  }}
+                  {width > 1300 && (
+                    <div>
+                      <img
+                        src="/Images/Blue Aroow Alt.png"
+                        style={{
+                          width: 100,
+                          marginTop: -30,
+                          marginLeft: -50,
+                          position: "absolute",
+                        }}
+                        alt=""
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div
+                    className="flex flex-col items-center justify-center"
+                    style={{
+                      width:
+                        width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                    }}
                   >
-
                     <img
                       className="w-2/4"
                       src="/Images/Lego Parcel alt.webp"
@@ -336,35 +374,48 @@ const App = () => {
                       loading="lazy"
                     />
                     <h2>
-                      <span style={{
-                        color: 'red',
-                      }}>3.</span> Post it to us
+                      <span
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        3.
+                      </span>{" "}
+                      Post it to us
                     </h2>
                     <p
                       className="text-center"
                       style={{
                         maxWidth: 250,
                       }}
-                    >Package up your LEGO® and take it to your local postage drop off point and we will pay you up to £2.49 for all accepted sets.</p>
+                    >
+                      Package up your LEGO® and take it to your local postage
+                      drop off point and we will pay you up to £2.49 for all
+                      accepted sets.
+                    </p>
                   </div>
-                  {width > 1024 &&  <div>
-                    <img
-                      src="/Images/Blue Aroow Alt flipped.png"
-                      style={{
-                        width: 100,
-                        marginTop: -80,
-                        marginLeft: -50,
-                        position: 'absolute',
-                      }}
-                      alt=""
-                      loading="lazy" />
-                  </div>}
-                  <div className="flex flex-col items-center justify-center"
-                  style={{
-                    width: width > 1024 ? '25%' : width > 768 ? '45%' : '100%',
-                  }}
+                  {width > 1300 && (
+                    <div>
+                      <img
+                        src="/Images/Blue Aroow Alt flipped.png"
+                        style={{
+                          width: 100,
+                          marginTop: -80,
+                          marginLeft: -50,
+                          position: "absolute",
+                        }}
+                        alt=""
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div
+                    className="flex flex-col items-center justify-center"
+                    style={{
+                      width:
+                        width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                    }}
                   >
-
                     <img
                       className="w-2/4"
                       src="/Images/LEGO VIP Wallet alt.webp"
@@ -372,116 +423,155 @@ const App = () => {
                       loading="lazy"
                     />
                     <h2>
-                      <span style={{
-                        color: 'red',
-                      }}>4.</span> Get paid
+                      <span
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        4.
+                      </span>{" "}
+                      Get paid
                     </h2>
                     <p
                       className="text-center"
                       style={{
                         maxWidth: 250,
                       }}
-                    >Choose either bank transfer or PayPal and we’ll send your money the same day we receive and check your bricks!</p>
+                    >
+                      Choose either bank transfer or PayPal and we’ll send your
+                      money the same day we receive and check your bricks!
+                    </p>
                   </div>
-
-
                 </div>
 
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  marginTop: '3rem',
-                  // flexDirection: 'column'
-                  marginLeft: 50,
-                  marginRight: 50,
-                  gap: 50,
-                  marginBottom: width > 1024 ? '7rem' : '2rem',
-
-                }}>
-                  <h2 style={{
-                    fontWeight: 'bold',
-                    fontSize: '1.5rem',
-
-                  }}>
-                    Why Sell Your LEGO® With <span
-                      style={{
-                        color: "#ff3131"
-                      }}
-                    >Lego</span><span
-                      style={{
-                        color: '#1cbc7c'
-                      }}
-                    >2</span><span
-                      style={{
-                        color: '#4a71f6'
-                      }}
-                    >Sell</span><span
-                      style={{
-                        color: '#febf00'
-                      }}
-                    >?</span>
-
-                  </h2>
-                  {width > 1024 && <div>
-                    <img src="/Images/downArrow.png" alt=""
-                      style={{
-                        width: 100,
-                        marginLeft: -120,
-                        position: 'absolute',
-
-                      }}
-                    />
-                  </div>}
-                </div>
-
-                <div style={{
-                  display: 'flex',
-                  marginLeft: 50,
-                  marginRight: 50,
-                  flexWrap: width > 1024 ? 'nowrap' : 'wrap',
-                }}>
-                  <div className="leftSection mr-5"
+                <div
                   style={{
-                    width: width > 1024 ? '50%' : '100%',
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginTop: "3rem",
+                    // flexDirection: 'column'
+                    marginLeft: 50,
+                    marginRight: 50,
+                    gap: 50,
+                    marginBottom: width > 1024 ? "7rem" : "2rem",
                   }}
+                >
+                  <h2
+                    style={{
+                      fontWeight: "bold",
+                      fontSize: "2.5rem",
+                      wordSpacing: "0.5rem",
+                      letterSpacing: "0.2rem",
+                    }}
                   >
-                    <h2 style={{
-                      fontSize: '1.6rem',
-                      marginBottom: 20,
-                    }}>
-                      We are the UK’s first and only dedicated Buyer of New LEGO® Sets!
+                    Why Sell Your LEGO® With{" "}
+                    <span
+                      style={{
+                        color: "#ff3131",
+                      }}
+                    >
+                      Lego
+                    </span>
+                    <span
+                      style={{
+                        color: "#1cbc7c",
+                      }}
+                    >
+                      2
+                    </span>
+                    <span
+                      style={{
+                        color: "#4a71f6",
+                      }}
+                    >
+                      Sell
+                    </span>
+                    <span
+                      style={{
+                        color: "#febf00",
+                      }}
+                    >
+                      ?
+                    </span>
+                  </h2>
+                  {width > 1024 && (
+                    <div>
+                      <img
+                        src="/Images/downArrow.png"
+                        alt=""
+                        style={{
+                          width: 60,
+                          marginLeft: -90,
+                          position: "absolute",
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
 
+                <div
+                  style={{
+                    display: "flex",
+                    marginLeft: 50,
+                    marginRight: 50,
+                    flexWrap: width > 1024 ? "nowrap" : "wrap",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    className="leftSection mr-5"
+                    style={{
+                      width: width > 1024 ? "50%" : "100%",
+                    }}
+                  >
+                    <h2
+                      style={{
+                        fontSize: "2.6rem",
+                        marginBottom: 20,
+                      }}
+                    >
+                      We are the UK’s first and only dedicated Buyer of New
+                      LEGO® Sets!
                     </h2>
                     <p>
-                      We have a unique data engine that searches multiple price databases of New LEGO® being sold over the last 6 months to give you the best second hand buy price on the market for your sets.
+                      We have a unique data engine that searches multiple price
+                      databases of New LEGO® being sold over the last 6 months
+                      to give you the best second hand buy price on the market
+                      for your sets.
                       <br />
                       <br />
-                      With our cloud database that is updated daily we can give you instant current market value quotes for your new LEGO® sets.
+                      With our cloud database that is updated daily we can give
+                      you instant current market value quotes for your new LEGO®
+                      sets.
                       <br />
                       <br />
-                      And if our AI engine can not give you are price just email Info@lego2sell.com for a bespoke quote.
+                      And if our AI engine can not give you are price just email
+                      Info@lego2sell.com for a bespoke quote.
                     </p>
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                    }}>
-
-                      <div className="button" style={{
-                        marginLeft: -20,
-                        marginTop: 20,
-                        width: width > 1024 ? 'auto' : '100%',
-
-                      }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div
+                        className="button"
+                        style={{
+                          marginLeft: -20,
+                          marginTop: 20,
+                          width: width > 1024 ? "auto" : "100%",
+                        }}
+                      >
                         <Button
                           // className="w-full"
                           variant="filled"
-
                           color="red"
                           size="lg"
                           radius="xl"
                           style={{
-                            background: 'red ',
+                            background: "red ",
                             width: "100%",
                           }}
                         >
@@ -489,348 +579,404 @@ const App = () => {
                         </Button>
                       </div>
 
-
-                     {width > 1024 &&  <img src="/Images/Duplo Bricks alt.png" alt=""
-
-                        style={{
-                          width: 100,
-
-                        }}
-                      />}
-
-
+                      {width > 1024 && (
+                        <img
+                          src="/Images/Duplo Bricks alt.png"
+                          alt=""
+                          style={{
+                            width: 100,
+                          }}
+                        />
+                      )}
                     </div>
-
-
                   </div>
 
-
-                  <div className="rightSection flex gap-5"
-                  style={{
-                    width: width > 1024 ? '50%' : '100%',
-                    flexWrap: width > 768 ? 'nowrap' : 'wrap',
-                  
-                  }}
-                  >
-
-                    <div className="card1-column "
+                  <div
+                    className="rightSection flex gap-5"
                     style={{
-                      width: width > 1024 ? '33.33%' :width > 768 ?  '50%' : '100%',
+                      width: width > 1024 ? "50%" : "100%",
+                      flexWrap: width > 768 ? "nowrap" : "wrap",
+                      justifyContent: width > 1024 ? "flex-end" : "flex-start",
                     }}
+                  >
+                    <div
+                      className="card1-column "
+                      style={{
+                        width:
+                          width > 1024 ? "auto" : width > 768 ? "50%" : "100%",
+                      }}
                     >
-                      
-                        <div className="card1" style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: width > 1024 ? 'center' : 'flex-end',
-                          alignItems: width > 1024 ? 'center' : 'flex-start',
+                      <div
+                        className="card1"
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: width > 1024 ? "center" : "flex-end",
+                          alignItems: width > 1024 ? "center" : "flex-start",
                           paddingLeft: 5,
                           paddingRight: 5,
-                          background: '#EAFED1',
+                          background: "#EAFED1",
                           paddingBottom: 20,
-                          height: width > 1024 ? "auto" : 250,
-                        }}>
-                          <div className="card1-image" style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            flexDirection: width > 1024 ?  'row' : 'column' 
-                          }}>
-                            <img src="/Images/LEGO POINTS alt.png" alt=""
+                          height: 250,
+                          width: width > 1024 ? 200 : "auto",
+                        }}
+                      >
+                        <div
+                          className="card1-image"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            flexDirection: width > 1024 ? "row" : "column",
+                          }}
+                        >
+                          <img
+                            src="/Images/LEGO POINTS alt.png"
+                            alt=""
                             style={{
                               width: 80,
-                            
                             }}
-                            />
-                            <h3 className="card1-title" style={{
-                              fontSize: width > 1024 ? "0.7rem" : '1rem',
-                              marginLeft: width > 1024 ? 0 : 10,
-                            }}>High payouts</h3>
-                          </div>
-                            <p className="card1-body"
+                          />
+                          <h3
+                            className="card1-title"
                             style={{
-                              textAlign: width > 1024 ? 'center' : 'left',
+                              fontSize: width > 1024 ? "0.7rem" : "1rem",
                               marginLeft: width > 1024 ? 0 : 10,
-
                             }}
-                            >
-                            We pride ourselves on offering some of the highest price for your LEGO® Sets online.
-                            </p>
+                          >
+                            High payouts
+                          </h3>
                         </div>
-                        <div className="card1" style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: width > 1024 ? 'center' : 'flex-end',
-                          alignItems: width > 1024 ? 'center' : 'flex-start',
+                        <p
+                          className="card1-body"
+                          style={{
+                            textAlign: width > 1024 ? "center" : "left",
+                            marginLeft: width > 1024 ? 0 : 10,
+                          }}
+                        >
+                          We pride ourselves on offering some of the highest
+                          price for your LEGO® Sets online.
+                        </p>
+                      </div>
+                      <div
+                        className="card1"
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: width > 1024 ? "center" : "flex-end",
+                          alignItems: width > 1024 ? "center" : "flex-start",
                           paddingLeft: 5,
                           paddingRight: 5,
-                          background: '#CFEBFA',
+                          background: "#CFEBFA",
                           paddingBottom: 20,
                           marginTop: 20,
-                          height: width > 1024 ? "auto" : 250,
-
-                        }}>
-                          <div className="card1-image" style={{
-                            display: 'flex',
-                            alignItems: width > 1024 ? 'self-end': 'center',
+                          height: 250,
+                          width: width > 1024 ? 200 : "auto",
+                        }}
+                      >
+                        <div
+                          className="card1-image"
+                          style={{
+                            display: "flex",
+                            alignItems: width > 1024 ? "self-end" : "center",
                             gap: 10,
                             marginTop: 10,
-                            flexDirection: width > 1024 ?  'row' : 'column' 
-
-                          }}>
-                            <img src="/Images/LEGO REd Parcel Icon alt.png" alt=""
+                            flexDirection: width > 1024 ? "row" : "column",
+                          }}
+                        >
+                          <img
+                            src="/Images/LEGO REd Parcel Icon alt.png"
+                            alt=""
                             style={{
                               width: 30,
-                              
-                            
                             }}
-                            />
-                            <h3 className="card1-title" style={{
-                              fontSize: width > 1024 ? "0.7rem" : '1rem',
-                              marginLeft: width > 1024 ? 0 : 10,
-                            }}>Postage refund</h3>
-                          </div>
-                            <p className="card1-body"
+                          />
+                          <h3
+                            className="card1-title"
                             style={{
-                              
-                              textAlign: width > 1024 ? 'center' : 'left',
+                              fontSize: width > 1024 ? "0.7rem" : "1rem",
                               marginLeft: width > 1024 ? 0 : 10,
                             }}
-                            >
-                            We refund you up to £2.49 to cover the cost of postage
-                            </p>
+                          >
+                            Postage refund
+                          </h3>
                         </div>
-                
-
+                        <p
+                          className="card1-body"
+                          style={{
+                            textAlign: width > 1024 ? "center" : "left",
+                            marginLeft: width > 1024 ? 0 : 10,
+                          }}
+                        >
+                          We refund you up to £2.49 to cover the cost of postage
+                        </p>
+                      </div>
                     </div>
-                    <div className="card2-column "
-
-
-                    style={{
-                      marginTop:width > 1024 &&  30,
-                      width: width > 1024 ? '33.33%' : width > 768 ?  '50%' : '100%',
-
-                    }}
+                    <div
+                      className="card2-column "
+                      style={{
+                        marginTop: width > 1024 && 30,
+                        width:
+                          width > 1024 ? "auto" : width > 768 ? "50%" : "100%",
+                      }}
                     >
-                      
-                        <div className="card1" style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: width > 1024 ? 'center' : 'flex-end',
-                          alignItems: width > 1024 ? 'center' : 'flex-start',
+                      <div
+                        className="card1"
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: width > 1024 ? "center" : "flex-end",
+                          alignItems: width > 1024 ? "center" : "flex-start",
                           paddingLeft: 5,
                           paddingRight: 5,
-                          background: '#F7BBC0',
+                          background: "#F7BBC0",
                           paddingBottom: 20,
-                          height: width > 1024 ? "auto" : 250,
-
-                        }}>
-                          <div className="card1-image" style={{
-                            display: 'flex',
-                            alignItems: 'center',
+                          height: 250,
+                          width: width > 1024 ? 200 : "auto",
+                        }}
+                      >
+                        <div
+                          className="card1-image"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
                             gap: 10,
-                            flexDirection: width > 1024 ?  'row' : 'column' 
-
-                          }}>
-                            <img src="/Images/Lego Clock alt.png" alt=""
+                            flexDirection: width > 1024 ? "row" : "column",
+                          }}
+                        >
+                          <img
+                            src="/Images/Lego Clock alt.png"
+                            alt=""
                             style={{
                               width: 50,
-                              
-                            
                             }}
-                            />
-                            <h3 className="card1-title" style={{
-
-fontSize: width > 1024 ? "0.7rem" : '1rem',
-marginLeft: width > 1024 ? 0 : 10,
-}}>Next & Same
+                          />
+                          <h3
+                            className="card1-title"
+                            style={{
+                              fontSize: width > 1024 ? "0.7rem" : "1rem",
+                              marginLeft: width > 1024 ? 0 : 10,
+                            }}
+                          >
+                            Next & Same
                             <br />
                             day payments
-                            </h3>
-                          </div>
-                            <p className="card1-body"
-                            style={{
-                              
-                              textAlign: width > 1024 ? 'center' : 'left',
-                              marginLeft: width > 1024 ? 0 : 10,
-                            }}
-                            >
-                            We pride ourselves on offering some of the highest price for your LEGO® Sets online.
-                            </p>
+                          </h3>
                         </div>
-                        <div className="card1" style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: width > 1024 ? 'center' : 'flex-end',
-                          alignItems: width > 1024 ? 'center' : 'flex-start',
+                        <p
+                          className="card1-body"
+                          style={{
+                            textAlign: width > 1024 ? "center" : "left",
+                            marginLeft: width > 1024 ? 0 : 10,
+                          }}
+                        >
+                          We pride ourselves on offering some of the highest
+                          price for your LEGO® Sets online.
+                        </p>
+                      </div>
+                      <div
+                        className="card1"
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: width > 1024 ? "center" : "flex-end",
+                          alignItems: width > 1024 ? "center" : "flex-start",
                           paddingLeft: 5,
                           paddingRight: 5,
-                          background: '#FEF8DE',
+                          background: "#FEF8DE",
                           paddingBottom: 20,
                           marginTop: 20,
-                          height: width > 1024 ? "auto" : 250,
-
-                        }}>
-                          <div className="card1-image" style={{
-                            display: 'flex',
-                            alignItems: width > 1024 ? 'self-end': 'center',
+                          height: 250,
+                          width: width > 1024 ? 200 : "auto",
+                        }}
+                      >
+                        <div
+                          className="card1-image"
+                          style={{
+                            display: "flex",
+                            alignItems: width > 1024 ? "self-end" : "center",
                             gap: 10,
                             marginTop: 10,
-                            flexDirection: width > 1024 ?  'row' : 'column'
-                            
-
-                          }}>
-                            <img src="/Images/happy LEGO face alt.png" alt=""
+                            flexDirection: width > 1024 ? "row" : "column",
+                          }}
+                        >
+                          <img
+                            src="/Images/happy LEGO face alt.png"
+                            alt=""
                             style={{
                               width: 30,
-                            
                             }}
-                            />
-                            <h3 className="card1-title" style={{
-                              fontSize: width > 1024 ? "0.7rem" : '1rem',
+                          />
+                          <h3
+                            className="card1-title"
+                            style={{
+                              fontSize: width > 1024 ? "0.7rem" : "1rem",
                               marginLeft: width > 1024 ? 0 : 10,
-}}>Totally hassle-free</h3>
-                          </div>
-                            <p className="card1-body"
-                            style={{
-                                
-                                textAlign: width > 1024 ? 'center' : 'left',
-                                marginLeft: width > 1024 ? 0 : 10,
                             }}
-                            >
-                            Just accept the offer
-                            <ul
-                            style={{
-                              listStyleType:'disc',
-                              marginTop: 10,
-                              fontWeight: 'bold',
-                              marginLeft:  20,
-                            }}
-                            >
-                              <li>Box it</li>
-                              <li>Send it</li>
-                              <li>Get paid</li>
-                            </ul>
-As easy as that!
-
-                            </p>
+                          >
+                            Totally hassle-free
+                          </h3>
                         </div>
-                
-
+                        <p
+                          className="card1-body"
+                          style={{
+                            textAlign: width > 1024 ? "center" : "left",
+                            marginLeft: width > 1024 ? 0 : 10,
+                          }}
+                        >
+                          Just accept the offer
+                          <ul
+                            style={{
+                              listStyleType: "disc",
+                              marginTop: 10,
+                              fontWeight: "bold",
+                              marginLeft: 20,
+                            }}
+                          >
+                            <li>Box it</li>
+                            <li>Send it</li>
+                            <li>Get paid</li>
+                          </ul>
+                          As easy as that!
+                        </p>
+                      </div>
                     </div>
 
-                    {width > 1024 && <div className="third-col w-1/3 flex items-center">
-
-                      <img src="/Images/LEGO bricks alt.png" style={{
-                        width: "70%",
-
-                      
-                      }} alt="" />
-
-                    </div>}
-
+                    {width > 1024 && (
+                      <div className="third-col w-1/3 flex items-center">
+                        <img
+                          src="/Images/LEGO bricks alt.png"
+                          style={{
+                            width: "70%",
+                          }}
+                          alt=""
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
 
-
-               <div className="blogs"
-               style={{
-                backgroundColor: width > 1024 ? '#EAFED1' : '#fff',
-                display: 'flex',
-                alignItems: 'center',
-                flexDirection: 'column',
-                marginLeft: 50,
-                marginRight: 50,
-                marginTop: 50,
-                marginBottom: 50,
-                borderRadius: 10,
-
-               }}
-               >
-                  <h2 style={{
-                    fontWeight: 'bold',
-                    fontSize: '1.5rem',
-                    wordSpacing: '0.5rem',
-
-                  }}>
-                    News And Reviews
-
-                  </h2>
-                  <div className="blogs-container flex justify-center gap-5"
+                <div
+                  className="blogs"
                   style={{
-                    backgroundColor: '#fff',
-                    marginTop: 20,
-                    marginBottom: 20,
-                    marginLeft: width > 1024 ? 80 : 0,
-                    marginRight: width > 1024 ? 80 : 0,
-                    flexWrap: width > 1024 ? 'nowrap' : 'wrap',
+                    backgroundColor: width > 1024 ? "#EAFED1" : "#fff",
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    marginLeft: 50,
+                    marginRight: 50,
+                    marginTop: 50,
+                    marginBottom: 50,
+                    borderRadius: 10,
                   }}
-                  >
-                    {
-                      topFourBlogs.map((blog, index) => (
-                        <div className="blog-card flex flex-col items-center "
-                        style={{
-                          width: width > 1024 ? '25%' : '100%',
-                        }}
-                        key={index}>
-                          <div className="" style={{
-                            height: width > 1024 ? 200 : "auto",
-                          }}>
-                            <img src={blog.image} alt=""
-                            
-                            style={{
-                              width: width > 1024 ? 'auto' : "100%",
-                              height: width > 1024 ? 200 : "auto",
-                              objectFit: 'cover',
-
-                            }}
-                            />
-                          </div>
-                          <div className="" style={{
-                            width: width > 1024 ? "auto" : "100%",
-                          
-                          }}>
-                            <h3
-                            style={{
-                              fontWeight: 'bold',
-                              fontSize: width > 1024 ? ".7rem" : '1rem',
-                              marginTop: 10,
-                            }}
-
-
-                            >{blog.title}</h3>
-                          </div>
-                        </div>
-                      ))
-                    }
-
-                  </div>
-                    <div className="readNow"
+                >
+                  <h2
                     style={{
-                      alignSelf: 'flex-start',
-                      marginLeft: 80,
-                      marginBottom: 20
+                      fontWeight: "bold",
+                      fontSize: "1.5rem",
+                      wordSpacing: "0.5rem",
+                      marginTop: 20,
                     }}
-                    > 
-                      <Link to="/blogs">
-                        <Button
-                          className="w-full"
-                          variant="filled"
-
-                          color="red"
-                          size="sm"
-                          radius="xl"
+                  >
+                    News And Reviews
+                  </h2>
+                  <div
+                    className="blogs-container flex justify-between gap-5"
+                    style={{
+                      backgroundColor: "#fff",
+                      marginTop: 20,
+                      marginBottom: 20,
+                      marginLeft: width > 1024 ? 80 : 0,
+                      marginRight: width > 1024 ? 80 : 0,
+                      flexWrap: width > 1024 ? "nowrap" : "wrap",
+                      borderRadius: 10,
+                      padding: 20,
+                    }}
+                  >
+                    {topFourBlogs.map((blog, index) => (
+                      <div
+                        className="blog-card flex flex-col items-center "
+                        style={{
+                          width: width > 1024 ? "25%" : "100%",
+                        }}
+                        key={index}
+                      >
+                        <div
+                          className=""
                           style={{
-                            background: '#4AB5FE ',
+                            height: width > 1024 ? 200 : "auto",
+                            borderRadius: 10,
+                            overflow: "hidden",
                           }}
                         >
-                          Read Now
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-</svg>
-
-                        </Button>
-                      </Link>
-                    </div>
+                          <img
+                            src={blog.image}
+                            alt=""
+                            style={{
+                              width: width > 1024 ? "auto" : "100%",
+                              height: width > 1024 ? 200 : "auto",
+                              objectFit: "cover",
+                            }}
+                          />
+                        </div>
+                        <div
+                          className=""
+                          style={{
+                            width: width > 1024 ? "auto" : "100%",
+                          }}
+                        >
+                          <h3
+                            style={{
+                              fontWeight: "bold",
+                              fontSize: width > 1024 ? ".7rem" : "1rem",
+                              marginTop: 10,
+                              textAlign: "left"
+                              
+                            }}
+                            className="w-full text-left"
+                          >
+                            {blog.title}
+                          </h3>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div
+                    className="readNow"
+                    style={{
+                      alignSelf: "flex-start",
+                      marginLeft: 80,
+                      marginBottom: 20,
+                    }}
+                  >
+                    <Link to="/blogs">
+                      <Button
+                        className="w-full"
+                        variant="filled"
+                        color="red"
+                        size="sm"
+                        radius="xl"
+                        style={{
+                          background: "#4AB5FE ",
+                        }}
+                      >
+                        Read Now
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="2"
+                          stroke="currentColor"
+                          class="w-6 h-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                          />
+                        </svg>
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -838,7 +984,7 @@ As easy as that!
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
