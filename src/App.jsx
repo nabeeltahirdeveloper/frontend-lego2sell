@@ -8,6 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import ReactGA from "react-ga4";
 import baseUrl from "./context/baseUrl";
 import axios from "axios";
+import Footer from "./componet/Footer";
 const App = () => {
   const [e, setE] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -219,7 +220,7 @@ const App = () => {
                 <p
                   style={{
                     fontWeight: "bold",
-                    fontSize: 42,
+                    fontSize: 35,
                   }}
                 >
                   The best place to sell new{" "}
@@ -235,17 +236,18 @@ const App = () => {
                 <p
                   style={{
                     fontWeight: "bold",
-                    fontSize: "2rem",
-                    marginBottom: 40,
+                    fontSize: 35,
+                    marginBottom: 15,
                   }}
                 >
                   Turn your sets to cash in 4 easy steps…
                 </p>
-                <div className="w-2/4 rounded-lg mb-[48px]">
+                <div className="w-2/4 rounded-lg mb-[65px]">
                   <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full mb-[-20px]" />
                   <video
                     className=""
                     src="/Lego to Sell Home Page Video.mp4"
+                    controls
                   ></video>
                   <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full" />
                 </div>
@@ -265,14 +267,18 @@ const App = () => {
                   }}
                 >
                   <div
-                    className="flex flex-col items-center justify-center"
+                    className="flex flex-col items-center justify-start"
                     style={{
                       width:
                         width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                        height: 280
                     }}
                   >
                     <img
-                      className="w-2/4"
+                      className=""
+                      style={{
+                        width: 150,
+                      }}
                       src="/Images/LEGO search alt.png"
                       alt=""
                       loading="lazy"
@@ -290,7 +296,7 @@ const App = () => {
                     <p
                       className="text-center"
                       style={{
-                        maxWidth: 250,
+                        maxWidth: 240,
                       }}
                     >
                       Pop your LEGO bricks in a bag and weigh them. Then choose
@@ -313,15 +319,18 @@ const App = () => {
                     </div>
                   )}
                   <div
-                    className="flex flex-col items-center justify-center"
+                    className="flex flex-col items-center justify-start"
                     style={{
                       width:
                         width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                        height: 280
+
                     }}
                   >
                     <img
-                      className="w-2/4"
-                      src="/Images/iphone Payments alt.webp"
+style={{
+  width: 150,
+}}                      src="/Images/iphone Payments alt.webp"
                       alt=""
                       loading="lazy"
                     />
@@ -338,7 +347,7 @@ const App = () => {
                     <p
                       className="text-center"
                       style={{
-                        maxWidth: 250,
+                        maxWidth: 230,
                       }}
                     >
                       We’ll offer you a great price for your new LEGO® sets!
@@ -361,15 +370,18 @@ const App = () => {
                     </div>
                   )}
                   <div
-                    className="flex flex-col items-center justify-center"
+                    className="flex flex-col items-center justify-start"
                     style={{
                       width:
                         width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                        height: 280
+
                     }}
                   >
                     <img
-                      className="w-2/4"
-                      src="/Images/Lego Parcel alt.webp"
+style={{
+  width: 150,
+}}                       src="/Images/Lego Parcel alt.webp"
                       alt=""
                       loading="lazy"
                     />
@@ -386,7 +398,7 @@ const App = () => {
                     <p
                       className="text-center"
                       style={{
-                        maxWidth: 250,
+                        maxWidth: 240,
                       }}
                     >
                       Package up your LEGO® and take it to your local postage
@@ -414,11 +426,14 @@ const App = () => {
                     style={{
                       width:
                         width > 1300 ? "25%" : width > 768 ? "45%" : "100%",
+                        height: 280
+
                     }}
                   >
                     <img
-                      className="w-2/4"
-                      src="/Images/LEGO VIP Wallet alt.webp"
+style={{
+  width: 150,
+}}                       src="/Images/LEGO VIP Wallet alt.webp"
                       alt=""
                       loading="lazy"
                     />
@@ -435,7 +450,7 @@ const App = () => {
                     <p
                       className="text-center"
                       style={{
-                        maxWidth: 250,
+                        maxWidth: 240,
                       }}
                     >
                       Choose either bank transfer or PayPal and we’ll send your
@@ -846,7 +861,8 @@ const App = () => {
                         <img
                           src="/Images/LEGO bricks alt.png"
                           style={{
-                            width: "70%",
+                            width: "100%",
+                            marginLeft: -20,
                           }}
                           alt=""
                         />
@@ -983,6 +999,7 @@ const App = () => {
           </div>
         </div>
       </div>
+      <Footer rounded={true} />
     </div>
   );
 };
