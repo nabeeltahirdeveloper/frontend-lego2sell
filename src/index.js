@@ -405,7 +405,6 @@ let router = createBrowserRouter(
       <div className=" flex min-h-screen flex-col ">
         <Header />
         <App />
-        <Footer />
       </div>
     ),
   },
