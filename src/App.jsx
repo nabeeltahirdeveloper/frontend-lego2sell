@@ -263,14 +263,20 @@ const App = () => {
                 >
                   Turn your sets to cash in 4 easy steps…
                 </p>
-                <div className="w-2/4 rounded-lg mb-[95px]">
-                  <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full mb-[-20px]" />
+                <div className="w-2/4 rounded-lg mb-[95px]"
+                style={{
+                  background: `url(/Images/videoBorder.jpg)`,
+                  padding: 15,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "100% 100%",
+                  backgroundPosition: "center",
+                }}
+                >
                   <video
                     className=""
                     src="/Lego to Sell Home Page Video.mp4"
                     controls
                   ></video>
-                  <img src="/videoCover.jpeg" alt="Vidoe cover" className="w-full" />
                 </div>
                 </div>
               </div>
@@ -530,7 +536,7 @@ style={{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    marginTop: "6rem",
+                    marginTop: "10rem",
                     // flexDirection: 'column'
                     marginLeft: 50,
                     marginRight: 50,
