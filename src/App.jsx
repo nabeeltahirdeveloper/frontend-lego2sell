@@ -238,7 +238,19 @@ const App = () => {
                       color: "#428ABD",
                     }}
                   >
-                    LEGO®&nbsp;
+                    LEGO<span
+                          
+                          style={{
+                            fontSize: "1.2rem",
+                            position: 'absolute',
+                            // marginLeft: -1,
+                            marginTop: 5
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp;&nbsp;&nbsp;
                   </span>
                   sets online.
                 </p>
@@ -312,7 +324,18 @@ const App = () => {
                       >
                         1.
                       </span>{" "}
-                      Search your LEGO® Code
+                      Search your LEGO<span
+                          
+                          style={{
+                            fontSize: ".8rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp;&nbsp; Code
                     </h2>
                     <p
                       className="text-center"
@@ -371,7 +394,18 @@ style={{
                         maxWidth: 230,
                       }}
                     >
-                      We’ll offer you a great price for your new LEGO® sets!
+                      We’ll offer you a great price for your new LEGO<span
+                          
+                          style={{
+                            fontSize: ".7rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp;&nbsp; sets!
                       Simply accept and checkout to continue.
                     </p>
                   </div>
@@ -422,7 +456,18 @@ style={{
                         maxWidth: 240,
                       }}
                     >
-                      Package up your LEGO® and take it to your local postage
+                      Package up your LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp;&nbsp; and take it to your local postage
                       drop off point and we will pay you up to £2.49 for all
                       accepted sets.
                     </p>
