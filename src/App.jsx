@@ -884,7 +884,7 @@ style={{
                             marginLeft: width > 1024 ? 0 : 10,
                             marginTop: 20,
                             width: width > 1024 ? "140px" : "auto",
-                            alignSelf: "center",
+                            alignSelf: width > 1024 ? "center" : "flex-start",
 
                           }}
                         >
