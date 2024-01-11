@@ -224,12 +224,15 @@ const App = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   flexDirection: 'column',
+                  paddingLeft: 24,
+                  paddingRight: 24,
+                  letterSpacing: width > 1024 ? 1 : -.5,
                 }}
                 >
                 <p
                   style={{
                     fontWeight: "bold",
-                    fontSize: 35,
+                    fontSize: 34,
                   }}
                 >
                   The best place to sell new{" "}
@@ -257,19 +260,20 @@ const App = () => {
                 <p
                   style={{
                     fontWeight: "bold",
-                    fontSize: 35,
+                    fontSize: 34,
                     marginBottom: 15,
                   }}
                 >
                   Turn your sets to cash in 4 easy steps…
                 </p>
-                <div className="w-2/4 rounded-lg mb-[95px]"
+                <div className="rounded-lg mb-[95px]"
                 style={{
                   background: `url(/Images/videoBorder.jpg)`,
-                  padding: 15,
+                  padding: width > 1024 ? 10 : 7,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "100% 100%",
                   backgroundPosition: "center",
+                  width: 1024 > width ? "100%" : "50%",
                 }}
                 >
                   <video
@@ -282,7 +286,10 @@ const App = () => {
               </div>
 
               <div
-              className="flex mt-5 w-full justify-center flex-col items-center"
+              className="flex w-full justify-center flex-col items-center"
+              style={{
+                marginTop: width > 1024 ? 20 : 0,
+              }}
             
                 
               >
@@ -299,8 +306,8 @@ const App = () => {
                     justifyContent: "space-between",
                     alignItems: "center",
                     flexDirection: "row",
-                    marginLeft: 84,
-                    marginRight: 84,
+                    marginLeft: width > 1024 ? 84 : 24,
+                    marginRight: width > 1024 ? 84 : 24,
                     gap: 20,
                     flexWrap: width > 1300 ? "nowrap" : "wrap",
                   }}
@@ -538,8 +545,8 @@ style={{
                     alignItems: "center",
                     marginTop: "10rem",
                     // flexDirection: 'column'
-                    marginLeft: 50,
-                    marginRight: 50,
+                    marginLeft: width > 1024 ? 50 : 24,
+                    marginRight: width > 1024 ? 50 : 24,
                     gap: 50,
                     marginBottom: width > 1024 ? "3rem" : "2rem",
                   }}
@@ -547,14 +554,14 @@ style={{
                   <h2
                     style={{
                       fontWeight: "bold",
-                      fontSize: "2.5rem",
+                      fontSize: width > 1024 ? "2.5rem" : 34,
                     }}
                   >
                     Why Sell Your LEGO<span style={{
                       fontSize: "1rem",
                       position: 'absolute',
-                      marginLeft: -5,
-                    }}>®</span>&nbsp;With{" "}
+                      marginLeft: -3,
+                    }}>®</span>&nbsp; With{" "}
                     <span
                       style={{
                         color: "#ff3131",
@@ -602,8 +609,8 @@ style={{
                 <div
                   style={{
                     display: "flex",
-                    marginLeft: 50,
-                    marginRight: 50,
+                    marginLeft: width > 1024 ? 50 : 24,
+                    marginRight: width > 1024 ? 50 : 24,
                     flexWrap: width > 1024 ? "nowrap" : "wrap",
                     justifyContent: "center",
                     alignItems: "flex-end",
@@ -611,13 +618,14 @@ style={{
                   }}
                 >
                   <div
-                    className="leftSection mr-5"
+                    className="leftSection "
                     style={{
                       width: width > 1024 ? "50%" : "100%",
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "flex-end",
                       height: "100%",
+                      marginRight: width > 1024 ? 20 : 0,
                     }}
                   >
                     <h2
@@ -683,14 +691,16 @@ style={{
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
+                        width: width > 1024 ? "auto" : "100%",
                       }}
                     >
                       <div
                         className="button"
                         style={{
-                          marginLeft: -20,
+                          marginLeft: width > 1024 ? -20 : 0,
                           marginTop: 20,
                           width: width > 1024 ? "auto" : "100%",
+                          marginBottom: width > 1024 ? 0 : 60,
                         }}
                       >
                         <Button
@@ -757,15 +767,15 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          justifyContent: width > 1024 ? "flex-start" : "flex-start",
                           alignItems: width > 1024 ? "flex-start" : "flex-start",
-                          paddingLeft: 5,
-                          paddingRight: 5,
+                          paddingLeft: width > 1024 ? 5 : 24,
+                          paddingRight: width > 1024 ? 5 : 24,
                           background: "#EAFED1",
-                          paddingBottom: 20,
+                          paddingBottom: width > 1024 ? 20 : 24,
                           height: 250,
                           width: width > 1024 ? 200 : "auto",
-                          paddingTop: 20,
+                          paddingTop: width > 1024 ? 20 : 24,
 
                         }}
                       >
@@ -773,7 +783,8 @@ style={{
                           className="card1-image"
                           style={{
                             display: "flex",
-                            alignItems: "center",
+                            alignItems: width > 1024 ? "center" : "flex-start",
+                            justifyContent: width > 1024 ? "center" : "flex-start",
                             flexDirection: width > 1024 ? "row" : "column",
                           }}
                         >
@@ -800,6 +811,7 @@ style={{
                           style={{
                             textAlign: width > 1024 ? "center" : "left",
                             marginLeft: width > 1024 ? 0 : 10,
+                            marginTop: width > 1024 ? 0 : 10,
                           }}
                         >
                           We pride ourselves on offering some of the highest
@@ -822,10 +834,10 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          justifyContent: width > 1024 ? "flex-start" : "flex-start",
                           alignItems: width > 1024 ? "flex-start" : "flex-start",
-                          paddingLeft: 10,
-                          paddingRight: 5,
+                          paddingLeft: width > 1024 ? 5 : 24,
+                          paddingRight: width > 1024 ? 5 : 24,
                           background: "#CFEBFA",
                           paddingBottom: 20,
                           marginTop: 20,
@@ -837,7 +849,8 @@ style={{
                           className="card1-image"
                           style={{
                             display: "flex",
-                            alignItems: width > 1024 ? "center" : "center",
+                            alignItems: width > 1024 ? "center" : "flex-start",
+                            justifyContent: width > 1024 ? "center" : "flex-start",
                             gap: 10,
                             marginTop: 10,
                             flexDirection: width > 1024 ? "row" : "column",
@@ -851,6 +864,7 @@ style={{
                             alt=""
                             style={{
                               width: 40,
+                              marginLeft: width > 1024 ? 0 : 15, 
                             }}
                           />
                           <h3
@@ -891,10 +905,10 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          justifyContent: width > 1024 ? "flex-start" : "flex-start",
                           alignItems: width > 1024 ? "flex-start" : "flex-start",
-                          paddingLeft: 5,
-                          paddingRight: 5,
+                          paddingLeft: width > 1024 ? 5 : 24,
+                          paddingRight: width > 1024 ? 5 : 24,
                           background: "#F7BBC0",
                           paddingBottom: 20,
                           height: 250,
@@ -906,11 +920,12 @@ style={{
                           className="card1-image"
                           style={{
                             display: "flex",
-                            alignItems: "center",
+                            alignItems: width > 1024 ? "center" : "flex-start",
+                            justifyContent: width > 1024 ? "center" : "flex-start",
                             gap: 10,
                             flexDirection: width > 1024 ? "row" : "column",
                             marginBottom: 10,
-                            marginLeft: width > 1024 ? 10 : 10,
+                            marginLeft: width > 1024 ? 10 : 0,
                           }}
                         >
                           <img
@@ -918,6 +933,7 @@ style={{
                             alt=""
                             style={{
                               width: 50,
+                              marginLeft: width > 1024 ? 0 : 10,
                             }}
                           />
                           <h3
@@ -949,10 +965,10 @@ style={{
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          justifyContent: width > 1024 ? "flex-start" : "flex-end",
+                          justifyContent: width > 1024 ? "flex-start" : "flex-start",
                           alignItems: width > 1024 ? "flex-start" : "flex-start",
-                          paddingLeft: 5,
-                          paddingRight: 5,
+                          paddingLeft: width > 1024 ? 5 : 24,
+                          paddingRight: width > 1024 ? 5 : 24,
                           background: "#FEF8DE",
                           paddingBottom: 20,
                           marginTop: 20,
@@ -964,12 +980,13 @@ style={{
                           className="card1-image"
                           style={{
                             display: "flex",
-                            alignItems: width > 1024 ? "self-end" : "center",
+                            alignItems: width > 1024 ? "center" : "flex-start",
+                            justifyContent: width > 1024 ? "center" : "flex-start",
                             gap: 10,
                             marginTop: 10,
                             flexDirection: width > 1024 ? "row" : "column",
                             paddingTop: 20,
-                            marginLeft: width > 1024 ? 5 : 10,
+                            marginLeft: width > 1024 ? 5 : 0,
                             marginBottom: 10,
                           }}
                         >
@@ -978,6 +995,7 @@ style={{
                             alt=""
                             style={{
                               width: 30,
+                              marginLeft: width > 1024 ? 0 : 15,
                             }}
                           />
                           <h3
@@ -995,16 +1013,16 @@ style={{
                           style={{
                             textAlign: width > 1024 ? "center" : "left",
                             marginLeft: width > 1024 ? 0 : 10,
-                            marginTop: 10,
+                            marginTop: width > 1024 ? 10 : 0,
                             width: width > 1024 ? "150px" : "auto",
-                            alignSelf: "center",
+                            alignSelf: width > 1024 ? "center" : "flex-start",
                           }}
                         >
                           Just accept the offer
                           <ul
                             style={{
                               listStyleType: "disc",
-                              marginTop: 10,
+                              marginTop: width > 1024 ? 10 : 0,
                               fontWeight: "bold",
                               marginLeft: 20,
                             }}
