@@ -634,7 +634,7 @@ style={{
                         marginBottom: 30,
                       }}
                     >
-                      We are the UK’s first and only dedicated Buyer of New
+                      We are the UK’s first and only dedicated buyer of new
                       LEGO<span
                           
                           style={{
@@ -647,7 +647,7 @@ style={{
 
                           >
                             ®
-                            </span>&nbsp; Sets!
+                            </span>&nbsp; sets!
                     </h2>
                     <p style={{
                       marginBottom: 30,
@@ -1180,7 +1180,7 @@ style={{
           </div>
         </div>
       </div>
-      <Footer rounded={true} />
+      <Footer rounded={true} width={width} />
     </div>
   );
 };
