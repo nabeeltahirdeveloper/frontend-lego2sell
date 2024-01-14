@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import AdminOffer from "../componet/AdminOffer";
@@ -8,6 +8,7 @@ import CryptoJS from "crypto-js";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import baseUrl from "../context/baseUrl";
+import { Editor } from '@tinymce/tinymce-react';
 
 const UserBlog = () => {
   const currentUrl = baseUrl;
@@ -35,6 +36,7 @@ const UserBlog = () => {
   blogId: "",
 });
 const [timer, setTimer] = useState(null);
+const editorRef = useRef(null);
 
 
   useEffect(() => {
@@ -124,8 +126,8 @@ const [timer, setTimer] = useState(null);
 
 
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
     try {
       if (image1) {
         const formData1 = new FormData();
@@ -176,6 +178,12 @@ const [timer, setTimer] = useState(null);
         console.error("Error fetching data:", error);
       });
   }, []);
+  useEffect(() => {
+    if (formData.description) {
+      handleSubmit();
+    }
+  }, [formData.description]);
+
 
   return (
     <div className="flex lg:flex-row flex-col items-center">
@@ -285,20 +293,44 @@ const [timer, setTimer] = useState(null);
               </div>
           <div className="mb-6 mt-5">
             <div>
-              <ReactQuill
+              {/* <ReactQuill
                 theme="snow"
                 name="description"
                 value={formData.description}
                 onChange={handleEditorChange}
                 style={{ width: "100%", height: "250px" }}
-              />
+              /> */}
+              <Editor
+                    name="description"
+      apiKey='j21ua41lr6mtfwtkoqya22hincmd464fz9uviv2k6z633eds'
+      init={{
+        plugins: ' tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+      }}
+              onInit={(evt, editor) => editorRef.current = editor}
+
+      initialValue={formData.description}
+      
+        
+
+    />
             </div>
           </div>
           <button
             style={{ marginTop: "50px" }}
             type="submit"
-            onClick={handleSubmit}
-            className="w-full bg-blue-500 text-white font-semibold p-2 rounded"
+            onClick={(e)=>{
+              // handleEditorChange(editorRef.current.getContent())
+              e.preventDefault();
+              setFormData({ ...formData, description: editorRef.current.getContent() });
+              // handleSubmit(e)
+            }}            className="w-full bg-blue-500 text-white font-semibold p-2 rounded"
           >
             Submit
           </button>

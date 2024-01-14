@@ -1,11 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AdminOffer from "../componet/AdminOffer";
 import { useNavigate } from "react-router-dom";
 import CryptoJS from "crypto-js";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import baseUrl from "../context/baseUrl";
+import { Editor } from '@tinymce/tinymce-react';
 
 const UserBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -16,7 +17,14 @@ const UserBlog = () => {
   const storedUserId = localStorage.getItem("userId");
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
+  const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
+    }
+  };
 
+  
   const [formData, setFormData] = useState({
     userId: storedUserId,
     userName: "test",
@@ -72,14 +80,16 @@ const UserBlog = () => {
   };
 
   const handleEditorChange = (content) => {
+    console.log("Content was updated:", content)
     setFormData({ ...formData, description: content });
   };
   const handleSubEditorChange = (content) => {
     setFormData({ ...formData, subTitle: content });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
+   
 
     console.log("set image", formData);
     try {
@@ -160,6 +170,13 @@ const UserBlog = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
+
+  useEffect(() => {
+    if (formData.description) {
+      handleSubmit();
+    }
+  }, [formData.description]);
+
 
   return (
     <>
@@ -279,7 +296,7 @@ const UserBlog = () => {
                   Description
                 </label>
                 <div>
-                  <ReactQuill
+                  {/* <ReactQuill
                     theme="snow"
                     name="description"
                     value={formData.description}
@@ -287,7 +304,8 @@ const UserBlog = () => {
                     modules={{
                       toolbar: {
                         container: [
-                          [{ header: [1, 2, false] }],
+                          // [{ header: [1, 2, false] }],
+                          [{ 'size': sizeOptions.map(option => option.value) }],
                           [
                             "bold",
                             "italic",
@@ -298,23 +316,54 @@ const UserBlog = () => {
                           [{ list: "ordered" }, { list: "bullet" }],
                           ["link", "image"], // Add 'image' to include the image button
                           ["clean"],
+                          [{"color":[]}],
+                          [{"font":[]}],
+
                         ],
                       },
                     }}
                     style={{ width: "100%", height: "250px" }}
-                  />
+                  /> */}
+                  <Editor
+                    name="description"
+      apiKey='j21ua41lr6mtfwtkoqya22hincmd464fz9uviv2k6z633eds'
+      init={{
+        plugins: ' tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+      }}
+              onInit={(evt, editor) => editorRef.current = editor}
+
+      initialValue={formData.description}
+      
+        
+
+    />
+
+
                 </div>
               </div>
               <button
                 style={{ marginTop: "50px" }}
                 type="submit"
-                onClick={handleSubmit}
+                onClick={(e)=>{
+                  // handleEditorChange(editorRef.current.getContent())
+                  e.preventDefault();
+                  setFormData({ ...formData, description: editorRef.current.getContent() });
+                  // handleSubmit(e)
+                }}
                 className="w-full bg-blue-500 text-white font-semibold p-2 rounded"
                 disabled={loading} // Disable the button while loading
               >
                 {loading ? "Loading..." : "Submit"}
               </button>
             </form>
+          {/* <button onClick={log}>Log editor content</button> */}
           </div>
         </div>
 
