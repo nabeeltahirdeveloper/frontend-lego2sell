@@ -442,13 +442,15 @@ const Blog = () => {
                             lineHeight: "28px",
                             fontWeight: "700",
                             height: "56px",
+                            paddingRight: "10px",
+                            paddingLeft: "10px",
                           }}
                         >
                           {blog.title}
                         </h2>
 
                         <div
-                          className="mb-4 descriptionContainer"
+                          className="mb-4 pl-[10px] pr-[10px] descriptionContainer"
                           dangerouslySetInnerHTML={{
                             __html: blog?.subTitle && truncateText(blog?.subTitle, 20),
                           }}

@@ -3,6 +3,14 @@ import { Link } from "react-router-dom"
 import { Helmet } from 'react-helmet'
 
 const HowWrokPage = () => {
+
+  const handleClick = () => {
+    if (typeof window !== "undefined"){
+
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -661,6 +669,7 @@ const HowWrokPage = () => {
               title="Start selling LEGO®"
               className="flex w-full lg:inline-flex lg:w-auto justify-center items-center px-6 lg:px-12 rounded-xl bg-blue-500 text-white font-bold text-[15px] h-[49px] lg:h-[65px] xl:text-[18px]"
               to="/"
+              onClick={handleClick}
             >
               Get Selling That LEGO®
             </Link>
