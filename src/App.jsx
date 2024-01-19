@@ -120,7 +120,9 @@ const App = () => {
   return (
     <div>
       <Helmet>
-        <title>Buy & Sell New LEGO Sets | Lego 2 Sell</title>
+        <title>
+          Sell LEGO® - Lego2Sell.com
+        </title>
         <meta
           name="description"
           content="Sell your new LEGO sets for cash with LEGO2SELL.com, the original online LEGO Sets marketplace. Get quick payments and up to £2.49 for postage..."
@@ -182,6 +184,7 @@ const App = () => {
                     onKeyPress={handleKeyPress}
                     onChange={handleInputChange}
                     type="text"
+                    id="search"
                     className="border px-6 py-4 w-full md:w-[50%] text-xl font-medium  rounded-2xl"
                     required
                   />
