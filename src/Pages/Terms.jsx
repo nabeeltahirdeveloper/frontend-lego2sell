@@ -6,11 +6,13 @@ const Terms = () => {
   return (
     <div>
     <Helmet>
-      <title>Terms and Conditions - Lego2Sell</title>
+      <title>Clear and Fair Terms & Conditions for Selling Your Lego Set</title>
       <meta
         name="description"
-        content="Read Lego2Sell's terms and conditions. Understand our policies for a transparent and trusted experience with us."
+        content="Our Lego Set Selling Terms & Conditions provide clarity and fairness for both buyers and sellers. We ensure a transparent and seamless experience, protecting your rights as a seller while offering peace of mind to buyers."
       />
+      <meta name="keywords" content="custom lego sets for sale,best place to sell legos,lego packaging,lego plastic bag sets,lego packaging boxes,lego sustainable packagingLEGO® Sell, sell lego sets,custom lego sets for sale,how to sell legos,sell lego"/>
+
     </Helmet>
     <div className="flex">
       <div className="w-full px-6 lg:px-44  py-12 lg:py-24">
@@ -79,12 +81,34 @@ const Terms = () => {
               </p>
               <p>
                 "<b>Item</b>" means each item which you wish to sell to us in
-                accordance with these Terms; these will be the LEGO® set item;
+                accordance with these Terms; these will be the <a href="https://www.lego2sell.com/">LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp; set</a> item;
               </p>
               <p>
                 "<b>Item Condition Guidelines</b>" means each item which you
                 wish to sell to us in accordance with these Terms; these will be
-                the LEGO® set item;
+                the <a href="https://www.decluttr.com/sell-lego/"> LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp; set</a> item;
               </p>
               <p>
                 "<b>Item Price</b>" means the amount at which we would be

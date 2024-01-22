@@ -6,15 +6,13 @@ const AboutUs = () => {
   return (
     <div>
       <Helmet>
-        <title>About LEGO2SELL - Best Selling Marketplace for Legos</title>
+        <title>Unlock Your Profit Potential: Sell Lego Sets and Make Big Bucks!</title>
         <meta
           name="description"
-          content="Explore Lego2Sell's story and mission. Learn how we connect LEGO enthusiasts and sellers worldwide. Learn more how to sell your new lego sets online for cash."
+          content="Discover the secrets to unlocking your profit potential with selling Lego sets. Learn proven strategies and expert tips on how to make big bucks in the lucrative Lego market."
         />
-        <meta
-          name="keywords"
-          content="About LEGO2SELL, LEGO set selling, LEGO set marketplace, LEGO set cash, LEGO set declutter, sell LEGO sets"
-        />
+        <meta name="keywords" content="lego packaging,lego plastic bag sets,lego packaging boxes,lego sustainable packagingLEGO® Sell, sell lego sets,custom lego sets for sale,best place to sell legos,how to sell legos,sell lego"/>
+
       </Helmet>
       <div class="w-full px-6 lg:px-44 py-12 lg:py-24">
         <h1 class="text-5xl h1 font-bold mb-8">About</h1>
@@ -60,7 +58,18 @@ const AboutUs = () => {
                 Speed and simplicity
               </h4>
               <p>
-                We want to make selling your new LEGO® sets as quick and easy as
+                We want to make selling your new <a href="https://www.lego2sell.com/">LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp; Sets</a> as quick and easy as
                 possible. That’s why we put such a big focus on speed and
                 simplicity. Our straightforward selling process, allows you to
                 put in a code, find your set, accept the price and send it in
@@ -68,7 +77,18 @@ const AboutUs = () => {
               </p>
               <p>
                 We also give you up to £2.49 for the cost of the postage for all
-                LEGO® sets we accept, how about that one hey!
+                <a href="https://www.bricklink.com/">LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp; Sets</a> we accept, how about that one hey!
               </p>
 
               <h4

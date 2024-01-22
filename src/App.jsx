@@ -121,16 +121,14 @@ const App = () => {
     <div>
       <Helmet>
         <title>
-          Sell LEGO® - Lego2Sell.com
+        Sell Your LEGO® Sets and Make Extra Cash Today! Lego2Sell.com
         </title>
         <meta
           name="description"
-          content="Sell your new LEGO sets for cash with LEGO2SELL.com, the original online LEGO Sets marketplace. Get quick payments and up to £2.49 for postage..."
+          content="Looking to sell your LEGO® sets and make extra cash today? Look no further than Lego2Sell.com! Turn your unused LEGO® sets into money in no time."
         />
-        <meta
-          name="keywords"
-          content="LEGO sets, new LEGO, sell LEGO, LEGO2SELL, LEGO marketplace"
-        />
+        <meta name="keywords" content="LEGO®,LEGO® Set,custom lego sets for sale,best place to sell legos,lego packaging,lego plastic bag sets,lego packaging boxes,lego sustainable packagingLEGO® Sell, sell lego sets,custom lego sets for sale,how to sell legos,sell lego" />
+
       </Helmet>
       {/* <div className="h-[87.6vh] lg:h-[85.6vh]"> */}
       <div className="">
@@ -656,7 +654,7 @@ style={{
                       marginBottom: 30,
                     }}>
                       We have a unique data engine that searches multiple price
-                      databases of New LEGO<span
+                      databases of New <a href="https://www.lego2sell.com/contact">LEGO<span
                           
                           style={{
                             fontSize: ".6rem",
@@ -667,13 +665,13 @@ style={{
 
                           >
                             ®
-                            </span>&nbsp;&nbsp; being sold over the last 6 months
+                            </span>&nbsp; </a>being sold over the last 6 months
                       to give you the best second hand buy price on the market
                       for your sets.
                       <br />
                       <br />
                       With our cloud database that is updated daily we can give
-                      you instant current market value quotes for your new LEGO<span
+                      you instant current market value quotes for your new <a href="https://www.legooutletstore.com/">LEGO<span
                           
                           style={{
                             fontSize: ".6rem",
@@ -684,7 +682,7 @@ style={{
 
                           >
                             ®
-                            </span>&nbsp;&nbsp;sets.
+                            </span>&nbsp; sets</a>
                       <br />
                       <br />
                       And if our AI engine can not give you a price just email
