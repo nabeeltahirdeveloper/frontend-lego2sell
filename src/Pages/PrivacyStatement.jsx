@@ -6,11 +6,13 @@ const PrivacyStatement = () => {
   return (
     <div>
       <Helmet>
-        <title>Privacy Statement - Lego2Sell</title>
+        <title>Protecting Your Privacy: Our Commitment as Custom Lego Set Sellers</title>
         <meta
           name="description"
-          content="Explore our privacy statement at Lego2Sell. Learn how we protect your data and ensure a secure online experience."
+          content="At Custom Lego Sets, your privacy is our top priority. We are committed to protecting your personal information and ensuring a safe online shopping experience."
         />
+        <meta name="keywords" content="custom lego sets for sale,best place to sell legos,lego packaging,lego plastic bag sets,lego packaging boxes,lego sustainable packagingLEGO® Sell, sell lego sets,custom lego sets for sale,how to sell legos,sell lego"/>
+
       </Helmet>
       <div className="w-full  px-6 lg:pl-20 py-12 lg:py-24">
         <h1 className="h1 text-5xl lg:text-6xl text-center font-extrabold mb-8">
@@ -64,7 +66,7 @@ const PrivacyStatement = () => {
                 <strong>Controller</strong>
               </p>
               <p>
-                Lego2sell.com is the controller and responsible for your
+              <a href="https://www.lego2sell.com/">Lego2sell.com</a> is the controller and responsible for your
                 personal data (collectively referred to as " Lego2sell.com ",
                 "we", "us" or "our" in this privacy policy).
               </p>
@@ -635,7 +637,7 @@ const PrivacyStatement = () => {
               </p>
               <p>
                 You can set your browser to refuse all or some browser cookies,
-                or to alert you when websites set or access cookies. If you
+                or to alert you when websites <a href="https://thebrickshowshop.com/collections/custom-lego-sets">set or access cookies</a>. If you
                 disable or refuse cookies, please note that some parts of this
                 website may become inaccessible or not function properly. For
                 more information about the cookies we use, please see

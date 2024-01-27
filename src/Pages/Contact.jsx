@@ -85,15 +85,13 @@ const Contact = () => {
   return (
     <div>
       <Helmet>
-        <title>Contact to sell your new LEGO sets online - LEGO2SELL </title>
+        <title>Sell Legos with Ease: Find the Best Place to Sell and Contact Us</title>
         <meta
           name="description"
-          content="Contact LEGO2SELL for questions, support, or inquiries. We're here to assist you every step of the way! Contact us to sell lego sets online."
+          content="Ready to sell your Legos? Look no further! Discover the best place to sell your Legos hassle-free and maximize your profits. Contact us now for expert guidance and support in selling your Legos quickly and efficiently."
         />
-        <meta
-          name="keywords"
-          content="LEGO2SELL contact, selling LEGO sets, LEGO2SELL email, customer service LEGO2SELL"
-        />
+        <meta name="keywords" content="best place to sell legos,lego packaging,lego plastic bag sets,lego packaging boxes,lego sustainable packagingLEGO® Sell, sell lego sets,custom lego sets for sale,how to sell legos,sell lego"/>
+
       </Helmet>
       <div className="w-full px-6 lg:px-44 py-12 lg:py-24">
         {/* <h1 className="h1 mb-8"></h1> */}
@@ -101,8 +99,8 @@ const Contact = () => {
           <img className="lg:w-[20%] w-[40%]" src="/Images/contact.jpeg" alt="" />
         </div>
         <p className="mb-6 text-sm lg:text-lg text-black font-medium">
-          If you can not find the information you need in our FAQ’s then just send
-          us a quick email at the address below or via our quick and easy web form
+          If you can not find the <a href="https://www.lego2sell.com/"> information</a> you need in our FAQ’s then just send
+          us a quick email at the address below or via our quick and <a href="https://brickfact.com/blog/guidebooks/where-to-sell-lego-the-best-options">easy web form</a>
           and one of the team will get back to you ASAP.
         </p>
         <div className="content-wrapper">

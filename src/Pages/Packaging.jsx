@@ -6,15 +6,14 @@ const Packaging = () => {
   return (
     <div>
       <Helmet>
-        <title>Packaging Guidelines - Lego2Sell</title>
+        <title>LEGO® Packaging Guidelines: Ensuring Optimal Quality and Brand Consistency</title>
         <meta
           name="description"
-          content="Optimize your LEGO packaging with Lego2Sell's guidelines. Ensure safe and efficient shipping for your sets. Learn more!"
+          content="Discover the LEGO® Packaging Guidelines, your ultimate resource for ensuring optimal quality and brand consistency. Learn how to create packaging that captures attention, protects products, and reflects the LEGO® brand values."
         />
-        <meta
-          name="keywords"
-          content="Packaging Guidelines, Protect LEGO, LEGO set transportation, LEGO2SELL"
-        />
+        <meta name="keywords" content="lego packaging,lego plastic bag sets,lego packaging boxes,lego sustainable packagingLEGO® Sell, sell lego sets,custom lego sets for sale,best place to sell legos,how to sell legos,sell lego"/>
+
+
       </Helmet>
       <div className="w-full px-6 lg:px-44 py-12 lg:py-24">
         <h1 className="text-5xl font-bold h1 mb-8">Packaging guidelines</h1>
@@ -45,7 +44,18 @@ const Packaging = () => {
                     <p>
                       Before you send us your sets check them over and make sure
                       they meet our condition guidelines. It might be worth
-                      taking a photo of your LEGO® being packed.
+                      taking a photo of your <a href="https://www.lego2sell.com/">LEGO<span
+                          
+                          style={{
+                            fontSize: ".6rem",
+                            position: 'absolute',
+                            // marginLeft: -1
+                          
+                          }}
+
+                          >
+                            ®
+                            </span>&nbsp; being packed</a>.
                     </p>
                   </div>
                 </div>
@@ -131,8 +141,7 @@ const Packaging = () => {
                     <p>
                       Labelling your boxes as ‘fragile’ or ‘handle with care'
                       doesn’t guarantee that they won’t get damaged. These
-                      stickers should not be used as a substitute for good
-                      packaging.
+                      stickers should not be used as a substitute for <a href="https://www.lego.com/en-us/sustainability/environment/sustainable-packaging">good packaging</a>.
                     </p>
                   </div>
                 </div>
