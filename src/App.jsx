@@ -556,6 +556,7 @@ style={{
                     style={{
                       fontWeight: "bold",
                       fontSize: width > 1024 ? "2.5rem" : 34,
+                      textAlign: "center",
                     }}
                   >
                     Why Sell Your LEGO<span style={{
@@ -633,6 +634,7 @@ style={{
                       style={{
                         fontSize: 34,
                         marginBottom: 30,
+                        textAlign: width > 1024 ? "left" : "center",
                       }}
                     >
                       We are the UK’s first and only dedicated buyer of new
