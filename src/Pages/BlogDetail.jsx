@@ -126,14 +126,14 @@ const BlogDetail = () => {
   };
   return (
 
-    <section className="blog-detail-section py-20">
+    <section className="blog-detail-section py-20 px-[20px]">
       <div className="container position-relative">
         <Link to={"/blogs"} className='position-absolute top-[-80px] bg-gray-700 rounded-full text-white py-2 px-2'><IconChevronLeft className='text-xl' /></Link>
         <div className="row mt-8 ">
 
           <div className="col-12 col-lg-8 col-xl-9 ">
             {blog ? (
-              <div className="blog-content">
+              <div className="blog-content" >
                 <div className="Cms_standard_page_content__wx98l Blog_blog_single_content__JjHEV">
                   <div className="date mb-2">{formatDate(blog.created_at)}</div>
                   <h1 className="mb-5 font-medium blog-title  " >{blog.title}</h1>

@@ -10,7 +10,7 @@
     font-family: 'Source Sans Pro',sans-serif;
     color: #093664;
     text-decoration: none solid rgb(9, 54, 100);
-    line-height: 64px;
+    /* line-height: 64px; */
 }
 @media (min-width: 992px) {
   .Blog_blog_header_title__u2hU5 h1 {
@@ -872,4 +872,11 @@ section.Cms_cms_contact__kXeVL form label {
 }
 .Cms_raf_delete_button__Uq7yR:hover {
   cursor: pointer;
+}
+
+
+@media (max-width: 767px) {
+  .blog-content {
+    padding: 0 5%;
+  }
 }
