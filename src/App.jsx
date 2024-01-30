@@ -279,7 +279,7 @@ const App = () => {
                 >
                   <video
                     className=""
-                    src="/Lego to Sell Home Page Video.mp4"
+                    src="https://res.cloudinary.com/datptkvvx/video/upload/v1706654020/Lego_to_Sell_Home_Page_Video_1_qvpm2a.mp4"
                     controls
                   ></video>
                 </div>
