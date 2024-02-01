@@ -26,6 +26,8 @@ const AdminDashboard = () => {
           headers: {
             "Content-Type": "application/json",
             "user-id": storedUserId,
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+
           },
         }
       )

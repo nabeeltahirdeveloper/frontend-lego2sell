@@ -22,7 +22,14 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
       .put(`${baseUrl}/Getorder/status/${userId}`, {
         Status,
         orderId,
-      })
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+      )
       .then((response) => {
         window.location.reload()
         // console.log("Data updated:", response.data)
