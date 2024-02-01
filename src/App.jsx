@@ -552,7 +552,7 @@ style={{
                     marginBottom: width > 1024 ? "3rem" : "2rem",
                   }}
                 >
-                  <h2
+                  <h1
                     style={{
                       fontWeight: "bold",
                       fontSize: width > 1024 ? "2.5rem" : 34,
@@ -592,7 +592,7 @@ style={{
                     >
                       ?
                     </span>
-                  </h2>
+                  </h1>
                   {width > 1024 && (
                     <div>
                       <img
