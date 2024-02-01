@@ -226,8 +226,8 @@ const HowWrokPage = () => {
                   animationName: "react-reveal-401627926166202-1",
                 }}
               >
-                <div className="absolute left-[20px] lg:left-[50%] top-[125px] bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-[125px] ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 lg:top-[125px]  bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
+                <div className="absolute left-[20px] lg:left-[50%] top-5 lg:top-[125px]  ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <img
                     data-aos="fade-up"
                     alt="Step marker"
@@ -316,7 +316,7 @@ const HowWrokPage = () => {
               </div>
               <div className="react-reveal relative flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12">
                 <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-[125px] ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 lg:top-[125px] ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <span
                     style={{
                       boxSizing: "border-box",
@@ -432,7 +432,7 @@ const HowWrokPage = () => {
               </div>
               <div className="react-reveal relative lg:flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12">
                 <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-[120px] ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 lg:top-[120px] ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <span
                     style={{
                       boxSizing: "border-box",
@@ -546,7 +546,7 @@ const HowWrokPage = () => {
               </div>
               <div className="react-reveal relative flex flex-col pl-[50px] lg:pl-0 lg:grid gap-10 lg:gap-32 grid-rows-2 lg:grid-cols-2 lg:grid-rows-none items-center pb-12">
                 <div className="absolute left-[20px] lg:left-[50%] top-0 bottom-0 w-[4px] bg-[#4bc160] ml-[-2px]" />
-                <div className="absolute left-[20px] lg:left-[50%] top-[130px] ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
+                <div className="absolute left-[20px] lg:left-[50%] top-5 lg:top-[130px] ml-[-25px] mt-[-30px] w-[50px] h-[50px]">
                   <span
                     style={{
                       boxSizing: "border-box",
