@@ -223,6 +223,40 @@ const AdminDashboard = () => {
                   </h4>
                 </Link>
               </div>
+
+
+              <div className="flex flex-wrap mb-12 flex-col lg:space-y-0 space-y-8 justify-between items-center">
+                <div className="border-3 gap-3 flex items-center border-blue-500 rounded-full 2xl:w-[80%]  justify-center lg:py-6 py-4 px-6 lg:px-4"
+                style={{
+                  border: '3px solid #3B82F6'
+                }}
+                >
+                  <img
+                    className="w-16"
+                    src="/Images/People_Lego_Icon.png"
+                    alt=""
+                  />
+                  <div className="flex items-center flex-col">
+                    <h4 className="text-base lg:text-lg font-semibold">
+                      Customer Discounts
+                    </h4>
+                    <p className="text-base lg:text-xl font-bold">
+                      {CustomerOrder?.length}
+                    </p>
+                  </div>
+                </div>
+                <Link to={"/CustomerDiscounts"} className="flex items-center flex-col">
+                  <img
+                    className="lg:w-[40%] w-[40%]"
+                    src="/Images/totalcustomers.png"
+                    alt=""
+                  />
+                  <h4 className="text-base lg:text-base lg:text-xl font-bold">
+                    Customer <br /> Discounts
+                  </h4>
+                </Link>
+              </div>
+
               <div className="flex flex-wrap  mb-12 flex-col lg:space-y-0 space-y-8 justify-between items-center">
                 <div className="border-3 gap-3 flex items-center border-green-500 2xl:w-[80%] justify-center rounded-full py-6 px-14" style={{
                   border: '3px solid #10B981'

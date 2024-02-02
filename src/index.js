@@ -38,6 +38,7 @@ import ReactGA from "react-ga4"
 import CustomerOffer from "./customerOffer.jsx"
 import axios from "axios"
 import baseUrl from "./context/baseUrl.js"
+import CustomerDiscounts from "./Pages/CustomerDiscounts.jsx"
 const storedUserId = localStorage.getItem("userId")
 const adminView = localStorage.getItem("adminView")
 const TRACKING_ID = "G-322ELRCXBL"
@@ -651,6 +652,16 @@ let router = createBrowserRouter(
       <div className="h-screen flex min-h-screen flex-col ">
         <Header />
         <CustomerOffer />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/CustomerDiscounts",
+    element: (
+      <div className="h-screen flex min-h-screen flex-col ">
+        <Header />
+        <CustomerDiscounts />
         <Footer />
       </div>
     ),
