@@ -6,7 +6,7 @@ import download from "downloadjs";
 import { useDisclosure } from "@mantine/hooks";
 import CryptoJS from "crypto-js";
 import baseUrl from "../context/baseUrl";
-
+import moment from "moment";
 const AdminDiscount = ({ items, data, SearchValue, index }) => {
   const [OrderOpen, setOrderOpen] = useState();
 
@@ -17,114 +17,114 @@ const AdminDiscount = ({ items, data, SearchValue, index }) => {
   // useEffect(() => {
   //   handleUpdate()
   // }, [storedUserId, Status, Status])
-  const handleUpdate = () => {
-    axios
-      .put(
-        `${baseUrl}/Getorder/status/${userId}`,
-        {
-          Status,
-          orderId,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then((response) => {
-        window.location.reload();
-        // console.log("Data updated:", response.data)
-        // Handle successful update
-      })
-      .catch((error) => {
-        console.error("Error updating data:", error);
-        // Handle error
-      });
-  };
+  //   const handleUpdate = () => {
+  //     axios
+  //       .put(
+  //         `${baseUrl}/Getorder/status/${userId}`,
+  //         {
+  //           Status,
+  //           orderId,
+  //         },
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //           },
+  //         }
+  //       )
+  //       .then((response) => {
+  //         window.location.reload();
+  //         // console.log("Data updated:", response.data)
+  //         // Handle successful update
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error updating data:", error);
+  //         // Handle error
+  //       });
+  //   };
   var userID = items.user?._id;
   // console.log(items.user, "lego")
 
   const [opened, { open, close }] = useDisclosure(false);
 
-  const handleDeleteAccount = async () => {
-    // console.log(email)
-    const email = items?.user?.email;
-    // Data to encrypt
-    const sensitiveData = "frontend";
+  //   const handleDeleteAccount = async () => {
+  //     // console.log(email)
+  //     const email = items?.user?.email;
+  //     // Data to encrypt
+  //     const sensitiveData = "frontend";
 
-    // Encryption key (must be a secret)
-    const encryptionKey = "legotwosell";
+  //     // Encryption key (must be a secret)
+  //     const encryptionKey = "legotwosell";
 
-    // Encrypt the data
-    const encryptedData = CryptoJS.AES.encrypt(
-      sensitiveData,
-      encryptionKey
-    ).toString();
+  //     // Encrypt the data
+  //     const encryptedData = CryptoJS.AES.encrypt(
+  //       sensitiveData,
+  //       encryptionKey
+  //     ).toString();
 
-    try {
-      const response = await fetch(`${baseUrl}/delete-account`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          source: encryptedData,
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ email }),
-      });
-      window.location.reload();
-      const data = await response.json();
-      // console.log(data)
-      if (response.ok) {
-        // setMessage(data.message)
-        // setEmail("")
-      } else {
-        // setMessage(data.message)
-      }
-    } catch (error) {
-      console.error(error);
-      // setMessage("Internal Server Error")
-    }
-    close();
-  };
+  //     try {
+  //       const response = await fetch(`${baseUrl}/delete-account`, {
+  //         method: "DELETE",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           source: encryptedData,
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         },
+  //         body: JSON.stringify({ email }),
+  //       });
+  //       window.location.reload();
+  //       const data = await response.json();
+  //       // console.log(data)
+  //       if (response.ok) {
+  //         // setMessage(data.message)
+  //         // setEmail("")
+  //       } else {
+  //         // setMessage(data.message)
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //       // setMessage("Internal Server Error")
+  //     }
+  //     close();
+  //   };
 
   const [offerIdPdf, setOfferIdPdf] = useState();
   const [offerIdTime, setOfferIdTime] = useState();
   // console.log(offerIdPdf)
-  const handleModifyPdf = async () => {
-    const url = "/completpdf.pdf";
+  //   const handleModifyPdf = async () => {
+  //     const url = "/completpdf.pdf";
 
-    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
+  //     const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
 
-    const pdfDoc = await PDFDocument.load(existingPdfBytes);
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+  //     const pdfDoc = await PDFDocument.load(existingPdfBytes);
+  //     const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    const pages = pdfDoc.getPages();
-    const firstPage = pages[1];
-    const { width, height } = firstPage.getSize();
-    firstPage.drawText(`${items.order.timestamp}`, {
-      x: 220,
-      y: 240,
-      size: 18,
-      font: helveticaFont,
-      color: rgb(0, 0, 0),
-      rotate: degrees(0),
-    });
-    const second = pages[1];
-    const { width1, height1 } = second.getSize();
-    firstPage.drawText(`#${items.order.offerId}`, {
-      x: 220,
-      y: 200,
-      size: 18,
-      font: helveticaFont,
-      color: rgb(0, 0, 0),
-      rotate: degrees(0),
-    });
+  //     const pages = pdfDoc.getPages();
+  //     const firstPage = pages[1];
+  //     const { width, height } = firstPage.getSize();
+  //     firstPage.drawText(`${items.code}`, {
+  //       x: 220,
+  //       y: 240,
+  //       size: 18,
+  //       font: helveticaFont,
+  //       color: rgb(0, 0, 0),
+  //       rotate: degrees(0),
+  //     });
+  //     const second = pages[1];
+  //     const { width1, height1 } = second.getSize();
+  //     firstPage.drawText(`#${items.order.offerId}`, {
+  //       x: 220,
+  //       y: 200,
+  //       size: 18,
+  //       font: helveticaFont,
+  //       color: rgb(0, 0, 0),
+  //       rotate: degrees(0),
+  //     });
 
-    const pdfBytes = await pdfDoc.save();
+  //     const pdfBytes = await pdfDoc.save();
 
-    download(pdfBytes, "lego2sellPDF.pdf", "application/pdf");
-  };
+  //     download(pdfBytes, "lego2sellPDF.pdf", "application/pdf");
+  //   };
   const [activeStatus, setActiveStatus] = useState();
   // const filteredOrders = items?.Order.filter((value) => {
   //   return value.Status !== "Paid" && value.Status !== "Rejected"
@@ -147,39 +147,39 @@ const AdminDiscount = ({ items, data, SearchValue, index }) => {
             </div>
             <div className="mr-auto lg:py-0 py-4 font-medium">
               <span className="text-[16px] text-blue-600"> Name </span>:{" "}
-              {items.order.offerId}
+              {items.name}
               <br className="md:hidden" />
             </div>
             <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Code </span>:{" "}
-              {items?.user?.email}
+              {items?.code}
               <br className="md:hidden" />
             </div>
             <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Amount </span>:
-              {items?.user?.email}
+              {items?.amount}
               <br className="md:hidden" />
             </div>
             <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Uses </span>:
-              {items?.user?.email}
+              {items?.maxUses}
               <br className="md:hidden" />
             </div>
             <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Start Date </span>:{" "}
-              {items?.user?.email}
+              {moment(items?.startDate).format("MM/DD/YYYY")}
               <br className="md:hidden" />
             </div>
             <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> End Date </span>:{" "}
-              {items?.user?.email}
+              {moment(items?.endDate).format("MM/DD/YYYY")}
               <br className="md:hidden" />
             </div>
           </div>
         </div>
       </div>
 
-      <Modal size={"lg"} onClose={close} opened={opened}>
+      {/* <Modal size={"lg"} onClose={close} opened={opened}>
         <div className="flex  items-start w-full lg:flex-row flex-wrap flex-col">
           <div className=" w-full">
             <div className="px-6 border-t">
@@ -282,9 +282,9 @@ const AdminDiscount = ({ items, data, SearchValue, index }) => {
                     Change
                   </button>
                 </div> */}
-                <div className="rounded-full text-xs px-2 lg:px-6 py-2 font-bold text-[#F4A414] w-full">
-                  {/* {value.Status} */}
-                  <Select
+      {/* <div className="rounded-full text-xs px-2 lg:px-6 py-2 font-bold text-[#F4A414] w-full"> */}
+      {/* {value.Status} */}
+      {/* <Select
                     onChange={(e) => {
                       setStatus(e);
                       setUserId(items.user._id);
@@ -353,11 +353,8 @@ const AdminDiscount = ({ items, data, SearchValue, index }) => {
               </div>
             </div>
           </div>
-        </div>
-      </Modal>
-
-
-     
+        </div> */}
+      {/* </Modal>  */}
     </div>
   );
 };
