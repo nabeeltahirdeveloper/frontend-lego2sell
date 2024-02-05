@@ -15,7 +15,7 @@ const Product = () => {
   const SearchValue = location.state && location.state.e;
   const navigation = useNavigate();
   const [isFormValid, setIsFormValid] = useState(true);
-  const [DiscountValue, setDiscountValue] = useState();
+  const [DiscountValue, setDiscountValue] = useState([]);
   const [setCondtinmessage, setSetCondtinmessage] = useState(true);
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const Product = () => {
         const response = await axios.get(
           `${baseUrl}/DiscountValueGet`
         );
+        console.log(response.data,"setting price");
         setDiscountValue(response.data);
       } catch (error) {
         // console.log(error)
@@ -36,12 +37,12 @@ const Product = () => {
   const ConditionData = [
     {
       img: "/mint.png",
-      Discount: DiscountValue ? DiscountValue[0]?.MintValue : "50",
+      Discount: DiscountValue.length >0 ? DiscountValue[0]?.MintValue : "50",
       title: "Mint",
     },
     {
       img: "/Images/verygood.png",
-      Discount: DiscountValue ? DiscountValue[0]?.VeryGood : "55",
+      Discount: DiscountValue.length>0 ? DiscountValue[0]?.VeryGood : "55",
       title: "Very Good",
     },
     { img: "/Images/damaged.png", Discount: "no", title: "Damaged" },
@@ -231,6 +232,7 @@ const Product = () => {
                 <div className="flex items-center justify-between">
                   {/* {formData.SetCondition === "no"} */}
                   {ConditionData.map((value, index) => {
+                    console.log(value,"value to calculate");
                     return (
                       <label
                         className={` ${
