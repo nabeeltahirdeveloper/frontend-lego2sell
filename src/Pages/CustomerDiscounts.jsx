@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Modal, Select } from "@mantine/core";
 
 import AdminOffer from "../componet/AdminOffer";
@@ -12,21 +12,21 @@ import moment from "moment";
 const CustomerDiscounts = () => {
   const storedUserId = localStorage.getItem("userId");
 
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [discounts, setDiscounts] = useState();
   const [createDiscountModal, setCreateDiscountModal] = useState(false);
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [maxUses, setMaxUses] = useState(0);
-  const [minAmount, setMinAmount] = useState(0);
+  const [maxUses, setMaxUses] = useState(null);
+  const [minAmount, setMinAmount] = useState(null);
   const [usePerPerson, setUsePerPerson] = useState(false);
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("Active");
   const [discountNote, setDiscountNote] = useState("");
-  const [title ,setTitle]=useState("Add")
-  const [docId,setDocId]=useState("")
+  const [title, setTitle] = useState("Add");
+  const [docId, setDocId] = useState("");
 
   const [validationError, setValidationError] = useState("");
   const [nameError, setNameError] = useState("");
@@ -40,70 +40,72 @@ const CustomerDiscounts = () => {
   const [statusError, setStatusError] = useState("");
   const [discountNoteError, setDiscountNoteError] = useState("");
   const [amountType, setAmountType] = useState("");
+
+  const validationErr = useMemo(() => validationError, [validationError]);
   const validateDiscountForm = () => {
+    let hasErrors = false;
+
     if (!name.trim()) {
       setNameError("Name is required.");
-      setValidationError("error");
+      hasErrors = true;
     } else {
       setNameError("");
-      setValidationError("");
     }
 
     if (!code.trim()) {
       setCodeError("Code is required.");
-      setValidationError("error");
+      hasErrors = true;
     } else {
       setCodeError("");
-      setValidationError("");
     }
 
     if (amount <= 0) {
       setAmountError("Amount must be greater than 0.");
-      setValidationError("error");
+      hasErrors = true;
     } else {
       setAmountError("");
-      setValidationError("");
     }
 
     if (!startDate) {
       setStartDateError("Start Date is required.");
-      setValidationError("error");
+      hasErrors = true;
     } else {
       setStartDateError("");
-      setValidationError("");
     }
 
     if (!endDate) {
       setEndDateError("End Date is required.");
-      setValidationError("error");
+      hasErrors = true;
     } else {
       setEndDateError("");
-      setValidationError("");
     }
 
     if (maxUses <= 0) {
       setMaxUsesError("Max Uses must be greater than or equal to 0.");
-      setValidationError("error");
+      hasErrors = true;
     } else {
       setMaxUsesError("");
-      setValidationError("");
     }
 
     if (minAmount <= 0) {
-      setMinAmountError("Max Uses must be greater than or equal to 0.");
-      setValidationError("error");
+      setMinAmountError("Min Amount must be greater than or equal to 0.");
+      hasErrors = true;
     } else {
       setMinAmountError("");
-      setValidationError("");
     }
 
-    return null;
+    // Set overall validation error if there are any errors
+    setValidationError(hasErrors ? "error" : "");
+
+    // Return null if no errors, otherwise return "error"
+    return hasErrors ? "error" : null;
   };
 
   const addDiscount = async () => {
-    validateDiscountForm();
-
-    if (validationError === "error") {
+    let error = validateDiscountForm();
+    // setTimeout(async () => {
+    console.log(error, "memo wlaa error");
+    if (error === "error") {
       return;
     }
     let finalAmount;
@@ -112,7 +114,7 @@ const CustomerDiscounts = () => {
     } else {
       finalAmount = amount;
     }
-    let data = {
+    let reqData = {
       name: name,
       code: code,
       amount: finalAmount,
@@ -124,21 +126,37 @@ const CustomerDiscounts = () => {
       status: status,
       discountNote: discountNote,
       adminId: storedUserId,
-      docId:docId
+      docId: docId,
     };
 
     try {
-      let res = await axios.post(`${baseUrl}/addDiscounts/`, data, {
+      let res = await axios.post(`${baseUrl}/addDiscounts/`, reqData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      setCreateDiscountModal(false);
+      closeModalFun();
+      console.log(res.data.data, "res from the discount");
 
-      console.log(res, "res from the discount");
+      let updatedData = data.some((item, index) => {
+        return item._id == res.data.data._id;
+      });
+      if (updatedData) {
+        let filterUpdate = data.map((item, index) => {
+          if (item._id == res.data.data._id) {
+            return res.data.data;
+          } else {
+            return item;
+          }
+        });
+        setData(filterUpdate)
+      } else {
+        setData([...data, res.data.data]);
+      }
     } catch (error) {
       console.log("Error from the discount", error);
     }
+    // }, 1000);
   };
 
   const getDiscounts = async () => {
@@ -164,32 +182,47 @@ const CustomerDiscounts = () => {
       throw error; // You may want to handle errors based on your application's needs
     }
   };
- 
-  const updateDiscount=async(item)=>{
-try {
-    console.log(item,"item to update");
-    setDocId(item._id)
-    setTitle("Update")
-    setCreateDiscountModal(true)
-    setName(item.name)
-    setCode(item.code)
-    setAmount(item.amount)
-    setStartDate(moment(item?.startDate).format("MM/DD/YYYY"))
-    setEndDate(moment(item?.endDate).format("MM/DD/YYYY"))
-    setMaxUses(item.maxUses)
-    setMinAmount(item.minAmount)
-    setUsePerPerson(item.usePerPerson)
-    setStatus(item.status)
-    setDiscountNote(item.discountNote)
-} catch (error) {
-    console.log(error);
-}
-  }
 
-  const closeModalFun=()=>{
-    setCreateDiscountModal(false) ;
-    setTitle("Add")
-  }
+  const updateDiscount = async (item) => {
+    try {
+      console.log(item, "item to update");
+      setDocId(item._id);
+      setTitle("Update");
+      setCreateDiscountModal(true);
+      setName(item.name);
+      setCode(item.code);
+      if (item.amount.charAt(item.amount.length - 1).toString() === "%") {
+        console.log(item.amount.charAt(item.amount.length - 1), "last element");
+        setAmount(+item.amount.slice(0, -1));
+      } else {
+        setAmount(+item.amount);
+      }
+      setStartDate(moment(item?.startDate).format("MM/DD/YYYY"));
+      setEndDate(moment(item?.endDate).format("MM/DD/YYYY"));
+      setMaxUses(item.maxUses);
+      setMinAmount(item.minAmount);
+      setUsePerPerson(item.useOnce);
+      setStatus(item.status);
+      setDiscountNote(item.discountNote);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const closeModalFun = () => {
+    setCreateDiscountModal(false);
+    setTitle("Add");
+    setName("");
+    setCode("");
+    setAmount("");
+    setStartDate("");
+    setEndDate("");
+    setMaxUses(null);
+    setMinAmount(null);
+    setUsePerPerson(null);
+    setStatus("");
+    setDiscountNote("");
+  };
   const fetchInfo = () => {
     // Data to encrypt
     const sensitiveData = "frontend";
@@ -267,17 +300,16 @@ try {
           .map((value, index) => {
             if (value?.Status !== "Paid" && value?.Status !== "Rejected") {
               return (
-                <div onClick={()=>{updateDiscount(value)}}>
-
                 <AdminDiscount
                   order={value?.code}
                   index={index}
                   key={value._id}
                   SearchValue={SearchValue}
-                  data={value}
                   items={value}
-                  />
-                  </div>
+                  updateDiscount={updateDiscount}
+                  setData={setData}
+                  data={data}
+                />
               );
             }
             return null;
@@ -314,7 +346,9 @@ try {
       </div>
       <Modal
         size={"xl"}
-        onClose={() => {closeModalFun()}}
+        onClose={() => {
+          closeModalFun();
+        }}
         opened={createDiscountModal}
       >
         <div className="flex flex-col gap-[50px]  bg-gray-100 p-[60px] rounded-[20px]">
@@ -324,7 +358,8 @@ try {
           <div className="flex justify-between gap-[100px] items-center">
             <h4 className="text-[20px] font-[500]">Name:</h4>
             <div>
-              <input value={name}
+              <input
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="enter the discount name"
                 className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
@@ -338,7 +373,8 @@ try {
           <div className="flex justify-between gap-[100px] items-center">
             <h4 className="text-[20px] font-[500]">Code:</h4>
             <div>
-              <input value={code}
+              <input
+                value={code}
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="enter discount code"
                 className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
@@ -352,31 +388,34 @@ try {
           <div className="flex justify-between gap-[100px] items-center">
             <h4 className="text-[20px] font-[500]">Amount:</h4>
             <div className="">
-              <input value={amount}
+              <input
+                value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="enter discount amount"
-                className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[245px] border-gray-300 rounded-[4px]"
                 type="number"
               />
               <select
                 name="%"
                 id=""
+                value={amountType}
                 onChange={(e) => setAmountType(e.target.value)}
               >
-                <option>%</option>
-                <option>Num</option>
+                <option value={"%"}>%</option>
+                <option value={""}>Num</option>
               </select>
               {amountError && (
-                  <div className="text-red-600 text-sm">{amountError}</div>
-                  )}
-                  </div>
+                <div className="text-red-600 text-sm">{amountError}</div>
+              )}
+            </div>
           </div>
           <div className="flex justify-between gap-[100px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
               Start Date:
             </h4>
             <div>
-              <input value={startDate}
+              <input
+                value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 placeholder="MM/DD/YYYY"
                 className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
@@ -392,7 +431,8 @@ try {
               Expiration Date:
             </h4>
             <div>
-              <input value={endDate}
+              <input
+                value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 placeholder="MM/DD/YYYY"
                 className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
@@ -408,7 +448,8 @@ try {
               Min Amount:
             </h4>
             <div>
-              <input value={minAmount}
+              <input
+                value={minAmount}
                 onChange={(e) => setMinAmount(e.target.value)}
                 placeholder="enter discount end date"
                 className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
@@ -424,7 +465,8 @@ try {
               Max Uses:
             </h4>
             <div>
-              <input value={maxUses}
+              <input
+                value={maxUses}
                 onChange={(e) => setMaxUses(e.target.value)}
                 placeholder="enter discount max uses"
                 className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
@@ -440,7 +482,9 @@ try {
               Use once per Customer:
             </h4>
             <div>
-              <input value={usePerPerson}
+              <input
+              checked={usePerPerson}
+                value={usePerPerson}
                 onChange={() => setUsePerPerson(!usePerPerson)}
                 className="bg-white focus:outline-none border-2  h-[24px] w-[24px] border-gray-300 rounded-[4px]"
                 type="checkbox"
@@ -453,7 +497,8 @@ try {
           <div className="flex justify-between gap-[100px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">Status</h4>
             <div>
-              <select value={status}
+              <select
+                value={status}
                 name="Status"
                 id="status"
                 onChange={(e) => setStatus(e.target.value)}
@@ -471,7 +516,8 @@ try {
               Discount Notes:
             </h4>
             <div className="w-full">
-              <textarea value={discountNote}
+              <textarea
+                value={discountNote}
                 onChange={(e) => setDiscountNote(e.target.value)}
                 rows={4}
                 className="bg-whiten  w-[100%] focus:outline-none border-2  border-gray-300 rounded-[4px]"

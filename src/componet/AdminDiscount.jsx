@@ -7,13 +7,50 @@ import { useDisclosure } from "@mantine/hooks";
 import CryptoJS from "crypto-js";
 import baseUrl from "../context/baseUrl";
 import moment from "moment";
-const AdminDiscount = ({ items, data, SearchValue, index }) => {
+const AdminDiscount = ({
+  items,
+  data,
+  SearchValue,
+  index,
+  updateDiscount,
+  setData,
+}) => {
   const [OrderOpen, setOrderOpen] = useState();
 
   const [userId, setUserId] = useState();
   const [Status, setStatus] = useState("pending");
   const [orderId, setOrderId] = useState();
   const storedUserId = localStorage.getItem("userId");
+
+  const deleteDiscount = async (dicountId) => {
+    try {
+      const response = await axios.delete(
+        `${baseUrl}/deleteDiscounts/${dicountId}/`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Assuming the response contains a data property with discounts
+      const discounts = response.data.data;
+
+      let updatedArray = data.filter((item, index) => {
+        if (item._id != dicountId) {
+          return item;
+        }
+      });
+setData(updatedArray)
+      console.log("Discounts:", discounts);
+
+      // return discounts;
+    } catch (error) {
+      console.error("Error fetching discounts:", error.response || error);
+      throw error; // You may want to handle errors based on your application's needs
+    }
+  };
+
   // useEffect(() => {
   //   handleUpdate()
   // }, [storedUserId, Status, Status])
@@ -140,40 +177,59 @@ const AdminDiscount = ({ items, data, SearchValue, index }) => {
     <div className="">
       <div onClick={() => open()} class="py-3">
         <div class="mb-4 last:mb-0 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-3 px-8 cursor-pointer">
-          <div className="flex flex-wrap items-center justify-between">
-            <div className="mr-auto lg:py-0 py-1 font-medium">
+          <div className="flex flex-wrap w-full items-center justify-between">
+            <div className="mr-auto w-[5%] lg:py-0 py-1 font-medium">
               <input type="checkbox" />
               <br className="md:hidden" />
             </div>
-            <div className="mr-auto lg:py-0 py-4 font-medium">
+            <div className="mr-auto w-[12%] lg:py-0 py-4 font-medium">
               <span className="text-[16px] text-blue-600"> Name </span>:{" "}
               {items.name}
               <br className="md:hidden" />
             </div>
-            <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
+            <div className="mr-auto w-[12%]  lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Code </span>:{" "}
               {items?.code}
               <br className="md:hidden" />
             </div>
-            <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
+            <div className="mr-auto w-[12%]  lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Amount </span>:
               {items?.amount}
               <br className="md:hidden" />
             </div>
-            <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
+            <div className="mr-auto w-[12%]  lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Uses </span>:
               {items?.maxUses}
               <br className="md:hidden" />
             </div>
-            <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
+            <div className="mr-auto w-[14%]  lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> Start Date </span>:{" "}
               {moment(items?.startDate).format("MM/DD/YYYY")}
               <br className="md:hidden" />
             </div>
-            <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
+            <div className="mr-auto w-[14%]  lg:py-0 py-4 text-xs font-medium">
               <span className="text-[16px] text-blue-600"> End Date </span>:{" "}
               {moment(items?.endDate).format("MM/DD/YYYY")}
               <br className="md:hidden" />
+            </div>
+            <div className="mr-[10px] flex gap-[10px] w-[15%]   lg:py-0 py-4 text-xs font-medium">
+              <button
+                onClick={() => {
+                  deleteDiscount(items._id);
+                }}
+                className="px-6 py-0.5 whitespace-nowrap lg:py-2 text-sm lg:text-base rounded-xl bg-red-500 text-white font-medium"
+              >
+                Delete
+              </button>
+
+              <button
+                onClick={() => {
+                  updateDiscount(items);
+                }}
+                className="px-6 py-0.5 whitespace-nowrap lg:py-2 text-sm lg:text-base rounded-xl bg-blue-500 text-white font-medium"
+              >
+                Update
+              </button>
             </div>
           </div>
         </div>

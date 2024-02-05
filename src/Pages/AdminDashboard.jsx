@@ -65,6 +65,30 @@ const AdminDashboard = () => {
     fetchOrders()
   }, [])
   const [CustomerOrder, setCustomerOrder] = useState()
+const [CustomerDiscounts,setCustomerDiscounts]=useState()
+const getDiscounts = async () => {
+  try {
+    const response = await axios.get(
+      `${baseUrl}/getDiscounts/${storedUserId}/`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Assuming the response contains a data property with discounts
+    const discounts = response.data.data;
+
+    console.log("Discounts:", discounts);
+    setCustomerDiscounts(discounts);
+
+    return discounts;
+  } catch (error) {
+    console.error("Error fetching discounts:", error.response || error);
+    throw error; // You may want to handle errors based on your application's needs
+  }
+};
 
   const fetchInfo = () => {
 
@@ -85,6 +109,7 @@ const AdminDashboard = () => {
       .then((d) => setCustomerOrder(d))
   }
   useEffect(() => {
+    getDiscounts()
     fetchInfo()
   }, [])
   // console.log("log", CustomerOrder.length)
@@ -241,7 +266,7 @@ const AdminDashboard = () => {
                       Customer Discounts
                     </h4>
                     <p className="text-base lg:text-xl font-bold">
-                      {CustomerOrder?.length}
+                      {CustomerDiscounts?.length}
                     </p>
                   </div>
                 </div>
