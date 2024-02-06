@@ -499,7 +499,7 @@ const CustomerDiscounts = () => {
             <div>
               <select
                 value={status}
-                name="Status"
+                name="status"
                 id="status"
                 onChange={(e) => setStatus(e.target.value)}
               >

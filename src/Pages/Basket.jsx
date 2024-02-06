@@ -172,8 +172,8 @@ const Basket = () => {
                   return "you have alredy used voucher";
                 }
               } else {
-                setVoucherErr("min amount requinment ");
-                return "min amount requinment ";
+                setVoucherErr("Price is low than voucher");
+                return "Price is low than voucher";
               }
             } else {
               setVoucherErr("voucher date has been expired");
