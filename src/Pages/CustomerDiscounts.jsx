@@ -251,7 +251,7 @@ const CustomerDiscounts = () => {
   const navigation = useNavigate();
   return (
     <div className="">
-      <div className="lg:px-44 px-6 py-4 my-6">
+      <div className="xl:px-44 px-6 md:px-22 py-4 my-6">
         <div className="flex items-center justify-between">
           <button
             onClick={() => navigation("/AdminDashboard")}

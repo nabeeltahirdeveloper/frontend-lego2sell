@@ -178,10 +178,10 @@ setData(updatedArray)
       <div onClick={() => open()} class="py-3">
         <div class="mb-4 last:mb-0 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-3 px-8 cursor-pointer">
           <div className="flex flex-wrap w-full items-center justify-between">
-            <div className="mr-auto w-[5%] lg:py-0 py-1 font-medium">
+            {/* <div className="mr-auto w-[5%] lg:py-0 py-1 font-medium">
               <input type="checkbox" />
               <br className="md:hidden" />
-            </div>
+            </div> */}
             <div className="mr-auto w-[12%] lg:py-0 py-4 font-medium">
               <span className="text-[16px] text-blue-600"> Name </span>:{" "}
               {items.name}
@@ -212,7 +212,7 @@ setData(updatedArray)
               {moment(items?.endDate).format("MM/DD/YYYY")}
               <br className="md:hidden" />
             </div>
-            <div className="mr-[10px] flex gap-[10px] w-[15%]   lg:py-0 py-4 text-xs font-medium">
+            <div className="mr-[10px] flex max-md:flex-wrap  gap-[10px] w-[15%] max-2xl:w-[20%]  lg:py-0 py-4 text-xs font-medium">
               <button
                 onClick={() => {
                   deleteDiscount(items._id);
