@@ -108,6 +108,22 @@ const Basket = () => {
 
     return startDate <= currentDate && currentDate <= endDate;
   };
+  const addUserToUsedByArray = async (discount) => {
+    try {
+      const response = await axios.put(
+        `${baseUrl}/addDiscountUsers/${storedUserId}`,
+        {
+          docId: discount._id,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return response;
+    } catch (error) {
+      console.log(error, "error while adding to usedBy");
+    }
+  };
 
   const getDiscounts = async () => {
     try {
@@ -119,53 +135,58 @@ const Basket = () => {
 
       const discounts = response.data.data;
 
-      let discountVoucher = discounts.filter(async (discount, index) => {
-        if (discount.code === inputCode) {
-          if ((discount.state = "Active")) {
-            if (isDateBetween(discount.startDate, discount.endDate)) {
-              if (discount.minAmount <= price) {
-                let alreadyUsed = discount?.usedBy.some((item, i) => {
+      let discountVoucher = discounts.filter((discount, index) => {
+        if(discount.code===inputCode){
+          return discount
+        }
+      });
+      console.log(discountVoucher, "discount voucher");
+
+        console.log(inputCode, "input code", discountVoucher[0].code);
+        if (discountVoucher[0].code === inputCode) {
+          if (discountVoucher[0].status === "Active") {
+            if (isDateBetween(discountVoucher[0].startDate, discountVoucher[0].endDate)) {
+              if (discountVoucher[0].minAmount <= price) {
+                let alreadyUsed = discountVoucher[0]?.usedBy.some((item, i) => {
                   return storedUserId == item;
                 });
                 if (!alreadyUsed) {
-                  const response = await axios.put(
-                    `${baseUrl}/addDiscountUsers/${storedUserId}`,
-                    {
-                      docId: discount._id,
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                    }
-                  );
+                  const response = addUserToUsedByArray(discountVoucher[0]);
 
                   console.log("response of add voucher", response);
                   if (
-                    discount.amount
-                      .charAt(discount.amount.length - 1)
+                    discountVoucher[0].amount
+                      .charAt(discountVoucher[0].amount.length - 1)
                       .toString() === "%"
                   ) {
                     console.log(
-                      discount.amount.charAt(discount.amount.length - 1),
+                      discountVoucher[0].amount.charAt(discountVoucher[0].amount.length - 1),
                       "last element"
                     );
                     let amountToAdd =
-                      (price * discount.amount.slice(0, -1)) / 100;
-                    localStorage.setItem("Price", (+price + amountToAdd).toFixed(2));
+                      (price * discountVoucher[0].amount.slice(0, -1)) / 100;
+                    localStorage.setItem(
+                      "Price",
+                      (+price + amountToAdd).toFixed(2)
+                    );
                     setPrice(+price + amountToAdd);
                     setVoucherErr("");
 
                     console.log(amountToAdd, "amount to add percentage");
                   } else {
-                    localStorage.setItem("Price", (+price + +discount.amount).toFixed(2));
+                    localStorage.setItem(
+                      "Price",
+                      (+price + +discountVoucher[0].amount).toFixed(2)
+                    );
 
-                    setPrice(+price + +discount.amount);
+                    setPrice(+price + +discountVoucher[0].amount);
                     setVoucherErr("");
 
-                    console.log(discount.amount, "amount to add");
+                    console.log(discountVoucher[0].amount, "amount to add");
                   }
                   setVoucherAdded("congratulates your vouceher has added");
                   setCodeInputVisible(false);
-                  setInputCode("")
+                  setInputCode("");
                   return "congratulates you have added vouceher";
                 } else {
                   setVoucherErr("you have alredy used voucher");
@@ -190,8 +211,6 @@ const Basket = () => {
 
           return "no voucher founded";
         }
-      });
-      console.log(discountVoucher, "discount voucher");
     } catch (error) {
       console.error("Error fetching discounts:", error.response || error);
       throw error; // You may want to handle errors based on your application's needs
