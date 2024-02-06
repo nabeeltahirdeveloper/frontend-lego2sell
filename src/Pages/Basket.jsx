@@ -130,25 +130,42 @@ const Basket = () => {
                 if (!alreadyUsed) {
                   const response = await axios.put(
                     `${baseUrl}/addDiscountUsers/${storedUserId}`,
-                    { docId:discount._id,
+                    {
+                      docId: discount._id,
                       headers: {
                         "Content-Type": "application/json",
                       },
                     }
                   );
-                
-                  console.log("response of add voucher", response);
-                  if (discount.amount.charAt(discount.amount.length - 1).toString() === "%") {
-                    console.log(discount.amount.charAt(discount.amount.length - 1), "last element");
-                    let amountToAdd=(price * discount.amount.slice(0, -1)) / 100;
-                    setPrice(+price+ amountToAdd);
-                    console.log(amountToAdd,"amount to add percentage");
-                  } else {
-                    setPrice(+price + discount.amount);
-                    console.log(discount.amount,"amount to add");
 
+                  console.log("response of add voucher", response);
+                  if (
+                    discount.amount
+                      .charAt(discount.amount.length - 1)
+                      .toString() === "%"
+                  ) {
+                    console.log(
+                      discount.amount.charAt(discount.amount.length - 1),
+                      "last element"
+                    );
+                    let amountToAdd =
+                      (price * discount.amount.slice(0, -1)) / 100;
+                    localStorage.setItem("Price", (+price + amountToAdd).toFixed(2));
+                    setPrice(+price + amountToAdd);
+                    setVoucherErr("");
+
+                    console.log(amountToAdd, "amount to add percentage");
+                  } else {
+                    localStorage.setItem("Price", (+price + +discount.amount).toFixed(2));
+
+                    setPrice(+price + +discount.amount);
+                    setVoucherErr("");
+
+                    console.log(discount.amount, "amount to add");
                   }
-                  setVoucherAdded("congratulates you have added vouceher");
+                  setVoucherAdded("congratulates your vouceher has added");
+                  setCodeInputVisible(false);
+                  setInputCode("")
                   return "congratulates you have added vouceher";
                 } else {
                   setVoucherErr("you have alredy used voucher");
@@ -338,6 +355,9 @@ const Basket = () => {
                   +
                 </p>
               </div>
+            )}
+            {vouceherErr && (
+              <p className="text-red-600 text-[20px] ">{vouceherErr}</p>
             )}
           </div>
         </div>
