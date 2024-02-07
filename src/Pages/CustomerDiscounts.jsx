@@ -351,18 +351,18 @@ const CustomerDiscounts = () => {
         }}
         opened={createDiscountModal}
       >
-        <div className="flex flex-col gap-[50px]  bg-gray-100 p-[60px] rounded-[20px]">
+        <div className="flex flex-col gap-[50px]  bg-gray-100 py-[60px] px-[60px] max-sm:px-[30px] rounded-[20px]">
           <p className="text-center text-[24px] font-bold ">
             {title} Discount Detail
           </p>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[50px] max-sm:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500]">Name:</h4>
             <div>
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="enter the discount name"
-                className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
               {nameError && (
@@ -370,14 +370,14 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500]">Code:</h4>
             <div>
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
                 placeholder="enter discount code"
-                className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
               {codeError && (
@@ -385,14 +385,14 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500]">Amount:</h4>
             <div className="">
               <input
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 placeholder="enter discount amount"
-                className="bg-white focus:outline-none border-2 w-[245px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[245px] max-md:w-[145px] max-sm:w-[60px] border-gray-300 rounded-[4px]"
                 type="number"
               />
               <select
@@ -409,7 +409,7 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
               Start Date:
             </h4>
@@ -418,7 +418,7 @@ const CustomerDiscounts = () => {
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
                 placeholder="MM/DD/YYYY"
-                className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
               {startDateError && (
@@ -426,8 +426,8 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
+            <h4 className="text-[20px] font-[500] whitespace-nowrap max-sm:whitespace-normal">
               Expiration Date:
             </h4>
             <div>
@@ -435,7 +435,7 @@ const CustomerDiscounts = () => {
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
                 placeholder="MM/DD/YYYY"
-                className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
               {endDateError && (
@@ -443,7 +443,7 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
               Min Amount:
             </h4>
@@ -452,7 +452,7 @@ const CustomerDiscounts = () => {
                 value={minAmount}
                 onChange={(e) => setMinAmount(e.target.value)}
                 placeholder="enter discount end date"
-                className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
               {minAmountError != "" && (
@@ -460,7 +460,7 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
               Max Uses:
             </h4>
@@ -469,7 +469,7 @@ const CustomerDiscounts = () => {
                 value={maxUses}
                 onChange={(e) => setMaxUses(e.target.value)}
                 placeholder="enter discount max uses"
-                className="bg-white focus:outline-none border-2 w-[300px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
               {maxUsesError != "" && (
@@ -477,9 +477,9 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
-              Use once per Customer:
+              Use Once:
             </h4>
             <div>
               <input
@@ -494,7 +494,7 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">Status</h4>
             <div>
               <select
@@ -511,7 +511,7 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] items-center">
+          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
               Discount Notes:
             </h4>
