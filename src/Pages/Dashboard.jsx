@@ -280,6 +280,7 @@ const Dashboard = (props) => {
                       Deliverymethod={value.Deliverymethod}
                       timestamp={value.timestamp}
                       Price={value?.Price}
+                      discount={value?.discount}
                       Status={value?.Status}
                       offerId={value?.offerId}
                     />

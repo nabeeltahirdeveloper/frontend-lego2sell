@@ -114,12 +114,18 @@ const CustomerDiscounts = () => {
     } else {
       finalAmount = amount;
     }
+    const parsedDate = moment(startDate, "DD/MM/YYYY");
+
+    const formattedStartDate = parsedDate.format("MM/DD/YYYY");
+    const parsedDate1 = moment(endDate, "DD/MM/YYYY");
+
+    const formattedEndDate = parsedDate1.format("MM/DD/YYYY");
     let reqData = {
       name: name,
       code: code,
       amount: finalAmount,
-      startDate: startDate,
-      endDate: endDate,
+      startDate: formattedStartDate,
+      endDate: formattedEndDate,
       minAmount: minAmount,
       maxUses: maxUses,
       useOnce: usePerPerson,
@@ -149,7 +155,7 @@ const CustomerDiscounts = () => {
             return item;
           }
         });
-        setData(filterUpdate)
+        setData(filterUpdate);
       } else {
         setData([...data, res.data.data]);
       }
@@ -197,8 +203,8 @@ const CustomerDiscounts = () => {
       } else {
         setAmount(+item.amount);
       }
-      setStartDate(moment(item?.startDate).format("MM/DD/YYYY"));
-      setEndDate(moment(item?.endDate).format("MM/DD/YYYY"));
+      setStartDate(moment(item?.startDate).format("DD/MM/YYYY"));
+      setEndDate(moment(item?.endDate).format("DD/MM/YYYY"));
       setMaxUses(item.maxUses);
       setMinAmount(item.minAmount);
       setUsePerPerson(item.useOnce);
@@ -417,7 +423,7 @@ const CustomerDiscounts = () => {
               <input
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                placeholder="MM/DD/YYYY"
+                placeholder="DD/MM/YYYY"
                 className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
@@ -434,7 +440,7 @@ const CustomerDiscounts = () => {
               <input
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                placeholder="MM/DD/YYYY"
+                placeholder="DD/MM/YYYY"
                 className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
@@ -483,7 +489,7 @@ const CustomerDiscounts = () => {
             </h4>
             <div>
               <input
-              checked={usePerPerson}
+                checked={usePerPerson}
                 value={usePerPerson}
                 onChange={() => setUsePerPerson(!usePerPerson)}
                 className="bg-white focus:outline-none border-2  h-[24px] w-[24px] border-gray-300 rounded-[4px]"

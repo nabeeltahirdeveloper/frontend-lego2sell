@@ -342,7 +342,7 @@ const Adminorder = ({ items, data, SearchValue }) => {
                         </h3>
                       </div>
                       <div class="flex w-24 text-blue-500 font-bold items-center gap-6">
-                        <h2> £{value?.Price.toFixed(2)}</h2>
+                        <h2> £ {  value?.Price.toFixed(2)}</h2>
                       </div>
                     </div>
                   </div>

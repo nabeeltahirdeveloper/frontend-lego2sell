@@ -13,6 +13,7 @@ const SuccessPage = () => {
   const price = localStorage.getItem("Price")
   const condition = location.state.condition
   const offerId = location.state.offerId
+  const discount = location.state.discount
   // console.log(offerId)
   const [PdfTime, setPdfTime] = useState()
   // console.log(PdfTime)
@@ -164,6 +165,8 @@ const SuccessPage = () => {
                     opened={opened}
                     orderId={offerId}
                     date={PdfTime}
+                    discount={discount}
+
                   />
                 </div>
               </div>

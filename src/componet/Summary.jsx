@@ -12,6 +12,7 @@ const Summary = ({
   formData,
   storedUserId,
   productCondition,
+  discount
 }) => {
   // console.log(
   //   "demo92387273627632376",
@@ -46,6 +47,7 @@ const Summary = ({
     ProductImg: data?.body?.image_url,
     timestamp: new Date(),
     setCondition: productCondition,
+    discount:discount
   }
   const [orderitems, setOrderitems] = useState()
   // console.log("demo111", orderitems)
@@ -106,7 +108,7 @@ const Summary = ({
       const offerId = response.data.offerId
       localStorage.setItem("BasketStatus", "complete")
       navigate("/success", {
-        state: { data, price, SearchValue, condition, offerId },
+        state: { data, price, SearchValue, condition, offerId,discount },
       })
       // localStorage.setItem("Basket", "")
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -347,14 +349,36 @@ const Summary = ({
         </div>
         <div className="flex-[0.4]">
           <div className="w-full ">
-            <div className="bg-white relative lg:!fixed lg:!top-[310px] w-full lg:w-[340px] rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
+            <div className="bg-white relative lg:!fixed lg:!top-[280px] w-full lg:w-[340px] rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
               <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-blue-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                  {price ? <h2> £{price}</h2> : <Loader size="xs" />}
+                  <h2>
+                  {price ? <h2> £{ (price - discount).toFixed(2)}</h2> : <Loader size="xs" />}
+                  </h2>
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">
                   1 Item
+                </div>
+              </div>
+              <div className="flex flex-row md:flex-col items-center justify-between">
+                <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  <h2>
+                  {discount ===0 ? <h2> £ 0</h2> : <h2> £{discount}</h2> }
+                  </h2>
+                </div>
+                <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                  Discount
+                </div>
+              </div>
+              <div className="flex flex-row md:flex-col items-center justify-between">
+                <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  <h2>
+                    {price ? <h2>{` £${price}`}</h2> : <Loader size="xs" />}
+                  </h2>
+                </div>
+                <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                  Total
                 </div>
               </div>
               <div className="flex py-4 gap-1">

@@ -1,74 +1,85 @@
-import { Modal, Select } from "@mantine/core"
-import axios from "axios"
-import React, { useEffect, useState } from "react"
-import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib"
-import download from "downloadjs"
-import { useDisclosure } from "@mantine/hooks"
-import CryptoJS from 'crypto-js';
-import baseUrl from "../context/baseUrl"
+import { Modal, Select } from "@mantine/core";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import download from "downloadjs";
+import { useDisclosure } from "@mantine/hooks";
+import CryptoJS from "crypto-js";
+import baseUrl from "../context/baseUrl";
 
 const Adminorder = ({ items, data, SearchValue, index }) => {
-  const [OrderOpen, setOrderOpen] = useState()
+  const [OrderOpen, setOrderOpen] = useState();
+  console.log(
+    items.order.discount,
+    "item for offer",
+    items.order.Price,
+    (items.order.Price - items.order.discount).toFixed(3)
+  );
 
-  const [userId, setUserId] = useState()
-  const [Status, setStatus] = useState("pending")
-  const [orderId, setOrderId] = useState()
-  const storedUserId = localStorage.getItem("userId")
+  const [userId, setUserId] = useState();
+  const [Status, setStatus] = useState("pending");
+  const [orderId, setOrderId] = useState();
+  const storedUserId = localStorage.getItem("userId");
   // useEffect(() => {
   //   handleUpdate()
   // }, [storedUserId, Status, Status])
   const handleUpdate = () => {
     axios
-      .put(`${baseUrl}/Getorder/status/${userId}`, {
-        Status,
-        orderId,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+      .put(
+        `${baseUrl}/Getorder/status/${userId}`,
+        {
+          Status,
+          orderId,
         },
-      }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       )
       .then((response) => {
-        window.location.reload()
+        window.location.reload();
         // console.log("Data updated:", response.data)
         // Handle successful update
       })
       .catch((error) => {
-        console.error("Error updating data:", error)
+        console.error("Error updating data:", error);
         // Handle error
-      })
-  }
-  var userID = items.user?._id
+      });
+  };
+  var userID = items.user?._id;
   // console.log(items.user, "lego")
 
-  const [opened, { open, close }] = useDisclosure(false)
+  const [opened, { open, close }] = useDisclosure(false);
 
   const handleDeleteAccount = async () => {
     // console.log(email)
-    const email = items?.user?.email
+    const email = items?.user?.email;
     // Data to encrypt
-    const sensitiveData = 'frontend';
+    const sensitiveData = "frontend";
 
     // Encryption key (must be a secret)
-    const encryptionKey = 'legotwosell';
+    const encryptionKey = "legotwosell";
 
     // Encrypt the data
-    const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
+    const encryptedData = CryptoJS.AES.encrypt(
+      sensitiveData,
+      encryptionKey
+    ).toString();
 
     try {
       const response = await fetch(`${baseUrl}/delete-account`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "source": encryptedData,
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          source: encryptedData,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ email }),
-      })
-      window.location.reload()
-      const data = await response.json()
+      });
+      window.location.reload();
+      const data = await response.json();
       // console.log(data)
       if (response.ok) {
         // setMessage(data.message)
@@ -77,26 +88,26 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
         // setMessage(data.message)
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
       // setMessage("Internal Server Error")
     }
-    close()
-  }
+    close();
+  };
 
-  const [offerIdPdf, setOfferIdPdf] = useState()
-  const [offerIdTime, setOfferIdTime] = useState()
+  const [offerIdPdf, setOfferIdPdf] = useState();
+  const [offerIdTime, setOfferIdTime] = useState();
   // console.log(offerIdPdf)
   const handleModifyPdf = async () => {
-    const url = "/completpdf.pdf"
+    const url = "/completpdf.pdf";
 
-    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer())
+    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
 
-    const pdfDoc = await PDFDocument.load(existingPdfBytes)
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    const pages = pdfDoc.getPages()
-    const firstPage = pages[1]
-    const { width, height } = firstPage.getSize()
+    const pages = pdfDoc.getPages();
+    const firstPage = pages[1];
+    const { width, height } = firstPage.getSize();
     firstPage.drawText(`${items.order.timestamp}`, {
       x: 220,
       y: 240,
@@ -104,9 +115,9 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
       font: helveticaFont,
       color: rgb(0, 0, 0),
       rotate: degrees(0),
-    })
-    const second = pages[1]
-    const { width1, height1 } = second.getSize()
+    });
+    const second = pages[1];
+    const { width1, height1 } = second.getSize();
     firstPage.drawText(`#${items.order.offerId}`, {
       x: 220,
       y: 200,
@@ -114,13 +125,13 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
       font: helveticaFont,
       color: rgb(0, 0, 0),
       rotate: degrees(0),
-    })
+    });
 
-    const pdfBytes = await pdfDoc.save()
+    const pdfBytes = await pdfDoc.save();
 
-    download(pdfBytes, "lego2sellPDF.pdf", "application/pdf")
-  }
-  const [activeStatus, setActiveStatus] = useState()
+    download(pdfBytes, "lego2sellPDF.pdf", "application/pdf");
+  };
+  const [activeStatus, setActiveStatus] = useState();
   // const filteredOrders = items?.Order.filter((value) => {
   //   return value.Status !== "Paid" && value.Status !== "Rejected"
   // }).map((value, index) => {
@@ -195,8 +206,27 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                     {items.order.ProductName} {items.order.ProductId}
                   </h3>
                 </div>
-                <div className="flex w-24 text-blue-500 font-bold items-center gap-6">
-                  <h2> £ {items.order.Price.toFixed(2)}</h2>
+                <div className="flex flex-col  w-32 text-blue-500 font-bold items-center gap-6">
+                  <h2>
+                    {" "}
+                    £{" "}
+                    {items.order?.discount == null ||
+                    items.order?.discount == undefined
+                      ? items.order.Price.toFixed(2)
+                      : (items.order.Price - items.order.discount).toFixed(3)}
+                  </h2>
+                  <h2 className=" whitespace-nowrap flex">
+                    <h2>Discount:</h2>
+                    {items.order?.discount == null ||
+                    items.order?.discount == undefined ? (
+                      <h2> £0 </h2>
+                    ) : (
+                      <h2 className="whitespace-nowrap">
+                        {" "}
+                        {items.order.discount}
+                      </h2>
+                    )}
+                  </h2>
                 </div>
               </div>
             </div>
@@ -284,9 +314,9 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                   {/* {value.Status} */}
                   <Select
                     onChange={(e) => {
-                      setStatus(e)
-                      setUserId(items.user._id)
-                      setOrderId(items.order._id)
+                      setStatus(e);
+                      setUserId(items.user._id);
+                      setOrderId(items.order._id);
                     }}
                     label="Change Product Status"
                     placeholder="Pick one"
@@ -332,6 +362,23 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                     <div>Status</div>
                     <div> {items.order.Status}</div>
                   </div>
+                  <div className="flex  flex-wrap w-full items-center justify-between mt-2">
+                    <div>Discount</div>
+                    <div>
+                      {" "}
+                      <h2 className=" whitespace-nowrap flex">
+                        {items.order?.discount == null ||
+                        items.order?.discount == undefined ? (
+                          <h2> £0 </h2>
+                        ) : (
+                          <h2 className="whitespace-nowrap">
+                            {" "}
+                            {items.order.discount}
+                          </h2>
+                        )}
+                      </h2>
+                    </div>
+                  </div>
                   <hr className="mt-4" />
                   <div className="flex  flex-wrap w-full items-center justify-between mt-4">
                     <div className="font-bold text-lg">Total offer value</div>
@@ -354,7 +401,7 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
         </div>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default Adminorder
+export default Adminorder;

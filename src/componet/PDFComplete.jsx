@@ -7,7 +7,7 @@ import axios from "axios"
 import baseUrl from "../context/baseUrl"
 // import { Modal } from "flowbite"
 // import pdf from "../../public/SellyournewsetsatLEGO2sell.pdf"
-const PDFModificationExample = ({ orderId, date, opened, open, close }) => {
+const PDFModificationExample = ({ orderId, date, opened, open, close ,discount}) => {
   const [allowDownload, setAllowDownload] = useState()
   const [orderitems, setOrderitems] = useState()
   const [data, setData] = useState()
@@ -194,6 +194,10 @@ const PDFModificationExample = ({ orderId, date, opened, open, close }) => {
               <div className="flex  flex-wrap w-full items-center justify-between mt-2">
                 <div>Condition</div>
                 <div>{orderitems?.setCondition}</div>
+              </div>
+              <div className="flex  flex-wrap w-full items-center justify-between mt-2">
+                <div>Discount</div>
+                <div> {discount ===0 ? <h2> £ 0</h2> : <h2> £{discount}</h2> }</div>
               </div>
               <hr className="mt-4" />
               <div className="flex  flex-wrap w-full items-center justify-between mt-4">

@@ -15,6 +15,7 @@ const OrderCards = ({
   productId,
   setCondition,
   getMyDetails,
+  discount
 }) => {
   const [opened, { open, close }] = useDisclosure(false)
   const [data, setData] = useState()
@@ -187,6 +188,23 @@ const OrderCards = ({
                 <div>Status</div>
                 <div>{Status}</div>
               </div>
+              <div className="flex  flex-wrap w-full items-center justify-between mt-2">
+                    <div>Discount</div>
+                    <div>
+                      {" "}
+                      <h2 className=" whitespace-nowrap flex">
+                        {discount == null ||
+                        discount == undefined ? (
+                          <h2> £0 </h2>
+                        ) : (
+                          <h2 className="whitespace-nowrap">
+                            {" "}
+                            £{discount}
+                          </h2>
+                        )}
+                      </h2>
+                    </div>
+                  </div>
               <hr className="mt-4" />
               <div className="flex  flex-wrap w-full items-center justify-between mt-4">
                 <div className="font-bold text-lg">Total offer value</div>

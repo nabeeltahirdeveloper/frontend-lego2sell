@@ -13,6 +13,7 @@ const Basket = () => {
   const condition = location.state.condition;
   const productCondition = location.state.productCondition;
   const [price, setPrice] = useState(null);
+  const [discount, setDiscount] = useState(0);
   const [codeInputVisible, setCodeInputVisible] = useState(false);
   // console.log("price", price)
   const storedUserId = localStorage.getItem("userId");
@@ -136,81 +137,97 @@ const Basket = () => {
       const discounts = response.data.data;
 
       let discountVoucher = discounts.filter((discount, index) => {
-        if(discount.code===inputCode){
-          return discount
+        if (discount.code === inputCode) {
+          return discount;
         }
       });
       console.log(discountVoucher, "discount voucher");
 
-        console.log(inputCode, "input code", discountVoucher[0].code);
-        if (discountVoucher[0].code === inputCode) {
-          if (discountVoucher[0].status === "Active") {
-            if (isDateBetween(discountVoucher[0].startDate, discountVoucher[0].endDate)) {
-              if (discountVoucher[0].minAmount <= price) {
-                let alreadyUsed = discountVoucher[0]?.usedBy.some((item, i) => {
-                  return storedUserId == item;
-                });
-                if (!alreadyUsed) {
-                  const response = addUserToUsedByArray(discountVoucher[0]);
+      console.log(inputCode, "input code", discountVoucher[0].code);
+      if (discountVoucher[0].code === inputCode) {
+        if (discountVoucher[0].status === "Active") {
+          if (
+            isDateBetween(
+              discountVoucher[0].startDate,
+              discountVoucher[0].endDate
+            )
+          ) {
+            if (discountVoucher[0].minAmount <= price) {
+              let alreadyUsed = discountVoucher[0]?.usedBy.some((item, i) => {
+                return storedUserId == item;
+              });
+              if (!alreadyUsed) {
+                const response = addUserToUsedByArray(discountVoucher[0]);
 
-                  console.log("response of add voucher", response);
-                  if (
-                    discountVoucher[0].amount
-                      .charAt(discountVoucher[0].amount.length - 1)
-                      .toString() === "%"
-                  ) {
-                    console.log(
-                      discountVoucher[0].amount.charAt(discountVoucher[0].amount.length - 1),
-                      "last element"
-                    );
-                    let amountToAdd =
-                      (price * discountVoucher[0].amount.slice(0, -1)) / 100;
-                    localStorage.setItem(
-                      "Price",
-                      (+price + amountToAdd).toFixed(2)
-                    );
-                    setPrice(+price + amountToAdd);
-                    setVoucherErr("");
+                console.log("response of add voucher", response);
+                if (
+                  discountVoucher[0].amount
+                    .charAt(discountVoucher[0].amount.length - 1)
+                    .toString() === "%"
+                ) {
+                  console.log(
+                    discountVoucher[0].amount.charAt(
+                      discountVoucher[0].amount.length - 1
+                    ),
+                    "last element"
+                  );
+                  let amountToAdd =
+                    (price * discountVoucher[0].amount.slice(0, -1)) / 100;
+                  localStorage.setItem(
+                    "Price",
+                    (+price + amountToAdd).toFixed(2)
+                  );
+                  localStorage.setItem("Discount", amountToAdd);
+                  setPrice(+price + amountToAdd);
+                  setDiscount(amountToAdd);
+                  setVoucherErr("");
 
-                    console.log(amountToAdd, "amount to add percentage");
-                  } else {
-                    localStorage.setItem(
-                      "Price",
-                      (+price + +discountVoucher[0].amount).toFixed(2)
-                    );
-
-                    setPrice(+price + +discountVoucher[0].amount);
-                    setVoucherErr("");
-
-                    console.log(discountVoucher[0].amount, "amount to add");
-                  }
-                  setVoucherAdded("congratulates your vouceher has added");
-                  setCodeInputVisible(false);
-                  setInputCode("");
-                  return "congratulates you have added vouceher";
+                  console.log(amountToAdd, "amount to add percentage");
                 } else {
-                  setVoucherErr("you have alredy used voucher");
-                  return "you have alredy used voucher";
+                  localStorage.setItem(
+                    "Discount",
+                    discountVoucher[0].amount
+                  );
+
+                  localStorage.setItem(
+                    "Price",
+                    (+price + +discountVoucher[0].amount).toFixed(2)
+                  );
+
+                  setPrice(+price + +discountVoucher[0].amount);
+                  setDiscount(+discountVoucher[0].amount);
+
+                  setVoucherErr("");
+
+                  console.log(discountVoucher[0].amount, "amount to add");
                 }
+                setVoucherAdded("congratulates your vouceher has added");
+                setCodeInputVisible(false);
+                setInputCode("");
+                return "congratulates you have added vouceher";
               } else {
-                setVoucherErr("Price is low than voucher");
-                return "Price is low than voucher";
+                setVoucherErr("you have alredy used voucher");
+                return "you have alredy used voucher";
               }
             } else {
-              setVoucherErr("voucher date has been expired");
-
-              return "voucher date has been expired";
+              setVoucherErr("Price is low than voucher");
+              return "Price is low than voucher";
             }
           } else {
-            setVoucherErr("voucher is not active");
+            setVoucherErr("voucher date has been expired");
 
-            return "Voucher is not Active";
+            return "voucher date has been expired";
           }
         } else {
-          setVoucherErr("no voucher found");
+          setVoucherErr("voucher is not active");
 
-          return "no voucher founded";
+          return "Voucher is not Active";
         }
+      } else {
+        setVoucherErr("no voucher found");
+
+        return "no voucher founded";
+      }
     } catch (error) {
       console.error("Error fetching discounts:", error.response || error);
       throw error; // You may want to handle errors based on your application's needs
@@ -321,10 +338,27 @@ const Basket = () => {
             <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-blue-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
+                {price ? <h2> £{ (price - discount).toFixed(2)}</h2> : <Loader size="xs" />}
               </div>
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
                 1 Item
+              </div>
+            </div>
+            <div className="flex flex-row md:flex-col items-center justify-between">
+              <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                {discount ===0 ? <h2> £ 0</h2> : <h2> £{discount}</h2> }
+              </div>
+              <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                Discount
+              </div>
+            </div>
+             <div className="flex flex-row md:flex-col items-center justify-between">
+              <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+              {price ? <h2> £{ price.toFixed(2)}</h2> : <Loader size="xs" />}
+                
+              </div>
+              <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                Total
               </div>
             </div>
             <button
@@ -341,6 +375,7 @@ const Basket = () => {
                       data,
                       price,
                       SearchValue,
+                      discount,
                       condition,
                       productCondition,
                     },

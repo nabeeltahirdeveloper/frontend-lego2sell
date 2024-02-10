@@ -13,7 +13,7 @@ import Editdetails from "./Editdetails"
 import { useDisclosure } from "@mantine/hooks"
 import baseUrl from "../context/baseUrl"
 // import Select from "react-select"
-const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
+const DetailsForm = ({ setActive, setFormData, storedUserId,discount }) => {
   const [searchValue, onSearchChange] = useState("")
 
   const [data, setData] = useState()
@@ -556,11 +556,31 @@ const DetailsForm = ({ setActive, setFormData, storedUserId }) => {
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-blue-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   <h2>
-                    {price ? <h2>{` £${price}`}</h2> : <Loader size="xs" />}
+                  {price ? <h2> £{ (price - discount).toFixed(2)}</h2> : <Loader size="xs" />}
                   </h2>
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">
                   1 Item
+                </div>
+              </div>
+              <div className="flex flex-row md:flex-col items-center justify-between">
+                <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  <h2>
+                  {discount ===0 ? <h2> £ 0</h2> : <h2> £{discount}</h2> }
+                  </h2>
+                </div>
+                <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                  Discount
+                </div>
+              </div>
+              <div className="flex flex-row md:flex-col items-center justify-between">
+                <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  <h2>
+                    {price ? <h2>{` £${price}`}</h2> : <Loader size="xs" />}
+                  </h2>
+                </div>
+                <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                  Total
                 </div>
               </div>
               <button
