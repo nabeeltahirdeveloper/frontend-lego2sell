@@ -583,7 +583,7 @@ let router = createBrowserRouter(
   {
     path: "/blogdetails",
     element: (
-      <div className="h-screen flex min-h-screen flex-col ">
+      <div className="h-screen flex min-h-screen w-full flex-col ">
         <Header />
         <BlogDetail />
         <Footer />

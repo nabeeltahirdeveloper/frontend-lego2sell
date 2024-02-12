@@ -14,6 +14,7 @@ const Basket = () => {
   const productCondition = location.state.productCondition;
   const [price, setPrice] = useState(null);
   const [discount, setDiscount] = useState(0);
+  const [inPercent, setInPercent] = useState(false);
   const [codeInputVisible, setCodeInputVisible] = useState(false);
   // console.log("price", price)
   const storedUserId = localStorage.getItem("userId");
@@ -143,8 +144,7 @@ const Basket = () => {
       });
       console.log(discountVoucher, "discount voucher");
 
-      console.log(inputCode, "input code", discountVoucher[0].code);
-      if (discountVoucher[0].code === inputCode) {
+      if (discountVoucher[0]?.code === inputCode) {
         if (discountVoucher[0].status === "Active") {
           if (
             isDateBetween(
@@ -156,7 +156,18 @@ const Basket = () => {
               let alreadyUsed = discountVoucher[0]?.usedBy.some((item, i) => {
                 return storedUserId == item;
               });
-              if (!alreadyUsed) {
+              console.log(
+                alreadyUsed,
+                "already used",
+                discountVoucher[0].useOnce
+              );
+              if (
+                (alreadyUsed === true &&
+                  discountVoucher[0].useOnce === false) ||
+                (alreadyUsed === false &&
+                  discountVoucher[0].useOnce === true) ||
+                (alreadyUsed === false && discountVoucher[0].useOnce === false)
+              ) {
                 const response = addUserToUsedByArray(discountVoucher[0]);
 
                 console.log("response of add voucher", response);
@@ -177,17 +188,15 @@ const Basket = () => {
                     "Price",
                     (+price + amountToAdd).toFixed(2)
                   );
-                  localStorage.setItem("Discount", amountToAdd);
+                  localStorage.setItem("Discount", amountToAdd.toFixed(2));
+                  setInPercent(true);
                   setPrice(+price + amountToAdd);
-                  setDiscount(amountToAdd);
+                  setDiscount(amountToAdd.toFixed(2));
                   setVoucherErr("");
 
                   console.log(amountToAdd, "amount to add percentage");
                 } else {
-                  localStorage.setItem(
-                    "Discount",
-                    discountVoucher[0].amount
-                  );
+                  localStorage.setItem("Discount", discountVoucher[0].amount);
 
                   localStorage.setItem(
                     "Price",
@@ -338,7 +347,11 @@ const Basket = () => {
             <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-blue-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                {price ? <h2> £{ (price - discount).toFixed(2)}</h2> : <Loader size="xs" />}
+                {price ? (
+                  <h2> £{(price - discount).toFixed(2)}</h2>
+                ) : (
+                  <Loader size="xs" />
+                )}
               </div>
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
                 1 Item
@@ -346,16 +359,15 @@ const Basket = () => {
             </div>
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                {discount ===0 ? <h2> £ 0</h2> : <h2> £{discount}</h2> }
+                {discount === 0 ? <h2> £ 0</h2> : <h2> £{discount}</h2>}
               </div>
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
                 Discount
               </div>
             </div>
-             <div className="flex flex-row md:flex-col items-center justify-between">
+            <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-              {price ? <h2> £{ price.toFixed(2)}</h2> : <Loader size="xs" />}
-                
+                {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
               </div>
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
                 Total
@@ -378,6 +390,7 @@ const Basket = () => {
                       discount,
                       condition,
                       productCondition,
+                      inPercent,
                     },
                   });
                 }

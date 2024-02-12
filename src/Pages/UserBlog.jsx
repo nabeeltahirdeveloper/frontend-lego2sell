@@ -6,7 +6,7 @@ import CryptoJS from "crypto-js";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import baseUrl from "../context/baseUrl";
-import { Editor } from '@tinymce/tinymce-react';
+import { Editor } from "@tinymce/tinymce-react";
 
 const UserBlog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -18,13 +18,12 @@ const UserBlog = () => {
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const editorRef = useRef(null);
+  console.log(editorRef.current.getContent(),"ref");
   const log = () => {
     if (editorRef.current) {
-      console.log(editorRef.current.getContent());
     }
   };
 
-  
   const [formData, setFormData] = useState({
     userId: storedUserId,
     userName: "test",
@@ -80,7 +79,7 @@ const UserBlog = () => {
   };
 
   const handleEditorChange = (content) => {
-    console.log("Content was updated:", content)
+    console.log("Content was updated:", content);
     setFormData({ ...formData, description: content });
   };
   const handleSubEditorChange = (content) => {
@@ -89,7 +88,6 @@ const UserBlog = () => {
 
   const handleSubmit = async () => {
     // e.preventDefault();
-   
 
     console.log("set image", formData);
     try {
@@ -145,7 +143,7 @@ const UserBlog = () => {
     try {
       const token = localStorage.getItem("token");
       const apiUrl = baseUrl + "/admin/api/blog/" + blogId;
-      const response = await axios.delete(apiUrl,{
+      const response = await axios.delete(apiUrl, {
         headers: { Authorization: `Bearer ${token}` },
       });
       console.log("Blog deleted successfully:", response.data);
@@ -176,7 +174,6 @@ const UserBlog = () => {
       handleSubmit();
     }
   }, [formData.description]);
-
 
   return (
     <>
@@ -255,7 +252,7 @@ const UserBlog = () => {
                   className="w-full p-2 border border-gray-300 rounded mt-1"
                 />
               </div>
-              
+
               <div className="mb-4">
                 <label
                   htmlFor="image"
@@ -278,14 +275,14 @@ const UserBlog = () => {
                   Sub Title
                 </label>
                 <div>
-                <input
-                  type="text"
-                  id="subTitle"
-                  name="subTitle"
-                  value={formData.subTitle}
-                  onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                />
+                  <input
+                    type="text"
+                    id="subTitle"
+                    name="subTitle"
+                    value={formData.subTitle}
+                    onChange={handleChange}
+                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                  />
                 </div>
               </div>
               <div className="mb-6 mt-5">
@@ -326,35 +323,34 @@ const UserBlog = () => {
                   /> */}
                   <Editor
                     name="description"
-      apiKey='j21ua41lr6mtfwtkoqya22hincmd464fz9uviv2k6z633eds'
-      init={{
-        plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight ',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [
-          { value: 'First.Name', title: 'First Name' },
-          { value: 'Email', title: 'Email' },
-        ],
-      }}
-              onInit={(evt, editor) => editorRef.current = editor}
-
-      initialValue={formData.description}
-      
-        
-
-    />
-
-
+                    apiKey="j21ua41lr6mtfwtkoqya22hincmd464fz9uviv2k6z633eds"
+                    init={{
+                      plugins:
+                        "anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount",
+                      toolbar:
+                        "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight ",
+                      tinycomments_mode: "embedded",
+                      tinycomments_author: "Author name",
+                      mergetags_list: [
+                        { value: "First.Name", title: "First Name" },
+                        { value: "Email", title: "Email" },
+                      ],
+                    }}
+                    onInit={(evt, editor) => (editorRef.current = editor)}
+                    initialValue={formData.description}
+                  />
                 </div>
               </div>
               <button
                 style={{ marginTop: "50px" }}
                 type="submit"
-                onClick={(e)=>{
+                onClick={(e) => {
                   // handleEditorChange(editorRef.current.getContent())
                   e.preventDefault();
-                  setFormData({ ...formData, description: editorRef.current.getContent() });
+                  setFormData({
+                    ...formData,
+                    description: editorRef.current.getContent(),
+                  });
                   // handleSubmit(e)
                 }}
                 className="w-full bg-blue-500 text-white font-semibold p-2 rounded"
@@ -363,7 +359,7 @@ const UserBlog = () => {
                 {loading ? "Loading..." : "Submit"}
               </button>
             </form>
-          {/* <button onClick={log}>Log editor content</button> */}
+            {/* <button onClick={log}>Log editor content</button> */}
           </div>
         </div>
 

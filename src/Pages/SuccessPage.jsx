@@ -14,6 +14,7 @@ const SuccessPage = () => {
   const condition = location.state.condition
   const offerId = location.state.offerId
   const discount = location.state.discount
+  const inPercent = location.state.inPercent
   // console.log(offerId)
   const [PdfTime, setPdfTime] = useState()
   // console.log(PdfTime)
@@ -166,6 +167,8 @@ const SuccessPage = () => {
                     orderId={offerId}
                     date={PdfTime}
                     discount={discount}
+                    price={price}
+                    inPercent={inPercent}
 
                   />
                 </div>

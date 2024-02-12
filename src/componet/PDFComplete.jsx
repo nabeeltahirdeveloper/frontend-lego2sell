@@ -1,18 +1,32 @@
-import React, { useEffect, useState } from "react"
-import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib"
-import download from "downloadjs"
-import { useDisclosure } from "@mantine/hooks"
-import { Modal } from "@mantine/core"
-import axios from "axios"
-import baseUrl from "../context/baseUrl"
+import React, { useEffect, useState } from "react";
+import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import download from "downloadjs";
+import { useDisclosure } from "@mantine/hooks";
+import { Modal } from "@mantine/core";
+import axios from "axios";
+import baseUrl from "../context/baseUrl";
 // import { Modal } from "flowbite"
 // import pdf from "../../public/SellyournewsetsatLEGO2sell.pdf"
-const PDFModificationExample = ({ orderId, date, opened, open, close ,discount}) => {
-  const [allowDownload, setAllowDownload] = useState()
-  const [orderitems, setOrderitems] = useState()
-  const [data, setData] = useState()
-  const storedUserId = localStorage.getItem("userId")
-  const SearchValue = localStorage.getItem("SearchValue")
+const PDFModificationExample = ({
+  orderId,
+  date,
+  opened,
+  open,
+  close,
+  discount,
+  price,
+  inPercent,
+}) => {
+  function calculatePercentageIncrease(originalPrice, newPrice) {
+    const increase = newPrice - originalPrice;
+    const percentageIncrease = (increase / originalPrice) * 100;
+    return percentageIncrease.toFixed(2); // Rounds the result to 2 decimal places
+  }
+  const [allowDownload, setAllowDownload] = useState();
+  const [orderitems, setOrderitems] = useState();
+  const [data, setData] = useState();
+  const storedUserId = localStorage.getItem("userId");
+  const SearchValue = localStorage.getItem("SearchValue");
   const handleSearch = async () => {
     try {
       const response = await fetch(`${baseUrl}/find-lego`, {
@@ -21,64 +35,64 @@ const PDFModificationExample = ({ orderId, date, opened, open, close ,discount})
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ itemCode: orderitems?.ProductId }),
-      })
+      });
 
-      const data = await response.json()
-      setData(data)
+      const data = await response.json();
+      setData(data);
       // console.log("Data", data)
     } catch {
       // alert("Could not find the LEGO you are looking for.")
     } finally {
       // Set loading state back to false
     }
-  }
+  };
   useEffect(() => {
-    handleSearch()
-  }, [setData, orderitems?.ProductId])
-  const [details, setDetails] = useState()
+    handleSearch();
+  }, [setData, orderitems?.ProductId]);
+  const [details, setDetails] = useState();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           `${baseUrl}/Mydetails/${storedUserId}`
-        )
-        setDetails(response.data.Mydetails[0])
+        );
+        setDetails(response.data.Mydetails[0]);
         const response1 = await fetch(`${baseUrl}/find-lego`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ itemCode: SearchValue }),
-        })
+        });
 
-        const data = await response1.json()
+        const data = await response1.json();
         // console.log("Data", data)
         // localStorage.setItem("data", data)
         if (data.message === "SUCCESS") {
-          setData(data)
+          setData(data);
         } else {
           // console.log("error")
           // alert("Could not find the LEGO you are looking for.")
         }
       } catch (error) {
-        console.error("An error occurred:", error)
+        console.error("An error occurred:", error);
         // Handle the error as needed
       }
-    }
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
   const handleModifyPdf = async () => {
-    const url = "/completpdf.pdf"
+    const url = "/completpdf.pdf";
 
-    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer())
+    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
 
-    const pdfDoc = await PDFDocument.load(existingPdfBytes)
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    const pages = pdfDoc.getPages()
-    const firstPage = pages[1]
-    const { width, height } = firstPage.getSize()
+    const pages = pdfDoc.getPages();
+    const firstPage = pages[1];
+    const { width, height } = firstPage.getSize();
     firstPage.drawText(`${date}`, {
       x: 220,
       y: 240,
@@ -86,9 +100,9 @@ const PDFModificationExample = ({ orderId, date, opened, open, close ,discount})
       font: helveticaFont,
       color: rgb(0, 0, 0),
       rotate: degrees(0),
-    })
-    const second = pages[1]
-    const { width1, height1 } = second.getSize()
+    });
+    const second = pages[1];
+    const { width1, height1 } = second.getSize();
     firstPage.drawText(`#${orderId}`, {
       x: 220,
       y: 200,
@@ -96,37 +110,35 @@ const PDFModificationExample = ({ orderId, date, opened, open, close ,discount})
       font: helveticaFont,
       color: rgb(0, 0, 0),
       rotate: degrees(0),
-    })
+    });
 
-    const pdfBytes = await pdfDoc.save()
+    const pdfBytes = await pdfDoc.save();
     // Trigger the browser to download the PDF document
-    download(pdfBytes, "lego2sellPDF.pdf", "application/pdf")
-    close()
-  }
+    download(pdfBytes, "lego2sellPDF.pdf", "application/pdf");
+    close();
+  };
 
   // console.log(orderitems)
   useEffect(() => {
     const fetchUserOrders = async () => {
       try {
-        const response = await axios.get(
-          `${baseUrl}/Getorder/${storedUserId}`
-        )
+        const response = await axios.get(`${baseUrl}/Getorder/${storedUserId}`);
 
         if (response.status === 200) {
-          const { orders } = response.data
+          const { orders } = response.data;
           // console.log("User orders:", orders)
-          setOrderitems(orders[orders.length - 1])
+          setOrderitems(orders[orders.length - 1]);
           // Process the orders data as needed
         } else {
-          throw new Error("Error: " + response.status)
+          throw new Error("Error: " + response.status);
         }
       } catch (error) {
-        console.error("An error occurred:", error)
+        console.error("An error occurred:", error);
       }
-    }
+    };
 
-    fetchUserOrders()
-  }, [storedUserId, setOrderitems])
+    fetchUserOrders();
+  }, [storedUserId, setOrderitems]);
 
   return (
     <div>
@@ -196,8 +208,26 @@ const PDFModificationExample = ({ orderId, date, opened, open, close ,discount})
                 <div>{orderitems?.setCondition}</div>
               </div>
               <div className="flex  flex-wrap w-full items-center justify-between mt-2">
+                <div>Actual Price</div>
+                <div>£{(price - discount).toFixed(2)}</div>
+              </div>
+              <div className="flex text-red-500  flex-wrap w-full items-center justify-between mt-2">
                 <div>Discount</div>
-                <div> {discount ===0 ? <h2> £ 0</h2> : <h2> £{discount}</h2> }</div>
+                {/* <div> {discount ===0 ||discount===null ? <h2> £ 0</h2> : <h2> {inPercent &&   ({calculatePercentageIncrease( price - discount,price)}%)} - £{discount}</h2> }</div> */}
+                <div>
+                  {discount === 0 || discount === null ? (
+                    <h2>£0</h2>
+                  ) : (
+                    <h2>
+                      {inPercent &&
+                        `${calculatePercentageIncrease(
+                          price - discount,
+                          price
+                        )}% -`}{" "}
+                      £{discount}
+                    </h2>
+                  )}
+                </div>
               </div>
               <hr className="mt-4" />
               <div className="flex  flex-wrap w-full items-center justify-between mt-4">
@@ -222,7 +252,7 @@ const PDFModificationExample = ({ orderId, date, opened, open, close ,discount})
         </div>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default PDFModificationExample
+export default PDFModificationExample;

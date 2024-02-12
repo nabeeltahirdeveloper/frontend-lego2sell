@@ -12,7 +12,8 @@ const Summary = ({
   formData,
   storedUserId,
   productCondition,
-  discount
+  discount,
+  inPercent
 }) => {
   // console.log(
   //   "demo92387273627632376",
@@ -47,7 +48,8 @@ const Summary = ({
     ProductImg: data?.body?.image_url,
     timestamp: new Date(),
     setCondition: productCondition,
-    discount:discount
+    discount:discount,
+    inPercent:inPercent
   }
   const [orderitems, setOrderitems] = useState()
   // console.log("demo111", orderitems)
@@ -108,10 +110,10 @@ const Summary = ({
       const offerId = response.data.offerId
       localStorage.setItem("BasketStatus", "complete")
       navigate("/success", {
-        state: { data, price, SearchValue, condition, offerId,discount },
+        state: { data, price, SearchValue, condition, offerId,discount,inPercent },
       })
-      // localStorage.setItem("Basket", "")
       window.scrollTo({ top: 0, behavior: "smooth" })
+      localStorage.removeItem("Discount")
       // console.log("workingsdsd", response.data.offerId)
     } catch (error) {
       console.error(error)
@@ -364,7 +366,7 @@ const Summary = ({
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   <h2>
-                  {discount ===0 ? <h2> £ 0</h2> : <h2> £{discount}</h2> }
+                  {discount ===0 || discount===null ? <h2> £ 0</h2> : <h2> £{discount}</h2> }
                   </h2>
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">

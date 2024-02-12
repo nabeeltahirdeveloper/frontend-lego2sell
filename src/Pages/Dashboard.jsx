@@ -283,6 +283,8 @@ const Dashboard = (props) => {
                       discount={value?.discount}
                       Status={value?.Status}
                       offerId={value?.offerId}
+                      inPercent={value?.inPercent}
+
                     />
                   ))
               )}
@@ -342,6 +344,7 @@ const Dashboard = (props) => {
                       Price={value?.Price}
                       Status={value?.Status}
                       offerId={value?.offerId}
+                      inPercent={value?.inPercent}
                     />
                   ))
               )}

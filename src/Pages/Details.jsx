@@ -13,6 +13,7 @@ const Details = () => {
   const price = localStorage.getItem("Price")
   const discount = localStorage.getItem("Discount")
   const productCondition = location.state?.productCondition
+  const inPercent=location.state?.inPercent
   const SearchValue = localStorage.getItem("SearchValue")
   const condition = localStorage.getItem("condition")
   // console.log("condi", productCondition)
@@ -37,6 +38,8 @@ const Details = () => {
               data={data}
               setActive={setActive}
               discount={discount}
+              inPercent={inPercent}
+
 
             />
           </Stepper.Step>
@@ -51,6 +54,7 @@ const Details = () => {
               price={price}
               data={data}
               discount={discount}
+              inPercent={inPercent}
             />
           </Stepper.Step>
           <Stepper.Step disabled label="" description="">
