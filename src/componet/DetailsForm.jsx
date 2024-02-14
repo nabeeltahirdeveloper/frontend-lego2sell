@@ -1,75 +1,87 @@
-import { Divider, Group, Radio, Select, TextInput, Loader } from "@mantine/core"
-import { useForm } from "@mantine/form"
-import React, { useEffect, useState } from "react"
-import { DatePickerInput } from "@mantine/dates"
+import {
+  Divider,
+  Group,
+  Radio,
+  Select,
+  TextInput,
+  Loader,
+} from "@mantine/core";
+import { useForm } from "@mantine/form";
+import React, { useEffect, useState } from "react";
+import { DatePickerInput } from "@mantine/dates";
 // import CountryData from "../../CountryData.json"
 // import cities from "../../cities.json"
 // import CountryCitits from "../../CountryCitits.json"
-import CountryCitits from "../CountryCitits.json"
-import axios from "axios"
-import { Helmet } from "react-helmet"
-import { useLocation } from "react-router-dom"
-import Editdetails from "./Editdetails"
-import { useDisclosure } from "@mantine/hooks"
-import baseUrl from "../context/baseUrl"
+import CountryCitits from "../CountryCitits.json";
+import axios from "axios";
+import { Helmet } from "react-helmet";
+import { useLocation } from "react-router-dom";
+import Editdetails from "./Editdetails";
+import { useDisclosure } from "@mantine/hooks";
+import baseUrl from "../context/baseUrl";
 // import Select from "react-select"
-const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPercent}) => {
-  console.log(price,"price in component",discount);
-  const [searchValue, onSearchChange] = useState("")
+const DetailsForm = ({
+  setActive,
+  setFormData,
+  storedUserId,
+  discount,
+  price,
+  inPercent,
+}) => {
+  console.log(price, "price in component", discount);
+  const [searchValue, onSearchChange] = useState("");
 
-  const [data, setData] = useState()
+  const [data, setData] = useState();
   // console.log("gokulakrishhsn", data)
-  const [countryid, setCountryid] = useState("")
-  const location = useLocation()
+  const [countryid, setCountryid] = useState("");
+  const location = useLocation();
   useEffect(() => {
     // Check if the page has already been reloaded
-    const hasReloaded = sessionStorage.getItem("hasReloaded")
+    const hasReloaded = sessionStorage.getItem("hasReloaded");
 
     if (!hasReloaded) {
       // If the page has not been reloaded yet, set the flag and reload the page
-      sessionStorage.setItem("hasReloaded", true)
-      window.location.reload()
+      sessionStorage.setItem("hasReloaded", true);
+      window.location.reload();
     } else {
       // If the page has already been reloaded, perform any desired action
       // console.log("Page has already been reloaded")
     }
-  }, [])
-  const [PaymentDetails, setPaymentDetails] = useState(null) // Initialize with null or appropriate default value
+  }, []);
+  const [PaymentDetails, setPaymentDetails] = useState(null); // Initialize with null or appropriate default value
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${baseUrl}/Mydetails/${storedUserId}`
-        )
-        const jsonData = await response.json()
+        const response = await fetch(`${baseUrl}/Mydetails/${storedUserId}`);
+        const jsonData = await response.json();
         // Assuming you have a 'setData' function to set the fetched data
-        setData(jsonData.Mydetails[0])
+        setData(jsonData.Mydetails[0]);
       } catch (error) {
-        console.error("Error fetching data:", error)
+        console.error("Error fetching data:", error);
       }
-    }
+    };
 
-    fetchData() // Fetch the data first
+    fetchData(); // Fetch the data first
 
     // Now, set the PaymentDetails state after the data has been fetched and 'data' is updated.
-    setPaymentDetails(data?.paymentMethod)
-  }, [data?.paymentMethod, storedUserId])
+    setPaymentDetails(data?.paymentMethod);
+  }, [data?.paymentMethod, storedUserId]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
           "https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json"
-        )
-        const data = await response.json()
-        setCityData(data)
+        );
+        const data = await response.json();
+        setCityData(data);
       } catch (error) {
-        console.error("Error fetching city data:", error)
+        console.error("Error fetching city data:", error);
       }
-    }
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -87,28 +99,28 @@ const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPe
   // }, [storedUserId])
 
   // console.log("Paa", data?.paymentMethod)
-  const [state, setState] = useState([])
+  const [state, setState] = useState([]);
   // console.log(state)
-  const [stateid, setStateid] = useState("")
+  const [stateid, setStateid] = useState("");
   // const price = localStorage.getItem("Price")
   const handlecounty = (e) => {
-    const getcountryId = e.target.value
+    const getcountryId = e.target.value;
     const getStatedata = CountryCitits.find(
       (country) => country.country_id === getcountryId
-    ).states
-    setState(getStatedata)
-    setCountryid(getcountryId)
-  }
+    ).states;
+    setState(getStatedata);
+    setCountryid(getcountryId);
+  };
 
   const handlestate = (e) => {
-    const stateid = e.target.value
-    setStateid(stateid)
-  }
+    const stateid = e.target.value;
+    setStateid(stateid);
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // alert("Get Country id" + countryid + " And " + stateid)
-  }
+  };
 
   // const [reload, setReload] = useState("0")
   // // console.log(reload)
@@ -125,8 +137,8 @@ const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPe
   //     }
   //   }, [])
   // }
-  const [opened, { open, close }] = useDisclosure(false)
-  const [firstName, setFirstName] = useState()
+  const [opened, { open, close }] = useDisclosure(false);
+  const [firstName, setFirstName] = useState();
   const form = useForm({
     initialValues: {
       email: data?.email,
@@ -148,7 +160,7 @@ const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPe
     },
 
     validate: {},
-  })
+  });
 
   const nextStep = () => {
     setActive((current) => {
@@ -159,12 +171,12 @@ const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPe
         // Scroll to the top of the page with a smooth animation
         if (window.innerWidth <= 768) {
           // Scroll to the top of the page using the scrollTo() method
-          window.scrollTo(0, 0)
+          window.scrollTo(0, 0);
         }
       }
-      return current < 3 ? current + 1 : current
-    })
-  }
+      return current < 3 ? current + 1 : current;
+    });
+  };
   // console.log("gokula", formData)
   // const payload = {
   //   paymentMethod: formData.paymentMethod,
@@ -174,9 +186,9 @@ const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPe
   // if (PaymentDetails !== "paypal") {
   //   payload.accountNumber = formData.accountNumber
   // }
-  const [cityData, setCityData] = useState([])
+  const [cityData, setCityData] = useState([]);
   // console.log(cityData)
-  const country = [...new Set(cityData.map((items) => items.country))]
+  const country = [...new Set(cityData.map((items) => items.country))];
 
   // console.log("demo66", data)
   return (
@@ -557,23 +569,33 @@ const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPe
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-blue-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   <h2>
-                  {price ? <h2> £{ (price - discount).toFixed(2)}</h2> : <Loader size="xs" />}
+                    {price ? (
+                      <h2> £{(price - discount).toFixed(2)}</h2>
+                    ) : (
+                      <Loader size="xs" />
+                    )}
                   </h2>
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">
                   1 Item
                 </div>
               </div>
-            {discount !=0 && discount !=null ?  <div className="flex flex-row md:flex-col items-center justify-between">
-                <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                  <h2>
-                  {discount ===0 ||discount===null ? <h2> £ 0</h2> : <h2> £{discount}</h2> }
-                  </h2>
+              {discount != 0 && discount != null ? (
+                <div className="flex flex-row md:flex-col items-center justify-between">
+                  <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                    <h2>
+                      {discount === 0 || discount === null ? (
+                        <h2> £ 0</h2>
+                      ) : (
+                        <h2> £{discount}</h2>
+                      )}
+                    </h2>
+                  </div>
+                  <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                    Discount
+                  </div>
                 </div>
-                <div className="font-bold text-xl md:text-base order-1 md:order-2">
-                  Discount
-                </div>
-              </div>:null}
+              ) : null}
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   <h2>
@@ -596,7 +618,7 @@ const DetailsForm = ({ setActive, setFormData, storedUserId,discount,price ,inPe
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DetailsForm
+export default DetailsForm;

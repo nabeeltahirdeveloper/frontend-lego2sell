@@ -20,6 +20,10 @@ const CustomerDiscounts = () => {
   const [amount, setAmount] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [startTimeH, setStartTimeH] = useState(0);
+  const [startTimeM, setStartTimeM] = useState(0);
+  const [endTimeH, setEndTimeH] = useState(0);
+  const [endTimeM, setEndTimeM] = useState(0);
   const [maxUses, setMaxUses] = useState(null);
   const [minAmount, setMinAmount] = useState(null);
   const [usePerPerson, setUsePerPerson] = useState(false);
@@ -114,10 +118,10 @@ const CustomerDiscounts = () => {
     } else {
       finalAmount = amount;
     }
-    const parsedDate = moment(startDate, "DD/MM/YYYY");
+    const parsedDate = moment(startDate, "YYYY-MM-DD");
 
     const formattedStartDate = parsedDate.format("MM/DD/YYYY");
-    const parsedDate1 = moment(endDate, "DD/MM/YYYY");
+    const parsedDate1 = moment(endDate, "YYYY-MM-DD");
 
     const formattedEndDate = parsedDate1.format("MM/DD/YYYY");
     let reqData = {
@@ -133,6 +137,10 @@ const CustomerDiscounts = () => {
       discountNote: discountNote,
       adminId: storedUserId,
       docId: docId,
+      startTimeH: startTimeH,
+      startTimeM: startTimeM,
+      endTimeH: endTimeH,
+      endTimeM: endTimeM,
     };
 
     try {
@@ -203,13 +211,17 @@ const CustomerDiscounts = () => {
       } else {
         setAmount(+item.amount);
       }
-      setStartDate(moment(item?.startDate).format("DD/MM/YYYY"));
-      setEndDate(moment(item?.endDate).format("DD/MM/YYYY"));
+      setStartDate(moment(item?.startDate).format("YYYY-MM-DD"));
+      setEndDate(moment(item?.endDate).format("YYYY-MM-DD"));
       setMaxUses(item.maxUses);
       setMinAmount(item.minAmount);
       setUsePerPerson(item.useOnce);
       setStatus(item.status);
       setDiscountNote(item.discountNote);
+      setStartTimeH(item.startTimeH);
+      setStartTimeM(item.startTimeM);
+      setEndTimeH(item.endTimeH);
+      setEndTimeM(item.endTimeM);
     } catch (error) {
       console.log(error);
     }
@@ -228,6 +240,10 @@ const CustomerDiscounts = () => {
     setUsePerPerson(null);
     setStatus("");
     setDiscountNote("");
+    setStartTimeH(0);
+    setStartTimeM(0);
+    setEndTimeH(0);
+    setEndTimeM(0);
   };
   const fetchInfo = () => {
     // Data to encrypt
@@ -371,7 +387,9 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
-              <p className="text-black text-[14px] w-[400px]">The name of discount. user will see this on checkout</p>
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                The name of discount. user will see this on checkout
+              </p>
               {nameError && (
                 <div className="text-red-600 text-sm">{nameError}</div>
               )}
@@ -383,10 +401,13 @@ const CustomerDiscounts = () => {
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                placeholder=""             className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                placeholder=""
+                className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
-               <p className="text-black text-[14px] w-[400px]">The code customers will enter to apply this Discount.</p>
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                The code customers will enter to apply this Discount.
+              </p>
               {codeError && (
                 <div className="text-red-600 text-sm">{codeError}</div>
               )}
@@ -398,7 +419,8 @@ const CustomerDiscounts = () => {
               <input
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder=""               className="bg-white focus:outline-none p-1 border-2 w-[345px] max-md:w-[145px] max-sm:w-[60px] border-gray-300 rounded-[4px]"
+                placeholder=""
+                className="bg-white focus:outline-none p-1 border-2 w-[200px] max-md:w-[145px] max-sm:w-[60px] border-gray-300 rounded-[4px]"
                 type="number"
               />
               <select
@@ -410,41 +432,108 @@ const CustomerDiscounts = () => {
                 <option value={"%"}>%</option>
                 <option value={""}>Num</option>
               </select>
-              <p className="text-black text-[14px] w-[400px]">The amount as a percentage or flat rate. Cannot be left blank.</p>
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                The amount as a percentage or flat rate. Cannot be left blank.
+              </p>
               {amountError && (
                 <div className="text-red-600 text-sm">{amountError}</div>
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
+          <div className="flex justify-between gap-[127px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
-              Start Date:
+              Start date:
             </h4>
             <div>
-              <input
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-                placeholder=""    className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
-                type="text"
-              />
-               <p className="text-black text-[14px] w-[400px]">Put the date this disocunt will start on</p>
+              <div className="flex gap-1">
+                <input
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                  placeholder="YYYY-MM-DD"
+                  className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                  type="text"
+                />
+                <input
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (newValue < 24) {
+                      setStartTimeH(e.target.value);
+                    }
+                  }}
+                  value={startTimeH}
+                  placeholder="hh"
+                  className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                  type="number"
+                  max={24}
+                />
+                <input
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (newValue < 60) {
+                      setStartTimeM(e.target.value);
+                    }
+                  }}
+                  value={startTimeM}
+                  placeholder="mm"
+                  className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                  type="number"
+                  max={60}
+                />
+              </div>
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                Put the date and time. this discount will start on. Leave blank
+                for no start date.
+              </p>
               {startDateError && (
                 <div className="text-red-600 text-sm">{startDateError}</div>
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
+          <div className="flex justify-between gap-[85px] max-md:gap-[25px] items-center">
             <h4 className="text-[20px] font-[500] whitespace-nowrap max-sm:whitespace-normal">
-              Expiration Date:
+              Expiration date:
             </h4>
             <div>
-              <input
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-                placeholder=""    className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
-                type="text"
-              />
-               <p className="text-black text-[14px] w-[400px]">Put the date this discount will expire</p>
+              <div className="flex gap-1">
+                <input
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                  placeholder="YYYY-MM-DD"
+                  className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                  type="text"
+                />
+                <input
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (newValue < 24) {
+                      setEndTimeH(e.target.value);
+                    }
+                  }}
+                  value={endTimeH}
+                  placeholder="hh"
+                  className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                  type="number"
+                  max={24}
+                />
+                <input
+                  onChange={(e) => {
+                    const newValue = e.target.value;
+                    if (newValue < 60) {
+                      setEndTimeM(e.target.value);
+                    }
+                  }}
+                  value={endTimeM}
+                  placeholder="mm"
+                  className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                  type="number"
+                  max={60}
+                />
+              </div>
+
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                Put the date and time. this discount will expire on. leave blank
+                to never expire.
+              </p>
               {endDateError && (
                 <div className="text-red-600 text-sm">{endDateError}</div>
               )}
@@ -462,7 +551,10 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
-               <p className="text-black text-[14px] w-[400px]">The minimum subtotal of item price in a  cart before this discussion may be applied</p>
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                The minimum subtotal of item price in a cart before this
+                discussion may be applied
+              </p>
               {minAmountError != "" && (
                 <div className="text-red-600 text-sm">{minAmountError}</div>
               )}
@@ -480,7 +572,9 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
-               <p className="text-black text-[14px] w-[400px]">The max number of times this discount can be used</p>
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                The max number of times this discount can be used
+              </p>
               {maxUsesError != "" && (
                 <div className="text-red-600 text-sm">{maxUsesError}</div>
               )}
@@ -498,7 +592,9 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2  h-[24px] w-[24px] border-gray-300 rounded-[4px]"
                 type="checkbox"
               />
-               <p className="text-black text-[14px] ml-1">Prevent customers from using this discount more than once.</p>
+              <p className="text-gray-500 text-[14px] ml-1">
+                Prevent customers from using this discount more than once.
+              </p>
               {usePerPersonError && (
                 <div className="text-red-600 text-sm">{usePerPersonError}</div>
               )}
@@ -516,7 +612,9 @@ const CustomerDiscounts = () => {
                 <option value="Active">Active</option>
                 <option value="Not Active">Not Active</option>
               </select>
-              <p className="text-black text-[14px] w-[400px]">The status of this discount code</p>
+              <p className="text-gray-500 text-[14px] w-[400px]">
+                The status of this discount code
+              </p>
               {statusError && (
                 <div className="text-red-600 text-sm">{statusError}</div>
               )}
