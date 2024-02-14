@@ -213,7 +213,7 @@ const OrderCards = ({
                           `${calculatePercentageIncrease(
                             Price - discount,
                             Price
-                          )}% + `} {inPercent ?   `£${(Price - discount).toFixed(2)}` :  `£${(discount)}`}
+                          )}% + `} {!inPercent &&   `£${(Price - discount).toFixed(2)} +`} {inPercent ?   `£${(Price - discount).toFixed(2)}` :  `£${(discount)}`}
                         
                       </h2>
                     )}

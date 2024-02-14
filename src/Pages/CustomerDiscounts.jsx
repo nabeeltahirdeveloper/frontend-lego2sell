@@ -373,12 +373,12 @@ const CustomerDiscounts = () => {
         }}
         opened={createDiscountModal}
       >
-        <div className="flex flex-col gap-[50px]  bg-gray-100 py-[60px] px-[60px] max-sm:px-[30px] rounded-[20px]">
+        <div className="flex flex-col gap-[50px]  bg-gray-100 py-[60px] px-[60px] max-sm:px-[5px] rounded-[20px]">
           <p className="text-center text-[24px] font-bold ">
             {title} Discount Detail
           </p>
-          <div className="flex justify-between gap-[100px] max-md:gap-[50px] max-sm:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500]">Name:</h4>
+          <div className="flex justify-start gap-[100px] max-md:gap-[50px] max-sm:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px]">Name:</h4>
             <div>
               <input
                 value={name}
@@ -387,7 +387,7 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px] max-lg:w-[300px] max-sm:w-[200px]">
                 The name of discount. user will see this on checkout
               </p>
               {nameError && (
@@ -395,8 +395,8 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500]">Code:</h4>
+          <div className="flex justify-start gap-[100px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px]">Code:</h4>
             <div>
               <input
                 value={code}
@@ -405,7 +405,7 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px]">
                 The code customers will enter to apply this Discount.
               </p>
               {codeError && (
@@ -413,8 +413,8 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500]">Amount:</h4>
+          <div className="flex justify-start gap-[100px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px]">Amount:</h4>
             <div className="">
               <input
                 value={amount}
@@ -432,7 +432,7 @@ const CustomerDiscounts = () => {
                 <option value={"%"}>%</option>
                 <option value={""}>Num</option>
               </select>
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px]">
                 The amount as a percentage or flat rate. Cannot be left blank.
               </p>
               {amountError && (
@@ -440,12 +440,12 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[127px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap">
+          <div className="flex justify-start gap-[127px] max-md:gap-[25px] items-center max-lg:items-start ">
+            <h4 className="text-[20px] font-[500] w-[110px] whitespace-nowrap">
               Start date:
             </h4>
             <div>
-              <div className="flex gap-1">
+              <div className="flex max-md:flex-wrap gap-1">
                 <input
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
@@ -480,7 +480,7 @@ const CustomerDiscounts = () => {
                   max={60}
                 />
               </div>
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px]">
                 Put the date and time. this discount will start on. Leave blank
                 for no start date.
               </p>
@@ -489,12 +489,12 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[85px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap max-sm:whitespace-normal">
+          <div className="flex justify-start gap-[85px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px] whitespace-nowrap max-sm:whitespace-normal">
               Expiration date:
             </h4>
             <div>
-              <div className="flex gap-1">
+              <div className="flex max-md:flex-wrap gap-1">
                 <input
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
@@ -530,7 +530,7 @@ const CustomerDiscounts = () => {
                 />
               </div>
 
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px]">
                 Put the date and time. this discount will expire on. leave blank
                 to never expire.
               </p>
@@ -539,8 +539,8 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap">
+          <div className="flex justify-start gap-[100px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px] whitespace-nowrap">
               Min Amount:
             </h4>
             <div>
@@ -551,7 +551,7 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px]">
                 The minimum subtotal of item price in a cart before this
                 discussion may be applied
               </p>
@@ -560,8 +560,8 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap">
+          <div className="flex justify-start gap-[100px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px] whitespace-nowrap">
               Max Uses:
             </h4>
             <div>
@@ -572,7 +572,7 @@ const CustomerDiscounts = () => {
                 className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px]">
                 The max number of times this discount can be used
               </p>
               {maxUsesError != "" && (
@@ -580,8 +580,8 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap">
+          <div className="flex justify-start gap-[100px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px] whitespace-nowrap">
               Use Once:
             </h4>
             <div className="flex items-center">
@@ -600,8 +600,10 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap">Status</h4>
+          <div className="flex justify-start gap-[100px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px] whitespace-nowrap">
+              Status
+            </h4>
             <div>
               <select
                 value={status}
@@ -612,7 +614,7 @@ const CustomerDiscounts = () => {
                 <option value="Active">Active</option>
                 <option value="Not Active">Not Active</option>
               </select>
-              <p className="text-gray-500 text-[14px] w-[400px]">
+              <p className="text-gray-500 text-[14px] w-[400px] max-md:w-[300px] max-sm:w-[200px]">
                 The status of this discount code
               </p>
               {statusError && (
@@ -620,8 +622,8 @@ const CustomerDiscounts = () => {
               )}
             </div>
           </div>
-          <div className="flex justify-between gap-[100px] max-md:gap-[25px] items-center">
-            <h4 className="text-[20px] font-[500] whitespace-nowrap">
+          <div className="flex justify-start gap-[100px] max-md:gap-[25px] items-center max-lg:items-start">
+            <h4 className="text-[20px] font-[500] w-[110px] whitespace-nowrap">
               Discount Notes:
             </h4>
             <div className="w-full">
@@ -629,11 +631,11 @@ const CustomerDiscounts = () => {
                 value={discountNote}
                 onChange={(e) => setDiscountNote(e.target.value)}
                 rows={4}
-                className="bg-whiten  w-[100%] focus:outline-none p-1 border-2  border-gray-300 rounded-[4px]"
+                className="bg-whiten max-sm:ml-2 w-[100%] focus:outline-none p-1 border-2  border-gray-300 rounded-[4px]"
                 type="text"
               />
               {discountNoteError && (
-                <div className="text-red-600 text-sm">{discountNoteError}</div>
+                <div className="text-red-600  text-sm">{discountNoteError}</div>
               )}
             </div>
           </div>
