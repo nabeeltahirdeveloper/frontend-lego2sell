@@ -367,10 +367,11 @@ const CustomerDiscounts = () => {
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="enter the discount name"
-                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                placeholder=""
+                className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
+              <p className="text-black text-[14px] w-[400px]">The name of discount. user will see this on checkout</p>
               {nameError && (
                 <div className="text-red-600 text-sm">{nameError}</div>
               )}
@@ -382,10 +383,10 @@ const CustomerDiscounts = () => {
               <input
                 value={code}
                 onChange={(e) => setCode(e.target.value)}
-                placeholder="enter discount code"
-                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                placeholder=""             className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
+               <p className="text-black text-[14px] w-[400px]">The code customers will enter to apply this Discount.</p>
               {codeError && (
                 <div className="text-red-600 text-sm">{codeError}</div>
               )}
@@ -397,8 +398,7 @@ const CustomerDiscounts = () => {
               <input
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="enter discount amount"
-                className="bg-white focus:outline-none border-2 w-[245px] max-md:w-[145px] max-sm:w-[60px] border-gray-300 rounded-[4px]"
+                placeholder=""               className="bg-white focus:outline-none p-1 border-2 w-[345px] max-md:w-[145px] max-sm:w-[60px] border-gray-300 rounded-[4px]"
                 type="number"
               />
               <select
@@ -410,6 +410,7 @@ const CustomerDiscounts = () => {
                 <option value={"%"}>%</option>
                 <option value={""}>Num</option>
               </select>
+              <p className="text-black text-[14px] w-[400px]">The amount as a percentage or flat rate. Cannot be left blank.</p>
               {amountError && (
                 <div className="text-red-600 text-sm">{amountError}</div>
               )}
@@ -423,10 +424,10 @@ const CustomerDiscounts = () => {
               <input
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                placeholder="DD/MM/YYYY"
-                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                placeholder=""    className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
+               <p className="text-black text-[14px] w-[400px]">Put the date this disocunt will start on</p>
               {startDateError && (
                 <div className="text-red-600 text-sm">{startDateError}</div>
               )}
@@ -440,10 +441,10 @@ const CustomerDiscounts = () => {
               <input
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                placeholder="DD/MM/YYYY"
-                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                placeholder=""    className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="text"
               />
+               <p className="text-black text-[14px] w-[400px]">Put the date this discount will expire</p>
               {endDateError && (
                 <div className="text-red-600 text-sm">{endDateError}</div>
               )}
@@ -457,10 +458,11 @@ const CustomerDiscounts = () => {
               <input
                 value={minAmount}
                 onChange={(e) => setMinAmount(e.target.value)}
-                placeholder="enter discount end date"
-                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                placeholder=""
+                className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
+               <p className="text-black text-[14px] w-[400px]">The minimum subtotal of item price in a  cart before this discussion may be applied</p>
               {minAmountError != "" && (
                 <div className="text-red-600 text-sm">{minAmountError}</div>
               )}
@@ -474,10 +476,11 @@ const CustomerDiscounts = () => {
               <input
                 value={maxUses}
                 onChange={(e) => setMaxUses(e.target.value)}
-                placeholder="enter discount max uses"
-                className="bg-white focus:outline-none border-2 w-[300px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
+                placeholder=""
+                className="bg-white focus:outline-none p-1 border-2 w-[400px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                 type="number"
               />
+               <p className="text-black text-[14px] w-[400px]">The max number of times this discount can be used</p>
               {maxUsesError != "" && (
                 <div className="text-red-600 text-sm">{maxUsesError}</div>
               )}
@@ -487,14 +490,15 @@ const CustomerDiscounts = () => {
             <h4 className="text-[20px] font-[500] whitespace-nowrap">
               Use Once:
             </h4>
-            <div>
+            <div className="flex items-center">
               <input
                 checked={usePerPerson}
                 value={usePerPerson}
                 onChange={() => setUsePerPerson(!usePerPerson)}
-                className="bg-white focus:outline-none border-2  h-[24px] w-[24px] border-gray-300 rounded-[4px]"
+                className="bg-white focus:outline-none p-1 border-2  h-[24px] w-[24px] border-gray-300 rounded-[4px]"
                 type="checkbox"
               />
+               <p className="text-black text-[14px] ml-1">Prevent customers from using this discount more than once.</p>
               {usePerPersonError && (
                 <div className="text-red-600 text-sm">{usePerPersonError}</div>
               )}
@@ -512,6 +516,7 @@ const CustomerDiscounts = () => {
                 <option value="Active">Active</option>
                 <option value="Not Active">Not Active</option>
               </select>
+              <p className="text-black text-[14px] w-[400px]">The status of this discount code</p>
               {statusError && (
                 <div className="text-red-600 text-sm">{statusError}</div>
               )}
@@ -526,7 +531,7 @@ const CustomerDiscounts = () => {
                 value={discountNote}
                 onChange={(e) => setDiscountNote(e.target.value)}
                 rows={4}
-                className="bg-whiten  w-[100%] focus:outline-none border-2  border-gray-300 rounded-[4px]"
+                className="bg-whiten  w-[100%] focus:outline-none p-1 border-2  border-gray-300 rounded-[4px]"
                 type="text"
               />
               {discountNoteError && (

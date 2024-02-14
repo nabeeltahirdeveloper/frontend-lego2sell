@@ -25,7 +25,7 @@ const OrderCards = ({
   function calculatePercentageIncrease(originalPrice, newPrice) {
     const increase = newPrice - originalPrice;
     const percentageIncrease = (increase / originalPrice) * 100;
-    return percentageIncrease.toFixed(2); // Rounds the result to 2 decimal places
+    return Math.ceil(percentageIncrease); // Rounds the result to 2 decimal places
   }
 
   const handleSearch = async () => {
@@ -200,7 +200,7 @@ const OrderCards = ({
                 <div>Actual Price</div>
                 <div>£{(Price - discount).toFixed(2)}</div>
               </div>
-              <div className="flex text-red-500 flex-wrap w-full items-center justify-between mt-2">
+              <div className="flex text-green-500 flex-wrap w-full items-center justify-between mt-2">
                 <div>Discount</div>
                 <div>
                   {" "}
@@ -213,8 +213,8 @@ const OrderCards = ({
                           `${calculatePercentageIncrease(
                             Price - discount,
                             Price
-                          )}% -`}{" "}
-                         £{discount}
+                          )}% + `} {inPercent ?   `£${(Price - discount).toFixed(2)}` :  `£${(discount)}`}
+                        
                       </h2>
                     )}
                   </div>

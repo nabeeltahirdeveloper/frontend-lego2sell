@@ -211,7 +211,7 @@ const PDFModificationExample = ({
                 <div>Actual Price</div>
                 <div>£{(price - discount).toFixed(2)}</div>
               </div>
-              <div className="flex text-red-500  flex-wrap w-full items-center justify-between mt-2">
+              <div className="flex text-green-500  flex-wrap w-full items-center justify-between mt-2">
                 <div>Discount</div>
                 {/* <div> {discount ===0 ||discount===null ? <h2> £ 0</h2> : <h2> {inPercent &&   ({calculatePercentageIncrease( price - discount,price)}%)} - £{discount}</h2> }</div> */}
                 <div>
@@ -223,8 +223,8 @@ const PDFModificationExample = ({
                         `${calculatePercentageIncrease(
                           price - discount,
                           price
-                        )}% -`}{" "}
-                      £{discount}
+                        )}% -`} 
+                     {inPercent ?   `£${(price - discount).toFixed(2)}` :  `£${(discount)}`}
                     </h2>
                   )}
                 </div>

@@ -138,13 +138,13 @@ const Basket = () => {
       const discounts = response.data.data;
 
       let discountVoucher = discounts.filter((discount, index) => {
-        if (discount.code === inputCode) {
+        if (discount.code.toLowerCase() === inputCode.toLowerCase()) {
           return discount;
         }
       });
       console.log(discountVoucher, "discount voucher");
 
-      if (discountVoucher[0]?.code === inputCode) {
+      if (discountVoucher[0]?.code.toLowerCase() === inputCode.toLowerCase() ) {
         if (discountVoucher[0].status === "Active") {
           if (
             isDateBetween(
@@ -357,14 +357,14 @@ const Basket = () => {
                 1 Item
               </div>
             </div>
-            <div className="flex flex-row md:flex-col items-center justify-between">
+           {discount !=0 && <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {discount === 0 ? <h2> £ 0</h2> : <h2> £{discount}</h2>}
               </div>
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
                 Discount
               </div>
-            </div>
+            </div>}
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
