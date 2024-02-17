@@ -14,6 +14,7 @@ const Summary = ({
   productCondition,
   discount,
   inPercent,
+  discountInPercent
 }) => {
   // console.log(
   //   "demo92387273627632376",
@@ -375,12 +376,12 @@ const Summary = ({
               </div>
               {discount != 0 && discount != null ? (
                 <div className="flex flex-row md:flex-col items-center justify-between">
-                  <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  <div className="text-blue-500 text-xl md:text-2xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                     <h2>
                       {discount === 0 || discount === null ? (
                         <h2> £ 0</h2>
                       ) : (
-                        <h2> £{discount}</h2>
+                        <h2>{discountInPercent !=0 ? `${discountInPercent} +` :null} £{discount}</h2>
                       )}
                     </h2>
                   </div>

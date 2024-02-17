@@ -4,6 +4,7 @@ import DetailsForm from "../componet/DetailsForm"
 import Summary from "../componet/Summary"
 import { useLocation } from "react-router-dom"
 const Details = () => {
+
   const [formData, setFormData] = useState([])
   const [active, setActive] = useState(0)
   const storedUserId = localStorage.getItem("userId")
@@ -14,6 +15,7 @@ const Details = () => {
   const discount = localStorage.getItem("Discount")
   const productCondition = location.state?.productCondition
   const inPercent=location.state?.inPercent
+  const discountInPercent=location.state?.discountInPercent
   const SearchValue = localStorage.getItem("SearchValue")
   const condition = localStorage.getItem("condition")
   // console.log("condi", productCondition)
@@ -39,7 +41,7 @@ const Details = () => {
               setActive={setActive}
               discount={discount}
               inPercent={inPercent}
-
+              discountInPercent={discountInPercent}
 
             />
           </Stepper.Step>
@@ -55,6 +57,7 @@ const Details = () => {
               data={data}
               discount={discount}
               inPercent={inPercent}
+              discountInPercent={discountInPercent}
             />
           </Stepper.Step>
           <Stepper.Step disabled label="" description="">

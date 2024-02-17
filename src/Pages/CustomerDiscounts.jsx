@@ -118,10 +118,10 @@ const CustomerDiscounts = () => {
     } else {
       finalAmount = amount;
     }
-    const parsedDate = moment(startDate, "YYYY-MM-DD");
+    const parsedDate = moment(startDate, "DD/MM/YYYY");
 
     const formattedStartDate = parsedDate.format("MM/DD/YYYY");
-    const parsedDate1 = moment(endDate, "YYYY-MM-DD");
+    const parsedDate1 = moment(endDate, "DD/MM/YYYY");
 
     const formattedEndDate = parsedDate1.format("MM/DD/YYYY");
     let reqData = {
@@ -211,8 +211,8 @@ const CustomerDiscounts = () => {
       } else {
         setAmount(+item.amount);
       }
-      setStartDate(moment(item?.startDate).format("YYYY-MM-DD"));
-      setEndDate(moment(item?.endDate).format("YYYY-MM-DD"));
+      setStartDate(moment(item?.startDate).format("DD/MM/YYYY"));
+      setEndDate(moment(item?.endDate).format("DD/MM/YYYY"));
       setMaxUses(item.maxUses);
       setMinAmount(item.minAmount);
       setUsePerPerson(item.useOnce);
@@ -449,7 +449,7 @@ const CustomerDiscounts = () => {
                 <input
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
-                  placeholder="YYYY-MM-DD"
+                  placeholder="DD/MM/YYYY"
                   className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                   type="text"
                 />
@@ -498,7 +498,7 @@ const CustomerDiscounts = () => {
                 <input
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                  placeholder="YYYY-MM-DD"
+                  placeholder="DD/MM/YYYY"
                   className="bg-white focus:outline-none p-1 border-2 w-[150px] max-md:w-[200px] max-sm:w-[100px]  border-gray-300 rounded-[4px]"
                   type="text"
                 />

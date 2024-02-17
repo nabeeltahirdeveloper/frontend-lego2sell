@@ -20,7 +20,7 @@ const PDFModificationExample = ({
   function calculatePercentageIncrease(originalPrice, newPrice) {
     const increase = newPrice - originalPrice;
     const percentageIncrease = (increase / originalPrice) * 100;
-    return percentageIncrease.toFixed(2); // Rounds the result to 2 decimal places
+    return percentageIncrease.toFixed(0); // Rounds the result to 2 decimal places
   }
   const [allowDownload, setAllowDownload] = useState();
   const [orderitems, setOrderitems] = useState();

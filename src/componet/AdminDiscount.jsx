@@ -204,12 +204,12 @@ setData(updatedArray)
             </div>
             <div className="mr-auto w-[14%] max-sm:w-[70%]  lg:py-0 py-4  font-medium">
               <span className="text-[16px] text-blue-600"> Start Date </span>:{" "}
-              {moment(items?.startDate).format("YYYY-MM-DD")}
+              {moment(items?.startDate).format("DD/MM/YYYY")}
               <br className="md:hidden" />
             </div>
             <div className="mr-auto w-[14%] max-sm:w-[80%]  lg:py-0 py-4  font-medium">
               <span className="text-[16px] text-blue-600"> End Date </span>:{" "}
-              {moment(items?.endDate).format("YYYY-MM-DD")}
+              {moment(items?.endDate).format("DD/MM/YYYY")}
               <br className="md:hidden" />
             </div>
             <div className="mr-[10px] flex max-md:flex-wrap  gap-[10px] w-[15%] max-2xl:w-[20%] max-sm:w-full max-sm:justify-center lg:py-0 py-4 text-xs font-medium">

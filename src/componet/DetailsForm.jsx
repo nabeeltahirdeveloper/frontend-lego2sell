@@ -27,6 +27,7 @@ const DetailsForm = ({
   discount,
   price,
   inPercent,
+  discountInPercent
 }) => {
   console.log(price, "price in component", discount);
   const [searchValue, onSearchChange] = useState("");
@@ -582,12 +583,12 @@ const DetailsForm = ({
               </div>
               {discount != 0 && discount != null ? (
                 <div className="flex flex-row md:flex-col items-center justify-between">
-                  <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  <div className="text-blue-500 text-xl md:text-2xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                     <h2>
                       {discount === 0 || discount === null ? (
                         <h2> £ 0</h2>
                       ) : (
-                        <h2> £{discount}</h2>
+                        <h2> {discountInPercent !=0 ? `${discountInPercent} +` :null} £{discount}</h2>
                       )}
                     </h2>
                   </div>

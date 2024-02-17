@@ -14,6 +14,7 @@ const Basket = () => {
   const productCondition = location.state.productCondition;
   const [price, setPrice] = useState(null);
   const [discount, setDiscount] = useState(0);
+  const [discountInPercent, setDiscountInPercent] = useState(0);
   const [inPercent, setInPercent] = useState(false);
   const [codeInputVisible, setCodeInputVisible] = useState(false);
   // console.log("price", price)
@@ -184,6 +185,7 @@ const Basket = () => {
                       ),
                       "last element"
                     );
+                    setDiscountInPercent(discountVoucher[0].amount)
                     let amountToAdd =
                       (price * discountVoucher[0].amount.slice(0, -1)) / 100;
                     localStorage.setItem(
@@ -365,8 +367,8 @@ const Basket = () => {
             </div>
             {discount != 0 && (
               <div className="flex flex-row md:flex-col items-center justify-between">
-                <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                  {discount === 0 ? <h2> £ 0</h2> : <h2> £{discount}</h2>}
+                <div className="text-blue-500 text-xl md:text-2xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  {discount === 0 ? <h2> £ 0</h2> : <h2>{discountInPercent !=0 ? `${discountInPercent} +` :null}  £{discount}</h2>}
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">
                   Discount
@@ -399,6 +401,7 @@ const Basket = () => {
                       condition,
                       productCondition,
                       inPercent,
+                      discountInPercent
                     },
                   });
                 }
