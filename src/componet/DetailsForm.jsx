@@ -581,22 +581,6 @@ const DetailsForm = ({
                   1 Item
                 </div>
               </div>
-              {discount != 0 && discount != null ? (
-                <div className="flex flex-row md:flex-col items-center justify-between">
-                  <div className="text-blue-500 text-xl md:text-2xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                    <h2>
-                      {discount === 0 || discount === null ? (
-                        <h2> £ 0</h2>
-                      ) : (
-                        <h2> {discountInPercent !=0 ? `${discountInPercent} +` :null} £{discount}</h2>
-                      )}
-                    </h2>
-                  </div>
-                  <div className="font-bold text-xl md:text-base order-1 md:order-2">
-                    Discount
-                  </div>
-                </div>
-              ) : null}
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                   <h2>
@@ -607,6 +591,23 @@ const DetailsForm = ({
                   Total
                 </div>
               </div>
+              {discount != 0 && discount != null ? (
+                <div className="flex flex-row md:flex-col items-center justify-between">
+                  <div className="text-blue-500 text-xl md:text-[17px] font-bold mb-0 md:mb-2 order-2 md:order-1">
+                    <h2>
+                      {discount === 0 || discount === null ? (
+                        <h2> £ 0</h2>
+                      ) : (
+                        <h2> {discountInPercent !=0 ? `${discountInPercent} +` :null} £{discount}</h2>
+                      )}
+                    </h2>
+                  </div>
+                  <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                    
+                  </div>
+                </div>
+              ) : null}
+            
               <button
                 onClick={nextStep}
                 type="submit"

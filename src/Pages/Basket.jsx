@@ -185,7 +185,7 @@ const Basket = () => {
                       ),
                       "last element"
                     );
-                    setDiscountInPercent(discountVoucher[0].amount)
+                    setDiscountInPercent(discountVoucher[0].amount);
                     let amountToAdd =
                       (price * discountVoucher[0].amount.slice(0, -1)) / 100;
                     localStorage.setItem(
@@ -365,24 +365,26 @@ const Basket = () => {
                 1 Item
               </div>
             </div>
-            {discount != 0 && (
-              <div className="flex flex-row md:flex-col items-center justify-between">
-                <div className="text-blue-500 text-xl md:text-2xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                  {discount === 0 ? <h2> £ 0</h2> : <h2>{discountInPercent !=0 ? `${discountInPercent} +` :null}  £{discount}</h2>}
-                </div>
-                <div className="font-bold text-xl md:text-base order-1 md:order-2">
-                  Discount
-                </div>
-              </div>
-            )}
+            
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
               </div>
+
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
                 Total
               </div>
             </div>
+            {discount != 0 && (
+              <div className="flex flex-row md:flex-col items-center justify-between">
+                <div className="text-blue-500 text-xl md:text-[17px] font-bold mb-0 md:mb-2 order-2 md:order-1">
+                  {discount === 0 ? <h2> £ 0</h2> : <h2>{discountInPercent !=0 ? `${discountInPercent} +` :null}  £{discount}</h2>}
+                </div>
+                <div className="font-bold text-xl md:text-base order-1 md:order-2">
+                  
+                </div>
+              </div>
+            )}
             <button
               onClick={() => {
                 localStorage.setItem("Basket", 1);
@@ -401,7 +403,7 @@ const Basket = () => {
                       condition,
                       productCondition,
                       inPercent,
-                      discountInPercent
+                      discountInPercent,
                     },
                   });
                 }

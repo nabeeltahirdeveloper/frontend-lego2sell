@@ -219,12 +219,17 @@ const PDFModificationExample = ({
                     <h2>£0</h2>
                   ) : (
                     <h2>
-                      {inPercent &&
+                       {inPercent &&
+                          `${calculatePercentageIncrease(
+                            price - discount,
+                            price
+                          )}% + `} {!inPercent &&   `£${(price - discount).toFixed(2)} +`} {inPercent ?   `£${(price - discount).toFixed(2)}` :  `£${(discount)}`}
+                      {/* {inPercent &&
                         `${calculatePercentageIncrease(
                           price - discount,
                           price
                         )}% -`} 
-                     {inPercent ?   `£${(price - discount).toFixed(2)}` :  `£${(discount)}`}
+                     {inPercent ?   `£${(price - discount).toFixed(2)}` :  `£${(discount)}`} */}
                     </h2>
                   )}
                 </div>
