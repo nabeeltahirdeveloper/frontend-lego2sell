@@ -354,7 +354,7 @@ const Basket = () => {
           <div className="bg-white rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
             <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
             <div className="flex flex-row md:flex-col items-center justify-between">
-              <div className="text-blue-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+              <div className="text-green-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? (
                   <h2> £{(price - discount).toFixed(2)}</h2>
                 ) : (
@@ -367,7 +367,7 @@ const Basket = () => {
             </div>
             
             <div className="flex flex-row md:flex-col items-center justify-between">
-              <div className="text-blue-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
+              <div className="text-green-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
               </div>
 
@@ -377,7 +377,7 @@ const Basket = () => {
             </div>
             {discount != 0 && (
               <div className="flex flex-row md:flex-col items-center justify-between">
-                <div className="text-blue-500 text-xl md:text-[17px] font-bold mb-0 md:mb-2 order-2 md:order-1">
+                <div className="text-green-500 text-xl md:text-[17px] font-bold mb-0 md:mb-2 order-2 md:order-1">
                   {discount === 0 ? <h2> £ 0</h2> : <h2>{discountInPercent !=0 ? `${discountInPercent} +` :null}  £{discount}</h2>}
                 </div>
                 <div className="font-bold text-xl md:text-base order-1 md:order-2">
