@@ -18,7 +18,7 @@ const UserBlog = () => {
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const editorRef = useRef(null);
-  console.log(editorRef.current.getContent(),"ref");
+  console.log(editorRef?.current?.getContent(),"ref");
   const log = () => {
     if (editorRef.current) {
     }
@@ -349,7 +349,7 @@ const UserBlog = () => {
                   e.preventDefault();
                   setFormData({
                     ...formData,
-                    description: editorRef.current.getContent(),
+                    description: editorRef?.current?.getContent(),
                   });
                   // handleSubmit(e)
                 }}
