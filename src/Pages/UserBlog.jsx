@@ -335,6 +335,8 @@ const UserBlog = () => {
                         { value: "First.Name", title: "First Name" },
                         { value: "Email", title: "Email" },
                       ],
+                      content_style: "body { margin: 0; } p { margin: 0; }"
+
                     }}
                     onInit={(evt, editor) => (editorRef.current = editor)}
                     initialValue={formData.description}
