@@ -5,36 +5,36 @@ import {
   Radio,
   Select,
   TextInput,
-} from "@mantine/core"
-import { useForm } from "@mantine/form"
-import React, { useEffect, useState } from "react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import axios from "axios"
-import PasswordStrengthMeter from "./Password"
-import Country from "../componet/Country"
-import CountryCity from "../componet/Country"
-import { Helmet } from "react-helmet"
-import CryptoJS from 'crypto-js';
-import baseUrl from "../context/baseUrl"
+} from "@mantine/core";
+import { useForm } from "@mantine/form";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import PasswordStrengthMeter from "./Password";
+import Country from "../componet/Country";
+import CountryCity from "../componet/Country";
+import { Helmet } from "react-helmet";
+import CryptoJS from "crypto-js";
+import baseUrl from "../context/baseUrl";
 
 const SignUpForm = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [repeatpassword, setRepeatpassword] = useState()
-  const navigation = useNavigate()
-  const location = useLocation()
-  const isLogin = location.state?.isLogin ?? ""
-  const productCondition = location.state?.productCondition
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatpassword, setRepeatpassword] = useState();
+  const navigation = useNavigate();
+  const location = useLocation();
+  const isLogin = location.state?.isLogin ?? "";
+  const productCondition = location.state?.productCondition;
 
-  const [Marketingpreferences, setMarketingpreferences] = useState(false)
+  const [Marketingpreferences, setMarketingpreferences] = useState(false);
 
-  const [searchValue, onSearchChange] = useState("")
-  const [selectedCoutry, setSelectedCoutry] = useState("")
-  const [selectedCity, setSelectedCity] = useState("london")
+  const [searchValue, onSearchChange] = useState("");
+  const [selectedCoutry, setSelectedCoutry] = useState("");
+  const [selectedCity, setSelectedCity] = useState("london");
 
-  const [selectedState, setSelectedState] = useState("")
-  const [PaymentDetails, setPaymentDetails] = useState("Paypal")
-  const [isTerm, setIsTerm] = useState()
+  const [selectedState, setSelectedState] = useState("");
+  const [PaymentDetails, setPaymentDetails] = useState("Paypal");
+  const [isTerm, setIsTerm] = useState();
   const form = useForm({
     initialValues: {
       email: "",
@@ -76,7 +76,7 @@ const SignUpForm = () => {
 
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
-  })
+  });
 
   const handleSubmit = async (values) => {
     try {
@@ -100,69 +100,76 @@ const SignUpForm = () => {
         TermsCheck: form.values.TermsCheck,
         Marketingpreferences: Marketingpreferences === true ? "Yes" : "No",
         Postcode: form.values.Postcode,
-      }
+      };
 
       // Data to encrypt
-      const sensitiveData = 'frontend';
+      const sensitiveData = "frontend";
       // Encryption key (must be a secret)
-      const encryptionKey = 'legotwosell';
+      const encryptionKey = "legotwosell";
       // Encrypt the data
-      const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
+      const encryptedData = CryptoJS.AES.encrypt(
+        sensitiveData,
+        encryptionKey
+      ).toString();
 
       const response = await fetch(`${baseUrl}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "source": encryptedData,
+          source: encryptedData,
         },
         body: JSON.stringify({ email: form.values.email, password }),
-      })
+      });
       if (!response.ok) {
-        throw new Error("Error: " + response.status)
+        throw new Error("Error: " + response.status);
       }
 
       // console.log("workingsdsd", response1.data)
       // Sign-up successful
-      const responseData = await response.json()
-      const userId = responseData.userId
-      const token = responseData?.token
+      const responseData = await response.json();
+      const userId = responseData.userId;
+      const token = responseData?.token;
 
-      localStorage?.setItem("token", token)
+      await localStorage?.setItem("token", token);
 
       // Reset form inputs
-      setEmail("")
-      setPassword("")
+      setEmail("");
+      setPassword("");
+      navigation(`/login`);
+
       const response1 = await axios.post(
         `${baseUrl}/MyDetails/${userId}`,
         payload
-      )
-      localStorage.setItem("userId", userId)
+      );
+      await localStorage.setItem("userId", userId);
+
       // console.log("Sign-up successful User ID:", userId)
       if (isLogin === "/selling-basket/") {
-        navigation(`/check-your-details`, { state: { productCondition } })
-        window.location.reload()
+        navigation(`/check-your-details`, { state: { productCondition } });
+        window.location.reload();
       } else {
-        navigation(`/`)
+        navigation(`/`);
       }
       // Navigate to another route
       try {
-        const response = await fetch(
-          `${baseUrl}/Mydetails/${userId}`
-        )
-        const jsonData = await response.json()
+
+        const response = await fetch(`${baseUrl}/Mydetails/${userId}`);
+        const jsonData = await response.json();
         // console.log(jsonData.Mydetails[0])
       } catch (error) {
-        console.error("Error fetching data:", error)
+        console.error("Error fetching data:", error);
       }
     } catch (error) {
-      console.error("An error occurred:", error)
+      console.error("An error occurred:", error);
       // Handle the error as needed
     }
 
     // setFormData(values)
-    window.scrollTo({ top: 0, behavior: "smooth" })
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
     // nextStep()
-  }
+  };
 
   return (
     <div className="flex w-full px-6 items-center justify-center flex-col">
@@ -531,7 +538,7 @@ const SignUpForm = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

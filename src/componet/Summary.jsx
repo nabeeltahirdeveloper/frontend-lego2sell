@@ -358,7 +358,7 @@ const Summary = ({
         </div>
         <div className="flex-[0.4]">
           <div className="w-full ">
-            <div className="bg-white relative lg:!fixed lg:!top-[280px] w-full lg:w-[340px] rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
+            <div className="bg-white relative lg:!fixed lg:!top-[150px] w-full lg:w-[340px] rounded-2xl  shadow-[0_4px_25px_rgba(38,50,92,0.1)] p-4 px-6 md:p-8 text-center ">
               <h2 className="h4 mb-4 hidden md:block">Offer summary</h2>
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-green-500 text-xl md:text-5xl font-bold mb-0 md:mb-2 order-2 md:order-1">

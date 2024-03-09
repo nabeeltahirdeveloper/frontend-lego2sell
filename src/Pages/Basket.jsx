@@ -105,12 +105,16 @@ const Basket = () => {
 
   const isDateBetween = (startDate, endDate) => {
     const currentDate = new Date();
+    let startDatee = new Date(startDate);
+    let endDatee = new Date(endDate);
+    console.log("Current Date:", currentDate);
+    console.log("Start Date:", startDatee);
+    console.log("End Date:", endDatee);
+    console.log("Is Current Date after Start Date?", currentDate >= startDatee);
+    console.log("Is Current Date before End Date?", currentDate <= endDatee);
+    return currentDate >= startDatee && currentDate <= endDatee;
+};
 
-    startDate = new Date(startDate);
-    endDate = new Date(endDate);
-
-    return startDate <= currentDate && currentDate <= endDate;
-  };
   const addUserToUsedByArray = async (discount) => {
     try {
       const response = await axios.put(
@@ -365,7 +369,7 @@ const Basket = () => {
                 1 Item
               </div>
             </div>
-            
+
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-green-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
                 {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
@@ -378,11 +382,16 @@ const Basket = () => {
             {discount != 0 && (
               <div className="flex flex-row md:flex-col items-center justify-between">
                 <div className="text-green-500 text-xl md:text-[17px] font-bold mb-0 md:mb-2 order-2 md:order-1">
-                  {discount === 0 ? <h2> £ 0</h2> : <h2>{discountInPercent !=0 ? `${discountInPercent} +` :null}  £{discount}</h2>}
+                  {discount === 0 ? (
+                    <h2> £ 0</h2>
+                  ) : (
+                    <h2>
+                      {discountInPercent != 0 ? `${discountInPercent} +` : null}{" "}
+                      £{discount}
+                    </h2>
+                  )}
                 </div>
-                <div className="font-bold text-xl md:text-base order-1 md:order-2">
-                  
-                </div>
+                <div className="font-bold text-xl md:text-base order-1 md:order-2"></div>
               </div>
             )}
             <button
