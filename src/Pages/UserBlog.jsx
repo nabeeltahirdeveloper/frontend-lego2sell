@@ -18,7 +18,7 @@ const UserBlog = () => {
   const [image1, setImage1] = useState(null);
   const [image2, setImage2] = useState(null);
   const editorRef = useRef(null);
-  console.log(editorRef.current.getContent(),"ref");
+  console.log(editorRef?.current?.getContent(),"ref");
   const log = () => {
     if (editorRef.current) {
     }
@@ -335,6 +335,8 @@ const UserBlog = () => {
                         { value: "First.Name", title: "First Name" },
                         { value: "Email", title: "Email" },
                       ],
+                      content_style: "body { margin: 0; } p { margin: 0; }"
+
                     }}
                     onInit={(evt, editor) => (editorRef.current = editor)}
                     initialValue={formData.description}
@@ -349,7 +351,7 @@ const UserBlog = () => {
                   e.preventDefault();
                   setFormData({
                     ...formData,
-                    description: editorRef.current.getContent(),
+                    description: editorRef?.current?.getContent(),
                   });
                   // handleSubmit(e)
                 }}
