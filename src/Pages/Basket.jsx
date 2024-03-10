@@ -103,17 +103,22 @@ const Basket = () => {
     fetchData();
   }, [SearchValue]);
 
-  const isDateBetween = (startDate, endDate) => {
+  const isDateLess = (startDate) => {
     const currentDate = new Date();
     let startDatee = new Date(startDate);
-    let endDatee = new Date(endDate);
     console.log("Current Date:", currentDate);
     console.log("Start Date:", startDatee);
-    console.log("End Date:", endDatee);
     console.log("Is Current Date after Start Date?", currentDate >= startDatee);
+    return currentDate >= startDatee;
+  };
+  const isDateGreater = (endDate) => {
+    const currentDate = new Date();
+    let endDatee = new Date(endDate);
+    console.log("Current Date:", currentDate);
+    console.log("End Date:", endDatee);
     console.log("Is Current Date before End Date?", currentDate <= endDatee);
-    return currentDate >= startDatee && currentDate <= endDatee;
-};
+    return currentDate <= endDatee;
+  };
 
   const addUserToUsedByArray = async (discount) => {
     try {
@@ -151,93 +156,101 @@ const Basket = () => {
 
       if (discountVoucher[0]?.code.toLowerCase() === inputCode.toLowerCase()) {
         if (discountVoucher[0].status === "Active") {
-          if (
-            isDateBetween(
-              discountVoucher[0].startDate,
-              discountVoucher[0].endDate
-            )
-          ) {
-            if (discountVoucher[0].maxUses > discountVoucher[0].usedBy.length) {
-              if (discountVoucher[0].minAmount <= price) {
-                let alreadyUsed = discountVoucher[0]?.usedBy.some((item, i) => {
-                  return storedUserId == item;
-                });
-                console.log(
-                  alreadyUsed,
-                  "already used",
-                  discountVoucher[0].useOnce
-                );
-                if (
-                  (alreadyUsed === true &&
-                    discountVoucher[0].useOnce === false) ||
-                  (alreadyUsed === false &&
-                    discountVoucher[0].useOnce === true) ||
-                  (alreadyUsed === false &&
-                    discountVoucher[0].useOnce === false)
-                ) {
-                  const response = addUserToUsedByArray(discountVoucher[0]);
-
-                  console.log("response of add voucher", response);
+          if (isDateLess(discountVoucher[0].startDate)) {
+            if (isDateGreater(discountVoucher[0].endDate)) {
+              if (
+                discountVoucher[0].maxUses > discountVoucher[0].usedBy.length
+              ) {
+                if (discountVoucher[0].minAmount <= price) {
+                  let alreadyUsed = discountVoucher[0]?.usedBy.some(
+                    (item, i) => {
+                      return storedUserId == item;
+                    }
+                  );
+                  console.log(
+                    alreadyUsed,
+                    "already used",
+                    discountVoucher[0].useOnce
+                  );
                   if (
-                    discountVoucher[0].amount
-                      .charAt(discountVoucher[0].amount.length - 1)
-                      .toString() === "%"
+                    (alreadyUsed === true &&
+                      discountVoucher[0].useOnce === false) ||
+                    (alreadyUsed === false &&
+                      discountVoucher[0].useOnce === true) ||
+                    (alreadyUsed === false &&
+                      discountVoucher[0].useOnce === false)
                   ) {
-                    console.log(
-                      discountVoucher[0].amount.charAt(
-                        discountVoucher[0].amount.length - 1
-                      ),
-                      "last element"
-                    );
-                    setDiscountInPercent(discountVoucher[0].amount);
-                    let amountToAdd =
-                      (price * discountVoucher[0].amount.slice(0, -1)) / 100;
-                    localStorage.setItem(
-                      "Price",
-                      (+price + amountToAdd).toFixed(2)
-                    );
-                    localStorage.setItem("Discount", amountToAdd.toFixed(2));
-                    setInPercent(true);
-                    setPrice(+price + amountToAdd);
-                    setDiscount(amountToAdd.toFixed(2));
-                    setVoucherErr("");
+                    const response = addUserToUsedByArray(discountVoucher[0]);
 
-                    console.log(amountToAdd, "amount to add percentage");
+                    console.log("response of add voucher", response);
+                    if (
+                      discountVoucher[0].amount
+                        .charAt(discountVoucher[0].amount.length - 1)
+                        .toString() === "%"
+                    ) {
+                      console.log(
+                        discountVoucher[0].amount.charAt(
+                          discountVoucher[0].amount.length - 1
+                        ),
+                        "last element"
+                      );
+                      setDiscountInPercent(discountVoucher[0].amount);
+                      let amountToAdd =
+                        (price * discountVoucher[0].amount.slice(0, -1)) / 100;
+                      localStorage.setItem(
+                        "Price",
+                        (+price + amountToAdd).toFixed(2)
+                      );
+                      localStorage.setItem("Discount", amountToAdd.toFixed(2));
+                      setInPercent(true);
+                      setPrice(+price + amountToAdd);
+                      setDiscount(amountToAdd.toFixed(2));
+                      setVoucherErr("");
+
+                      console.log(amountToAdd, "amount to add percentage");
+                    } else {
+                      localStorage.setItem(
+                        "Discount",
+                        discountVoucher[0].amount
+                      );
+
+                      localStorage.setItem(
+                        "Price",
+                        (+price + +discountVoucher[0].amount).toFixed(2)
+                      );
+
+                      setPrice(+price + +discountVoucher[0].amount);
+                      setDiscount(+discountVoucher[0].amount);
+
+                      setVoucherErr("");
+
+                      console.log(discountVoucher[0].amount, "amount to add");
+                    }
+                    setVoucherAdded("congratulates your vouceher has added");
+                    setCodeInputVisible(false);
+                    setInputCode("");
+                    return "congratulates you have added vouceher";
                   } else {
-                    localStorage.setItem("Discount", discountVoucher[0].amount);
-
-                    localStorage.setItem(
-                      "Price",
-                      (+price + +discountVoucher[0].amount).toFixed(2)
-                    );
-
-                    setPrice(+price + +discountVoucher[0].amount);
-                    setDiscount(+discountVoucher[0].amount);
-
-                    setVoucherErr("");
-
-                    console.log(discountVoucher[0].amount, "amount to add");
+                    setVoucherErr("you have alredy used voucher");
+                    return "you have alredy used voucher";
                   }
-                  setVoucherAdded("congratulates your vouceher has added");
-                  setCodeInputVisible(false);
-                  setInputCode("");
-                  return "congratulates you have added vouceher";
                 } else {
-                  setVoucherErr("you have alredy used voucher");
-                  return "you have alredy used voucher";
+                  setVoucherErr("Price is low than voucher");
+                  return "Price is low than voucher";
                 }
               } else {
-                setVoucherErr("Price is low than voucher");
-                return "Price is low than voucher";
+                setVoucherErr("discount limit exceed");
+                return "discount limit exceed";
               }
             } else {
-              setVoucherErr("discount limit exceed");
-              return "discount limit exceed";
+              setVoucherErr("voucher date expired");
+
+              return "voucher date expired";
             }
           } else {
-            setVoucherErr("voucher date has been expired");
+            setVoucherErr("voucher date not started yet");
 
-            return "voucher date has been expired";
+            return "voucher date not started yet";
           }
         } else {
           setVoucherErr("voucher is not active");
