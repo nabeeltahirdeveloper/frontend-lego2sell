@@ -63,6 +63,7 @@ const Admin = () => {
               key={value._id}
               SearchValue={SearchValue}
               data={value.Mydetails}
+              email={value.email}
               items={value}
             />
           ))}

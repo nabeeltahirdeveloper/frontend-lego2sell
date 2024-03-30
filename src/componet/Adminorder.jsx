@@ -7,7 +7,7 @@ import { useDisclosure } from "@mantine/hooks"
 import CryptoJS from 'crypto-js';
 import baseUrl from "../context/baseUrl"
 
-const Adminorder = ({ items, data, SearchValue }) => {
+const Adminorder = ({ items, data, SearchValue,email }) => {
   const [OrderOpen, setOrderOpen] = useState()
   const [userId, setUserId] = useState()
   const [Status, setStatus] = useState("pending")
@@ -46,7 +46,7 @@ const Adminorder = ({ items, data, SearchValue }) => {
 
   const handleDeleteAccount = async () => {
     // console.log(email)
-    const email = items?.email
+    const email = items?.email || email
     // Data to encrypt
     const sensitiveData = 'frontend';
 
@@ -118,6 +118,7 @@ const Adminorder = ({ items, data, SearchValue }) => {
     })
 
     const pdfBytes = await pdfDoc.save()
+    console.log("user email", data[0], email)
 
     download(pdfBytes, "lego2sellPDF.pdf", "application/pdf")
   }
@@ -139,7 +140,7 @@ const Adminorder = ({ items, data, SearchValue }) => {
             <br className="md:hidden" />
           </div>
           <div className="mr-auto lg:py-0 py-4 text-xs font-medium">
-            Email Id : {data[0]?.email}
+            Email Id : {data[0]?.email || email}
             <br className="md:hidden" />
           </div>
           <div className="mr-auto lg:py-0 py-4 font-medium">
@@ -266,7 +267,7 @@ const Adminorder = ({ items, data, SearchValue }) => {
 
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Email:</h3>
-                <h6 class="text-base line-clamp-1 ">{data[0]?.email} </h6>
+                <h6 class="text-base line-clamp-1 ">{data[0]?.email || email} </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Telephone:</h3>

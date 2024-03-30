@@ -156,9 +156,9 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
               <br className="md:hidden" />
             </div>
             <div className="mr-auto lg:py-0 py-4 font-medium">
-              {`${items?.user?.Mydetails[0].title}
-            ${items?.user?.Mydetails[0].firstName}
-            ${items?.user?.Mydetails[0].lastName}`}
+              {`${items?.user?.Mydetails[0]?.title}
+            ${items?.user?.Mydetails[0]?.firstName}
+            ${items?.user?.Mydetails[0]?.lastName}`}
             </div>
             <div class="rounded-full lg:py-2 py-4 text-[10px] lg:text-xs px-6  font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
               <div>{items.order.Status}</div>
