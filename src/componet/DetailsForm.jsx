@@ -54,7 +54,13 @@ const DetailsForm = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${baseUrl}/Mydetails/${storedUserId}`);
+        const newToken = localStorage.getItem("token");
+        const response = await axios.post(
+          `${baseUrl}/MyDetails/${storedUserId}`,
+          payload, {
+            headers: { Authorization: `Bearer ${newToken}` },
+          }
+        )
         const jsonData = await response.json();
         // Assuming you have a 'setData' function to set the fetched data
         setData(jsonData.Mydetails[0]);

@@ -136,10 +136,14 @@ const SignUpForm = () => {
       setEmail("");
       setPassword("");
       navigation(`/login`);
+      const newToken = localStorage.getItem("token");
 
       const response1 = await axios.post(
         `${baseUrl}/MyDetails/${userId}`,
-        payload
+        payload,
+        {
+          headers: { Authorization: `Bearer ${newToken}` },
+        }
       );
       await localStorage.setItem("userId", userId);
 
@@ -152,8 +156,10 @@ const SignUpForm = () => {
       }
       // Navigate to another route
       try {
-
-        const response = await fetch(`${baseUrl}/Mydetails/${userId}`);
+        // const response = await fetch(`${baseUrl}/Mydetails/${userId}`);
+        const response = await axios.get(`${baseUrl}/Mydetails/${userId}`, {
+          headers: { Authorization: `Bearer ${newToken}` },
+        });
         const jsonData = await response.json();
         // console.log(jsonData.Mydetails[0])
       } catch (error) {

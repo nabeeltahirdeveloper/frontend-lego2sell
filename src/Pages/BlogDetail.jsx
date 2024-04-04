@@ -23,8 +23,11 @@ const BlogDetail = () => {
       try {
         const userResponse = await axios.get(`${baseUrl}/user/${storedUserId}`);
         setIsBlocked(userResponse.data?.blocked);
+        const newToken = localStorage.getItem("token");
         const response = await axios.get(
-          `${baseUrl}/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`,{
+            headers: { Authorization: `Bearer ${newToken}` },
+          }
         );
         setData(response.data.Mydetails[0]);
         setFormData({

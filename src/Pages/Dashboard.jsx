@@ -49,8 +49,12 @@ const Dashboard = (props) => {
   useEffect(() => {
     const fetchUserOrders = async () => {
       try {
+        const newToken = localStorage.getItem("token");
         const response = await axios.get(
-          `${baseUrl}/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`,
+          {
+            headers: { Authorization: `Bearer ${newToken}` },
+          }
         )
 
         if (response.status === 200) {

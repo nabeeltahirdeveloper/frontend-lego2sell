@@ -53,8 +53,13 @@ const PDFModificationExample = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const newToken = localStorage.getItem("token");
+
         const response = await axios.get(
-          `${baseUrl}/Mydetails/${storedUserId}`
+          `${baseUrl}/Mydetails/${storedUserId}`,
+          {
+            headers: { Authorization: `Bearer ${newToken}` },
+          }
         );
         setDetails(response.data.Mydetails[0]);
         const response1 = await fetch(`${baseUrl}/find-lego`, {
