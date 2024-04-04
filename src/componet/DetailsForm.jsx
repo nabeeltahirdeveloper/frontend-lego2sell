@@ -57,7 +57,7 @@ const DetailsForm = ({
         const newToken = localStorage.getItem("token");
         const response = await axios.post(
           `${baseUrl}/MyDetails/${storedUserId}`,
-          payload, {
+           {
             headers: { Authorization: `Bearer ${newToken}` },
           }
         )
