@@ -9,7 +9,7 @@ import {
 } from "@mantine/core"
 import { useForm } from "@mantine/form"
 import axios from "axios"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import CountryCity from "./Country"
 import baseUrl from "../context/baseUrl"
@@ -68,6 +68,34 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
     },
   })
+
+  console.log(data)
+
+  useEffect(() => {
+    form.setValues({
+      email: data?.email,
+      paymentMethod: PaymentDetails,
+      firstName: data?.firstName,
+      lastName: data?.lastName,
+      Telephone: data?.Telephone,
+      title: data?.title,
+      StreetAddress1: data?.StreetAddress1,
+      termsOfService: true,
+      StreetAddress2: data?.StreetAddress2,
+      city: data?.city,
+      State: data?.State,
+      Country: data?.Country,
+      Paypalemail: data?.Paypalemail,
+      accountNumber: data?.accountNumber,
+      sortCode1: data?.sortCode1,
+      sortCode2: data?.sortCode2,
+      sortCode3: data?.sortCode3,
+      TermsCheck: data?.TermsCheck,
+      Marketingpreferences: data?.Marketingpreferences,
+      Postcode: data?.Postcode,
+    })
+  }, [data])
+
 
   const storedUserId = localStorage.getItem("userId")
   const handleSubmit = async (values) => {
@@ -132,8 +160,9 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
     <Modal size={"xl"} opened={opened} onClose={close} title="Edit MyDetails">
       <form method="post" onSubmit={form.onSubmit(handleSubmit)}>
         <div className="mt-24 px-6 lg:px-12">
-          <h3 className="text-2xl font-bold">My Details</h3>
+          <h3 className="text-2xl font-bold">My Details {form.values.firstName}</h3>
           <div className="py-3">
+            
             <Select
               {...form.getInputProps("title")}
               withAsterisk
@@ -144,6 +173,7 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
               data={["Dr", "Miss", "Mr", "Mrs", "Ms", "Rev", "Sir"]}
             />
           </div>
+          
           <div class=" py-3">
             <TextInput
               type="text"
