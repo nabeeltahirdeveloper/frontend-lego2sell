@@ -4,6 +4,91 @@ import React, { useEffect, useState } from "react";
 import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import download from "downloadjs";
 import baseUrl from "../context/baseUrl";
+// const OrderCards = ({
+//   timestamp,
+//   length,
+//   Deliverymethod,
+//   offerId,
+//   Status,
+//   Price,
+//   items,
+//   productId,
+//   setCondition,
+//   getMyDetails,
+//   discount,
+//   inPercent,
+// }) => {
+//   const [opened, { open, close }] = useDisclosure(false);
+//   const [data, setData] = useState();
+//   // console.log("go8", getMyDetails)
+
+//   function calculatePercentageIncrease(originalPrice, newPrice) {
+//     const increase = newPrice - originalPrice;
+//     const percentageIncrease = (increase / originalPrice) * 100;
+//     return Math.ceil(percentageIncrease); // Rounds the result to 2 decimal places
+//   }
+
+//   const handleSearch = async () => {
+//     try {
+//       const response = await fetch(`${baseUrl}/find-lego`, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ itemCode: productId }),
+//       });
+
+//       const data = await response.json();
+//       setData(data);
+//       // console.log("data", data?.body.no)
+//       // console.log("Data", data)
+//     } catch {
+//       // alert("Could not find the LEGO you are looking for.")
+//     } finally {
+//       // Set loading state back to false
+//     }
+//   };
+//   useEffect(() => {
+//     // Retrieve the length value from local storage when the component mounts
+
+//     localStorage.setItem("savedLength", length);
+//     handleSearch();
+//   }, [length]);
+//   const handleModifyPdf = async () => {
+//     const url = "/completpdf.pdf";
+
+//     const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
+
+//     const pdfDoc = await PDFDocument.load(existingPdfBytes);
+//     const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
+//     const pages = pdfDoc.getPages();
+//     const firstPage = pages[1];
+//     const { width, height } = firstPage.getSize();
+//     firstPage.drawText(`${timestamp}`, {
+//       x: 220,
+//       y: 240,
+//       size: 18,
+//       font: helveticaFont,
+//       color: rgb(0, 0, 0),
+//       rotate: degrees(0),
+//     });
+//     const second = pages[1];
+//     const { width1, height1 } = second.getSize();
+//     firstPage.drawText(`#${offerId}`, {
+//       x: 220,
+//       y: 200,
+//       size: 18,
+//       font: helveticaFont,
+//       color: rgb(0, 0, 0),
+//       rotate: degrees(0),
+//     });
+
+//     const pdfBytes = await pdfDoc.save();
+//     // Trigger the browser to download the PDF document
+//     download(pdfBytes, "lego2sellPDF.pdf", "application/pdf");
+//   };
+
 const OrderCards = ({
   timestamp,
   length,
@@ -16,16 +101,17 @@ const OrderCards = ({
   setCondition,
   getMyDetails,
   discount,
-  inPercent
+  inPercent,
 }) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [data, setData] = useState();
-  // console.log("go8", getMyDetails)
+  const [data, setData] = useState([]);
+
+  console.log("------", data);
 
   function calculatePercentageIncrease(originalPrice, newPrice) {
     const increase = newPrice - originalPrice;
     const percentageIncrease = (increase / originalPrice) * 100;
-    return Math.ceil(percentageIncrease); // Rounds the result to 2 decimal places
+    return Math.ceil(percentageIncrease);
   }
 
   const handleSearch = async () => {
@@ -40,31 +126,24 @@ const OrderCards = ({
 
       const data = await response.json();
       setData(data);
-      // console.log("data", data?.body.no)
-      // console.log("Data", data)
-    } catch {
-      // alert("Could not find the LEGO you are looking for.")
-    } finally {
-      // Set loading state back to false
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
-  useEffect(() => {
-    // Retrieve the length value from local storage when the component mounts
 
+  useEffect(() => {
     localStorage.setItem("savedLength", length);
     handleSearch();
-  }, [length]);
+  }, [length, productId]);
+
   const handleModifyPdf = async () => {
     const url = "/completpdf.pdf";
-
     const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
-
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
     const pages = pdfDoc.getPages();
     const firstPage = pages[1];
-    const { width, height } = firstPage.getSize();
     firstPage.drawText(`${timestamp}`, {
       x: 220,
       y: 240,
@@ -73,8 +152,6 @@ const OrderCards = ({
       color: rgb(0, 0, 0),
       rotate: degrees(0),
     });
-    const second = pages[1];
-    const { width1, height1 } = second.getSize();
     firstPage.drawText(`#${offerId}`, {
       x: 220,
       y: 200,
@@ -85,7 +162,6 @@ const OrderCards = ({
     });
 
     const pdfBytes = await pdfDoc.save();
-    // Trigger the browser to download the PDF document
     download(pdfBytes, "lego2sellPDF.pdf", "application/pdf");
   };
 
@@ -93,17 +169,17 @@ const OrderCards = ({
     <div className="py-3">
       <div
         onClick={open}
-        className="last:mb-0 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.15)] rounded-2xl p-6 px-4 lg:px-8 cursor-pointer"
+        class="bg-gray-100 p-4 rounded flex flex-row justify-between"
       >
-        <div className="flex items-center justify-between">
-          <div className="mr-auto font-medium">
-            Offer ID: #{offerId}
-            <br className="md:hidden" />
-            <span className="md:hidden text-blue-500 font-bold">£{Price}</span>
-            <div className="text-sm lg:hidden flex font-medium text-black pr-4">
-              {timestamp}
-            </div>
+        <div>
+          Offer ID: #{offerId}
+          <br className="md:hidden" />
+          <span className="md:hidden text-blue-500 font-bold">£{Price}</span>
+          <div className="text-sm lg:hidden flex font-medium text-black pr-4">
+            {timestamp}
           </div>
+        </div>
+        <div className="flex flex-row">
           <div className="text-sm lg:block hidden font-medium text-black pr-4">
             {timestamp}
           </div>
@@ -213,8 +289,11 @@ const OrderCards = ({
                           `${calculatePercentageIncrease(
                             Price - discount,
                             Price
-                          )}% + `} {!inPercent &&   `£${(Price - discount).toFixed(2)} +`} {inPercent ?   `£${(Price - discount).toFixed(2)}` :  `£${(discount)}`}
-                        
+                          )}% + `}{" "}
+                        {!inPercent && `£${(Price - discount).toFixed(2)} +`}{" "}
+                        {inPercent
+                          ? `£${(Price - discount).toFixed(2)}`
+                          : `£${discount}`}
                       </h2>
                     )}
                   </div>

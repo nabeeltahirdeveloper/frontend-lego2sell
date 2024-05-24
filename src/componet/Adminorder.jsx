@@ -1,75 +1,80 @@
-import { Modal, Select } from "@mantine/core"
-import axios from "axios"
-import React, { useEffect, useState } from "react"
-import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib"
-import download from "downloadjs"
-import { useDisclosure } from "@mantine/hooks"
-import CryptoJS from 'crypto-js';
-import baseUrl from "../context/baseUrl"
+import { Modal, Select } from "@mantine/core";
+import axios from "axios";
+import React, { useState } from "react";
+import { degrees, PDFDocument, rgb, StandardFonts } from "pdf-lib";
+import download from "downloadjs";
+import { useDisclosure } from "@mantine/hooks";
+import CryptoJS from "crypto-js";
+import baseUrl from "../context/baseUrl";
 
-const Adminorder = ({ items, data, SearchValue,email }) => {
-  const [OrderOpen, setOrderOpen] = useState()
-  const [userId, setUserId] = useState()
-  const [Status, setStatus] = useState("pending")
-  const [orderId, setOrderId] = useState()
-  const storedUserId = localStorage.getItem("userId")
+const Adminorder = ({ items, data, disData, SearchValue, email }) => {
+  console.log("--------", disData);
+
+  const [OrderOpen, setOrderOpen] = useState();
+  const [userId, setUserId] = useState();
+  const [Status, setStatus] = useState("pending");
+  const [orderId, setOrderId] = useState();
+  const storedUserId = localStorage.getItem("userId");
   // useEffect(() => {
   //   handleUpdate()
   // }, [storedUserId, Status, Status])
   const handleUpdate = () => {
     axios
-      .put(`${baseUrl}/Getorder/status/${userId}`, {
-        Status,
-        orderId,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
-
+      .put(
+        `${baseUrl}/Getorder/status/${userId}`,
+        {
+          Status,
+          orderId,
         },
-      }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
       )
       .then((response) => {
-        window.location.reload()
+        window.location.reload();
         // console.log("Data updated:", response.data)
         // Handle successful update
       })
       .catch((error) => {
-        console.error("Error updating data:", error)
+        console.error("Error updating data:", error);
         // Handle error
-      })
-  }
-  var userID = items?._id
+      });
+  };
+  var userID = items?._id;
 
-  const [opened, { open, close }] = useDisclosure(false)
+  const [opened, { open, close }] = useDisclosure(false);
 
   const handleDeleteAccount = async () => {
     // console.log(email)
-    const email = items?.email || email
+    const email = items?.email || email;
     // Data to encrypt
-    const sensitiveData = 'frontend';
+    const sensitiveData = "frontend";
 
     // Encryption key (must be a secret)
-    const encryptionKey = 'legotwosell';
+    const encryptionKey = "legotwosell";
 
     // Encrypt the data
-    const encryptedData = CryptoJS.AES.encrypt(sensitiveData, encryptionKey).toString();
+    const encryptedData = CryptoJS.AES.encrypt(
+      sensitiveData,
+      encryptionKey
+    ).toString();
 
     try {
       const response = await fetch(`${baseUrl}/delete-account`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "source": encryptedData,
+          source: encryptedData,
           "user-id": storedUserId,
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
-
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({ email }),
-      })
+      });
       // window.location.reload()
-      const data = await response.json()
+      const data = await response.json();
       // console.log(data)
       if (response.ok) {
         // setMessage(data.message)
@@ -78,26 +83,26 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
         // setMessage(data.message)
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
       // setMessage("Internal Server Error")
     }
-    close()
-  }
+    close();
+  };
 
-  const [offerIdPdf, setOfferIdPdf] = useState()
-  const [offerIdTime, setOfferIdTime] = useState()
+  const [offerIdPdf, setOfferIdPdf] = useState();
+  const [offerIdTime, setOfferIdTime] = useState();
   // console.log(offerIdPdf)
   const handleModifyPdf = async () => {
-    const url = "/completpdf.pdf"
+    const url = "/completpdf.pdf";
 
-    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer())
+    const existingPdfBytes = await fetch(url).then((res) => res.arrayBuffer());
 
-    const pdfDoc = await PDFDocument.load(existingPdfBytes)
-    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold)
+    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const helveticaFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
 
-    const pages = pdfDoc.getPages()
-    const firstPage = pages[1]
-    const { width, height } = firstPage.getSize()
+    const pages = pdfDoc.getPages();
+    const firstPage = pages[1];
+    const { width, height } = firstPage.getSize();
     firstPage.drawText(`${offerIdTime}`, {
       x: 220,
       y: 240,
@@ -105,9 +110,9 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
       font: helveticaFont,
       color: rgb(0, 0, 0),
       rotate: degrees(0),
-    })
-    const second = pages[1]
-    const { width1, height1 } = second.getSize()
+    });
+    const second = pages[1];
+    const { width1, height1 } = second.getSize();
     firstPage.drawText(`#${offerIdPdf}`, {
       x: 220,
       y: 200,
@@ -115,19 +120,19 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
       font: helveticaFont,
       color: rgb(0, 0, 0),
       rotate: degrees(0),
-    })
+    });
 
-    const pdfBytes = await pdfDoc.save()
-    console.log("user email", data[0], email)
+    const pdfBytes = await pdfDoc.save();
+    console.log("user email", data[0], email);
 
-    download(pdfBytes, "lego2sellPDF.pdf", "application/pdf")
-  }
+    download(pdfBytes, "lego2sellPDF.pdf", "application/pdf");
+  };
   // console.log("apiValue", data[0]?.Marketingpreferences)
   const filteredOrders = items?.Order.filter((value) => {
-    return value.Status !== "Paid" && value.Status !== "Rejected"
+    return value.Status !== "Paid" && value.Status !== "Rejected";
   }).map((value, index) => {
-    return <div key={index}>{value.Status}</div>
-  })
+    return <div key={index}>{value.Status}</div>;
+  });
   return (
     <div className="py-2">
       <div
@@ -267,7 +272,9 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
 
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Email:</h3>
-                <h6 class="text-base line-clamp-1 ">{data[0]?.email || email} </h6>
+                <h6 class="text-base line-clamp-1 ">
+                  {data[0]?.email || email}{" "}
+                </h6>
               </div>
               <div class="flex items-center py-1 gap-4">
                 <h3 class="text-base font-semibold">Telephone:</h3>
@@ -323,7 +330,7 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
           </div>
           <div className="flex  items-start w-full lg:flex-row flex-wrap flex-col">
             {items?.Order.filter((value) => {
-              return value
+              return value;
             }).map((value, index) => {
               return (
                 <div className="lg:w-2/4 w-full">
@@ -342,8 +349,23 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
                           {value?.ProductName} {value?.ProductId}
                         </h3>
                       </div>
-                      <div class="flex w-24 text-blue-500 font-bold items-center gap-6">
-                        <h2> £ {  value?.Price.toFixed(2)}</h2>
+                      <div class="flex flex-col w-24 items-center gap-6 lg:gap-0">
+                        {value?.discount ?
+                        <>
+                        <h2 className="text-blue-500 font-bold">
+                          £&nbsp;{(value?.Price.toFixed(2) - value?.discount.toFixed(2)).toFixed(2)}
+                        </h2>
+                        <h2 className="text-green-500 font-bold">
+                          £&nbsp;{value?.discount.toFixed(2)}
+                        </h2>
+                        </>:
+                        <h2 className="text-blue-500 font-bold">
+                          £&nbsp;{value?.Price.toFixed(2)}
+                        </h2>
+                        }
+                        {/* <h2 className="text-green-500 font-semibold">
+                          +£ {disData?.discount}
+                        </h2> */}
                       </div>
                     </div>
                   </div>
@@ -373,9 +395,9 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
                         {/* {value.Status} */}
                         <Select
                           onChange={(e) => {
-                            setStatus(e)
-                            setUserId(items._id)
-                            setOrderId(value._id)
+                            setStatus(e);
+                            setUserId(items._id);
+                            setOrderId(value._id);
                           }}
                           label="Change Product Status"
                           placeholder="Pick one"
@@ -422,6 +444,27 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
                           <div>{value?.Status}</div>
                         </div>
                         <hr className="mt-4" />
+                        {
+                        value?.discount ?
+                        (
+                          <>
+                          
+                          <div className="flex  flex-wrap w-full items-center justify-between mt-4">
+                          <div className="font-bold text-lg">
+                            Item value
+                          </div>
+                          <div className="font-bold text-lg text-blue-500">
+                            £{(value?.Price.toFixed(2) - value?.discount.toFixed(2)).toFixed(2)}
+                          </div>
+                        </div>
+                        <div className="flex  flex-wrap w-full items-center justify-between mt-4">
+                          <div className="font-bold text-lg">
+                            Discount
+                          </div>
+                          <div className="font-bold text-lg text-green-500">
+                            £{value?.discount.toFixed(2)}
+                          </div>
+                        </div>
                         <div className="flex  flex-wrap w-full items-center justify-between mt-4">
                           <div className="font-bold text-lg">
                             Total offer value
@@ -430,27 +473,40 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
                             £{value?.Price.toFixed(2)}
                           </div>
                         </div>
+                          </>
+                        )
+                      :
+                        <div className="flex  flex-wrap w-full items-center justify-between mt-4">
+                          <div className="font-bold text-lg">
+                            Total offer value
+                          </div>
+                          <div className="font-bold text-lg text-blue-500">
+                            £{value?.Price.toFixed(2)}
+                          </div>
+                        </div>
+
+                      }
                         <div className="flex  flex-wrap flex-col mt-8">
                           <button
                             onClick={async () => {
-                              setOfferIdPdf(value?.offerId)
-                              setOfferIdTime(value?.timestamp)
-                              const url = "/completpdf.pdf"
+                              setOfferIdPdf(value?.offerId);
+                              setOfferIdTime(value?.timestamp);
+                              const url = "/completpdf.pdf";
 
                               const existingPdfBytes = await fetch(url).then(
                                 (res) => res.arrayBuffer()
-                              )
+                              );
 
                               const pdfDoc = await PDFDocument.load(
                                 existingPdfBytes
-                              )
+                              );
                               const helveticaFont = await pdfDoc.embedFont(
                                 StandardFonts.HelveticaBold
-                              )
+                              );
 
-                              const pages = pdfDoc.getPages()
-                              const firstPage = pages[1]
-                              const { width, height } = firstPage.getSize()
+                              const pages = pdfDoc.getPages();
+                              const firstPage = pages[1];
+                              const { width, height } = firstPage.getSize();
                               firstPage.drawText(`${value?.timestamp}`, {
                                 x: 220,
                                 y: 240,
@@ -458,9 +514,9 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
                                 font: helveticaFont,
                                 color: rgb(0, 0, 0),
                                 rotate: degrees(0),
-                              })
-                              const second = pages[1]
-                              const { width1, height1 } = second.getSize()
+                              });
+                              const second = pages[1];
+                              const { width1, height1 } = second.getSize();
                               firstPage.drawText(`#${value?.offerId}`, {
                                 x: 220,
                                 y: 200,
@@ -468,15 +524,15 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
                                 font: helveticaFont,
                                 color: rgb(0, 0, 0),
                                 rotate: degrees(0),
-                              })
+                              });
 
-                              const pdfBytes = await pdfDoc.save()
+                              const pdfBytes = await pdfDoc.save();
                               // Trigger the browser to download the PDF document
                               download(
                                 pdfBytes,
                                 "lego2sellPDF.pdf",
                                 "application/pdf"
-                              )
+                              );
                             }}
                             className="inline-flex w-auto justify-center items-center px-6 lg:px-12 rounded-full bg-blue-500 text-white font-bold h-[49px] lg:h-[65px] text-[15px] xl:text-[15px] mb-2"
                           >
@@ -487,13 +543,13 @@ const Adminorder = ({ items, data, SearchValue,email }) => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Adminorder
+export default Adminorder;

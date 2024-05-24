@@ -13,6 +13,7 @@ const CustomerDiscounts = () => {
   const storedUserId = localStorage.getItem("userId");
 
   const [data, setData] = useState([]);
+  console.log("------", data);
   const [discounts, setDiscounts] = useState();
   const [createDiscountModal, setCreateDiscountModal] = useState(false);
   const [name, setName] = useState("");
