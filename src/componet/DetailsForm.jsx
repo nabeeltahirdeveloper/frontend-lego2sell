@@ -291,7 +291,7 @@ const DetailsForm = ({
               <TextInput
                 defaultValue={data?.Telephone}
                 value={data?.Telephone}
-                withAsterisk
+                // withAsterisk
                 label="Telephone"
                 placeholder="Telephone"
                 // {...form.getInputProps("Telephone")}

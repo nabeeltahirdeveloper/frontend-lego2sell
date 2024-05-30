@@ -203,7 +203,7 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
           </div>
           <div class=" py-3">
             <TextInput
-              withAsterisk
+              // withAsterisk
               label="Telephone"
               placeholder="Telephone"
               {...form.getInputProps("Telephone")}
