@@ -33,13 +33,13 @@ const DetailsForm = ({
   const [searchValue, onSearchChange] = useState("");
 
   const [data, setData] = useState();
-  // console.log("gokulakrishhsn", data)
+  const [myDetails, setMyDetails] = useState();
   const [countryid, setCountryid] = useState("");
   const location = useLocation();
   useEffect(() => {
     // Check if the page has already been reloaded
     const hasReloaded = sessionStorage.getItem("hasReloaded");
-
+    
     if (!hasReloaded) {
       // If the page has not been reloaded yet, set the flag and reload the page
       sessionStorage.setItem("hasReloaded", true);
@@ -50,30 +50,35 @@ const DetailsForm = ({
     }
   }, []);
   const [PaymentDetails, setPaymentDetails] = useState(null); // Initialize with null or appropriate default value
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const newToken = localStorage.getItem("token");
-        const response = await axios.post(
+        const response = await axios.get(
           `${baseUrl}/MyDetails/${storedUserId}`,
-           {
+          {
             headers: { Authorization: `Bearer ${newToken}` },
           }
         )
+        console.log("jsonData.Mydetails[0]", response?.data?.Mydetails[0])
+        setMyDetails(response?.data?.Mydetails[0]);
+        setData(response?.data?.Mydetails[0]);
         const jsonData = await response.json();
         // Assuming you have a 'setData' function to set the fetched data
-        setData(jsonData.Mydetails[0]);
+        
+        
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
+    
     fetchData(); // Fetch the data first
-
+    
     // Now, set the PaymentDetails state after the data has been fetched and 'data' is updated.
     setPaymentDetails(data?.paymentMethod);
   }, [data?.paymentMethod, storedUserId]);
+  console.log("gokulakrishhsn", myDetails)
   useEffect(() => {
     const fetchData = async () => {
       try {

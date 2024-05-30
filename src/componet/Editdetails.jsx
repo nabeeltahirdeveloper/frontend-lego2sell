@@ -150,7 +150,7 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
       // Handle the error as needed
     }
     // window.location.reload()
-    setSidebarActive(2)
+    // setSidebarActive(2)
     // setFormData(values)
     window.scrollTo({ top: 0, behavior: "smooth" })
     // nextStep()
