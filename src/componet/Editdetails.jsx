@@ -58,8 +58,7 @@ const Editdetails = ({ close, setSidebarActive, opened, data }) => {
         value < 2 ? "LastName must have at least 2 letters" : null,
       title: (value) =>
         value < 2 ? "title must have at select One Option" : null,
-      Telephone: (value) =>
-        value < 2 ? "Telephone must have at least 2 letters" : null,
+      
       StreetAddress1: (value) =>
         value < 2 ? "StreetAddress1 must have at least 2 letters" : null,
       StreetAddress2: (value) =>
