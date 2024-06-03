@@ -233,12 +233,19 @@ const Blog = () => {
                       <a
                         className="Blog_category_card_small__KhtWu"
                         style={{
-                          backgroundColor: "#FFE1E1",
-                          borderColor: "#FF8585",
+                          
+                          color: "black",
+                          fontSize: 11,
+                          border: `2px solid ${result.categoryName?.color}`,
+                          borderColor: result.categoryName?.color,
+                          backgroundColor: hexToRgba(
+                            result.categoryName?.color,
+                            0.5
+                          ),
                         }}
                         href="/blog/all-things-books/"
                       >
-                        All Things Books
+                        {result.categoryName.name}
                       </a>
                       <h2 className="my-3 Blog_new_article_title__CusWh ">
                         {result.title}

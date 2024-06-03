@@ -23,6 +23,11 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
   // useEffect(() => {
   //   handleUpdate()
   // }, [storedUserId, Status, Status])
+  function calculatePercentageIncrease(originalPrice, newPrice) {
+    const increase = newPrice - originalPrice;
+    const percentageIncrease = (increase / originalPrice) * 100;
+    return percentageIncrease.toFixed(0); // Rounds the result to 2 decimal places
+  }
   const handleUpdate = () => {
     axios
       .put(
@@ -160,9 +165,21 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
             ${items?.user?.Mydetails[0]?.firstName}
             ${items?.user?.Mydetails[0]?.lastName}`}
             </div>
+            {
+              items.order.Status === "Received" ?
+              <div class="rounded-full lg:py-2 py-4 text-[10px] lg:text-xs px-6  font-bold bg-[green] text-[white] mr-7">
+              <div>{items.order.Status}</div>
+            </div>
+            :
+            items.order.Status === "Checking" ?
+            <div class="rounded-full lg:py-2 py-4 text-[10px] lg:text-xs px-6  font-bold bg-[orange] text-[white] mr-7">
+              <div>{items.order.Status}</div>
+            </div>
+            :
             <div class="rounded-full lg:py-2 py-4 text-[10px] lg:text-xs px-6  font-bold bg-[#FDEDD0] text-[#F4A414] mr-7">
               <div>{items.order.Status}</div>
             </div>
+            }
             <div className="text-blue-500 lg:py-0 py-4 font-bold mr-6 flex">
               Watch Details
             </div>
@@ -209,28 +226,27 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                 <div className="flex flex-col  w-32 text-blue-500 font-bold items-center gap-6">
                   <h2>
                     {" "}
-                    £{" "}
+                    £
                     {items.order?.discount == null ||
                     items.order?.discount == undefined
                       ? items.order.Price.toFixed(2)
-                      : (items.order.Price - items.order.discount).toFixed(3)}
+                      : (items.order.Price - items.order.discount).toFixed(2)}
                   </h2>
                   <h2 className=" whitespace-nowrap flex">
-                  {items.order?.discount == null ||
-                    items.order?.discount == undefined ? (
-                      <h6 className="text-white">.</h6>
-                    ) : (
-                      <h2 className="whitespace-nowrap">
-                        Discount:
-                      </h2>
-                    )}
+                 
                     {items.order?.discount == null ||
                     items.order?.discount == undefined ? (
-                      <h6 className="text-white">.</h6>
+                      <h6 className="text-white text-blue-500">.</h6>
                     ) : (
-                      <h2 className="whitespace-nowrap">
-                        {" "}
-                        {items.order.discount}£
+                      <h2 className="whitespace-nowrap text-green-500">
+
+                        +{calculatePercentageIncrease(
+                            items.order.Price - items.order.discount,
+                            items.order.Price
+                          )}% =
+
+                        {" "}£
+                        {Number(items.order.discount).toFixed(2)}
                       </h2>
                     )}
                   </h2>
@@ -374,20 +390,24 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                         items.order?.discount == undefined ? (
                           <h6 className="text-white">.</h6>
                         ) : (
-                          <h2 className="whitespace-nowrap mb-4">
+                          <h2 className="whitespace-nowrap mb-4 text-green-500">
                            Discount
                           </h2>
                         )}
                     <div>
                       {" "}
-                      <h2 className=" whitespace-nowrap flex">
+                      <h2 className=" whitespace-nowrap flex text-green-500">
                         {items.order?.discount == null ||
                         items.order?.discount == undefined ? (
                           <h6 className="text-white"></h6>
                         ) : (
                           <h2 className="whitespace-nowrap">
-                            {" "}
-                            {items.order.discount}£
+                            +{calculatePercentageIncrease(
+                            items.order.Price - items.order.discount,
+                            items.order.Price
+                          )}% =
+                            £
+                            {Number(items.order.discount).toFixed(2)}
                           </h2>
                         )}
                       </h2>

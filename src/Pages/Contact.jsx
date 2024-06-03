@@ -99,8 +99,8 @@ const Contact = () => {
           <img className="lg:w-[20%] w-[40%]" src="/Images/contact.jpeg" alt="" />
         </div>
         <p className="mb-6 text-sm lg:text-lg text-black font-medium">
-          If you can not find the <a href="https://www.lego2sell.com/"> information</a> you need in our FAQ’s then just send
-          us a quick email at the address below or via our quick and <a href="https://brickfact.com/blog/guidebooks/where-to-sell-lego-the-best-options">easy web form</a>
+          If you can not find the information you need in our FAQ’s then just send
+          us a quick email at the address below or via our quick and easy web form 
           and one of the team will get back to you ASAP.
         </p>
         <div className="content-wrapper">

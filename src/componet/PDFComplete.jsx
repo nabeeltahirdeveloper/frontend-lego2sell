@@ -233,10 +233,13 @@ const PDFModificationExample = ({
                   ) : (
                     <h2>
                        {inPercent &&
-                          `${calculatePercentageIncrease(
+                          `+${calculatePercentageIncrease(
                             price - discount,
                             price
-                          )}% + `} {!inPercent &&   `£${(price - discount).toFixed(2)} +`} {inPercent ?   `£${(price - discount).toFixed(2)}` :  `£${(discount)}`}
+                          )}% =`}  {inPercent ?   `£${Number(discount).toFixed(2)}` :  `+${calculatePercentageIncrease(
+                            price - discount,
+                            price
+                          )}% = £${(Number(discount).toFixed(2))} `}
                       {/* {inPercent &&
                         `${calculatePercentageIncrease(
                           price - discount,

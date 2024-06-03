@@ -609,7 +609,7 @@ const DetailsForm = ({
                       {discount === 0 || discount === null ? (
                         <h2> £ 0</h2>
                       ) : (
-                        <h2> {discountInPercent !=0 ? `${discountInPercent} +` :null} £{discount}</h2>
+                        <h2> {discountInPercent !=0 ? `${discountInPercent} +` :null} £{Number(discount).toFixed(2)}</h2>
                       )}
                     </h2>
                   </div>

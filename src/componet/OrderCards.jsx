@@ -276,13 +276,14 @@ const OrderCards = ({
                 <div>Actual Price</div>
                 <div>£{(Price - discount).toFixed(2)}</div>
               </div>
-              <div className="flex text-green-500 flex-wrap w-full items-center justify-between mt-2">
+              {discount !== 0 || discount !== null  &&
+                <div className="flex text-green-500 flex-wrap w-full items-center justify-between mt-2">
                 <div>Discount</div>
                 <div>
                   {" "}
                   <div>
                     {discount === 0 || discount === null ? (
-                      <h2>£0</h2>
+                      null
                     ) : (
                       <h2>
                         {inPercent &&
@@ -298,11 +299,11 @@ const OrderCards = ({
                     )}
                   </div>
                 </div>
-              </div>
+              </div>}
               <hr className="mt-4" />
               <div className="flex  flex-wrap w-full items-center justify-between mt-4">
                 <div className="font-bold text-lg">Total offer value</div>
-                <div className="font-bold text-lg text-blue-500">£{Price}</div>
+                <div className="font-bold text-lg text-blue-500">£{Price.toFixed(2)}</div>
               </div>
               <div className="flex  flex-wrap flex-col mt-8">
                 <button

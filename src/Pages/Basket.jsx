@@ -403,7 +403,7 @@ const Basket = () => {
                   ) : (
                     <h2>
                       {discountInPercent != 0 ? `${discountInPercent} +` : null}{" "}
-                      £{discount}
+                      £{Number(discount).toFixed(2)}
                     </h2>
                   )}
                 </div>

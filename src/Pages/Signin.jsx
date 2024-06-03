@@ -477,14 +477,14 @@ const SignUpForm = () => {
                 <input
                   value={repeatpassword}
                   onChange={(e) => setRepeatpassword(e.target.value)}
-                  placeholder="repeatpassword"
+                  placeholder="repeat password"
                   className="py-4 px-6 border rounded-xl w-full"
                   // {...form.getInputProps("password")}
                   type="password"
                 />
                 {password !== repeatpassword && (
                   <p className="py-2 text-red-500">
-                    Repeat Password Must Be Some
+                    Repeat Password Must Be the same
                   </p>
                 )}
               </div>

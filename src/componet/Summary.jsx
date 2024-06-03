@@ -399,7 +399,7 @@ const Summary = ({
                           {discountInPercent != 0
                             ? `${discountInPercent} +`
                             : null}{" "}
-                          £{discount}
+                          £{Number(discount).toFixed(2)}
                         </h2>
                       )}
                     </h2>
