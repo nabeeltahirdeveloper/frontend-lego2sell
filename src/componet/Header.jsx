@@ -415,7 +415,7 @@ const Header = ({ addBasket }) => {
             >
               <img
                 className="w-6 h-6"
-                src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338430_1280.png"
+                src="https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Tiktok-512.png"
                 alt=""
               />
             </Link>

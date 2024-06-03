@@ -235,8 +235,8 @@ const Basket = () => {
                     return "you have alredy used voucher";
                   }
                 } else {
-                  setVoucherErr("Price is low than voucher");
-                  return "Price is low than voucher";
+                  setVoucherErr("Price is lower than minimum Spend");
+                  return "Price is lower than minimum Spend";
                 }
               } else {
                 setVoucherErr("discount limit exceed");
@@ -394,6 +394,9 @@ const Basket = () => {
             </div>
             {discount != 0 && (
               <div className="flex flex-row md:flex-col items-center justify-between">
+                <div className="font-bold text-xl md:text-base order-1 md:order-2 mb-2">
+                Discount
+              </div>
                 <div className="text-green-500 text-xl md:text-[17px] font-bold mb-0 md:mb-2 order-2 md:order-1">
                   {discount === 0 ? (
                     <h2> £ 0</h2>

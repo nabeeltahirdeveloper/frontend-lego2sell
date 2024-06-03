@@ -515,24 +515,13 @@ const Blog = () => {
                           alt="11 Best Comic Books of All Time: Honouring National Comic Book Day"
                         />
                       </div>
-                      <a
-                        className="Blog_category_card_small__KhtWu"
-                        style={{
-                          backgroundColor: "#FFE1E1",
-                          borderColor: "#FF8585",
-                        }}
-                        href="/blog/all-things-books/"
-                      >
-                        All Things Books
-                      </a>
+                      
                       <h2 className="my-3 Blog_new_article_title__CusWh ">
                         {result.title}
                       </h2>
                       <div
                         className="descriptionContainer"
-                        dangerouslySetInnerHTML={{
-                          __html: result.description,
-                        }}
+                       
                       />
 
                       <div className="d-flex items-center mt-auto">

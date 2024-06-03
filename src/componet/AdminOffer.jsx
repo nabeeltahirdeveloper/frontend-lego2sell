@@ -216,14 +216,21 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                       : (items.order.Price - items.order.discount).toFixed(3)}
                   </h2>
                   <h2 className=" whitespace-nowrap flex">
-                    <h2>Discount:</h2>
+                  {items.order?.discount == null ||
+                    items.order?.discount == undefined ? (
+                      <h6 className="text-white">.</h6>
+                    ) : (
+                      <h2 className="whitespace-nowrap">
+                        Discount:
+                      </h2>
+                    )}
                     {items.order?.discount == null ||
                     items.order?.discount == undefined ? (
-                      <h2> £0 </h2>
+                      <h6 className="text-white">.</h6>
                     ) : (
                       <h2 className="whitespace-nowrap">
                         {" "}
-                        {items.order.discount}
+                        {items.order.discount}£
                       </h2>
                     )}
                   </h2>
@@ -363,17 +370,24 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                     <div> {items.order.Status}</div>
                   </div>
                   <div className="flex  flex-wrap w-full items-center justify-between mt-2">
-                    <div>Discount</div>
+                  {items.order?.discount == null ||
+                        items.order?.discount == undefined ? (
+                          <h6 className="text-white">.</h6>
+                        ) : (
+                          <h2 className="whitespace-nowrap mb-4">
+                           Discount
+                          </h2>
+                        )}
                     <div>
                       {" "}
                       <h2 className=" whitespace-nowrap flex">
                         {items.order?.discount == null ||
                         items.order?.discount == undefined ? (
-                          <h2> £0 </h2>
+                          <h6 className="text-white"></h6>
                         ) : (
                           <h2 className="whitespace-nowrap">
                             {" "}
-                            {items.order.discount}
+                            {items.order.discount}£
                           </h2>
                         )}
                       </h2>

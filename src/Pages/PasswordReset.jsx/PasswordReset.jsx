@@ -108,14 +108,14 @@ const PasswordReset = () => {
                       <input
                         value={repeatpassword}
                         onChange={(e) => setRepeatpassword(e.target.value)}
-                        placeholder="repeatpassword"
+                        placeholder="repeat password"
                         className="py-4 px-6 border rounded-xl w-full"
                         // {...form.getInputProps("password")}
                         type="password"
                       />
                       {password !== repeatpassword && (
                         <p className="py-2 text-red-500">
-                          Repeat Password Most Be Some
+                          Repeat Password must be the same
                         </p>
                       )}
                     </div>

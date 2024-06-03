@@ -122,8 +122,8 @@ const Acceptance = () => {
                 What happens if you don’t accept my LEGO®?
               </h3>
               <p className="py-2">
-                If we find any LEGO® that doesn’t meet <a href="https://www.bricklink.com/">acceptance guidelines</a> 
-                guidelines, we’ll email you to let you know. You can choose
+                If we find any LEGO® that doesn’t meet acceptance guidelines
+                , we’ll email you to let you know. You can choose
                 whether you would like us to dispose of your LEGO® on your
                 behalf, or we can send it back to you. However, you will need to
                 cover the postage cost for this which will be in the email.

@@ -217,11 +217,19 @@ const PDFModificationExample = ({
                 <div>£{(price - discount).toFixed(2)}</div>
               </div>
               <div className="flex text-green-500  flex-wrap w-full items-center justify-between mt-2">
-                <div>Discount</div>
                 {/* <div> {discount ===0 ||discount===null ? <h2> £ 0</h2> : <h2> {inPercent &&   ({calculatePercentageIncrease( price - discount,price)}%)} - £{discount}</h2> }</div> */}
                 <div>
                   {discount === 0 || discount === null ? (
-                    <h2>£0</h2>
+                    <h6 className="text-white">.</h6>
+                  ) : (
+                    <h2>
+                      Discount
+                    </h2>
+                  )}
+                </div>
+                <div>
+                  {discount === 0 || discount === null ? (
+                    <h6 className="text-white">.</h6>
                   ) : (
                     <h2>
                        {inPercent &&
