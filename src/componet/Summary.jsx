@@ -38,6 +38,7 @@ const Summary = ({
   // console.log(details, "demo111111")
   const [data, setData] = useState(false);
   const [dashPattern, setDashPattern] = useState();
+  const [error, setError] = useState("");
   // console.log(new Date().toDateString())
   const payload = {
     Deliverymethod: sendMethod,
@@ -105,6 +106,10 @@ const Summary = ({
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!data?.body?.name || !data?.body?.image_url) {
+      setError("Product name or image is missing. Order cannot be placed.");
+      return;
+    }
     try {
       const response = await axios.post(
         `${baseUrl}/Getorder/${storedUserId}`,
@@ -125,7 +130,6 @@ const Summary = ({
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
       localStorage.removeItem("Discount");
-      // console.log("workingsdsd", response.data.offerId)
     } catch (error) {
       console.error(error);
     }
