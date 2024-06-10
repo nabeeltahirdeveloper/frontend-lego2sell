@@ -81,7 +81,7 @@ const SignUpForm = () => {
   const handleSubmit = async (values) => {
     try {
       const payload = {
-        email: form.values.email,
+        email: form.values.email?.toLowerCase(),
         paymentMethod: PaymentDetails,
         firstName: form.values.firstName,
         lastName: form.values.lastName,

@@ -30,7 +30,7 @@ const Dashboard = (props) => {
 
         if (response.status === 200) {
           const { orders } = response.data
-          // console.log("User orders:", orders)
+          console.log("User orders:", orders)
           setOrderitems(orders)
           // Process the orders data as needed
         } else {
@@ -43,7 +43,7 @@ const Dashboard = (props) => {
     }
 
     fetchUserOrders()
-  }, [storedUserId, setOrderitems])
+  }, [storedUserId])
   const [getMyDetails, setGetMyDetails] = useState()
   // console.log("Gokil", getMyDetails?.paymentMethod)
   useEffect(() => {
@@ -133,6 +133,7 @@ const Dashboard = (props) => {
               {DashboardSidebar?.map((value, index) => (
                 <button
                   onClick={() => setSidebarActive(index)}
+                  key={index}
                   class="lg:block items-start flex last:pb-0 relative"
                   style={{
                     paddingBottom:'1.25rem '
@@ -187,7 +188,7 @@ const Dashboard = (props) => {
                 </button>
               ))}
               <h1 className=" text-base lg:text-xl font-semibold py-4">
-                Account ID: {storedUserId.slice(0, 6)}
+                Account ID: {storedUserId.slice(0, 6)}
               </h1>
             </ul>
             <ul class="xl:pl-24 pl-4 lg:hidden  items-start flex overflow-y-scroll space-x-6  lg:space-x-0 ">
@@ -241,7 +242,7 @@ const Dashboard = (props) => {
               ))}
             </ul>
             <h1 className=" text-base lg:text-xl ml-6 lg:hidden block font-semibold py-4">
-              Account ID: {storedUserId.slice(0, 6)}
+              Account ID: {storedUserId.slice(0, 6)}
             </h1>
           </div>
         </div>
@@ -330,7 +331,7 @@ const Dashboard = (props) => {
               ) : (
                 orderitems
                   ?.filter((value) => {
-                    // console.log(value.Status === "paid")
+                    console.log('value.Status === "Paid" || value.Status === "Rejected"',value.Status === "Paid" || value.Status === "Rejected")
                     return (
                       value.Status === "Paid" || value.Status === "Rejected"
                     )
