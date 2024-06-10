@@ -38,6 +38,7 @@ const Summary = ({
   // console.log(details, "demo111111")
   const [data, setData] = useState(false);
   const [dashPattern, setDashPattern] = useState();
+  const [error, setError] = useState("");
   // console.log(new Date().toDateString())
   const payload = {
     Deliverymethod: sendMethod,
