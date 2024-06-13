@@ -357,8 +357,7 @@ const App = () => {
                         maxWidth: 240,
                       }}
                     >
-                      Pop your LEGO bricks in a bag and weigh them. Then choose
-                      the closest weight on our website or app.
+                     Pop your LEGO® code in the search bar above and then choose your new sealed set condition, Mint or Very good.
                     </p>
                   </div>
                   {width > 1300 && (
