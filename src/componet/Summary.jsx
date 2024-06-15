@@ -29,7 +29,7 @@ const Summary = ({
   //     hour12: true,
   //   })
   // )
-  const price = localStorage.getItem("Price");
+  const price = localStorage.getItem("TotalPrice");
   // console.log("SearchValue", SearchValue)
   const navigate = useNavigate();
   const [sendMethod, setSendMethod] = useState();

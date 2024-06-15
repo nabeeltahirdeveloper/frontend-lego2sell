@@ -11,7 +11,7 @@ const Details = () => {
   const data = localStorage.getItem("data")
   // console.log(data)
   const location = useLocation()
-  const price = localStorage.getItem("Price")
+  const price = localStorage.getItem("TotalPrice")
   const discount = localStorage.getItem("Discount")
   const productCondition = location.state?.productCondition
   const inPercent=location.state?.inPercent

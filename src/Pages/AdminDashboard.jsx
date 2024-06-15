@@ -524,7 +524,7 @@ const AdminDashboard = () => {
   let ordersWithoutPaidOrRejected = 0;
   orders.forEach((user) => {
     user.Order.forEach((order) => {
-      if (order.Status !== "Paid" && order.Status !== "Rejected") {
+      if (order.Status !== "Paid" && order.Status !== "Rejected" && order.Status !== "Accepted") {
         ordersWithoutPaidOrRejected++;
       }
     });

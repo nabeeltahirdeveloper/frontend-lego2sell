@@ -81,7 +81,8 @@ const CustomerOffers = () => {
           .map((value, index) => {
             if (
               value.order.Status !== "Paid" &&
-              value.order.Status !== "Rejected"
+              value.order.Status !== "Rejected"&& 
+               value.order.Status !== "Accepted"
             ) {
               return (
                 <AdminOffer

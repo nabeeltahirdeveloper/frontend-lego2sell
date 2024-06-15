@@ -85,12 +85,7 @@ const CustomerDiscounts = () => {
       setEndDateError("");
     }
 
-    if (maxUses <= 0) {
-      setMaxUsesError("Max Uses must be greater than or equal to 0.");
-      hasErrors = true;
-    } else {
-      setMaxUsesError("");
-    }
+
 
     if (minAmount <= 0) {
       setMinAmountError("Min Amount must be greater than or equal to 0.");

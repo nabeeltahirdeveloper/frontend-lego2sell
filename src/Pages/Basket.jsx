@@ -25,8 +25,28 @@ const Basket = () => {
   const [inputCode, setInputCode] = useState("");
   const [vouceherErr, setVoucherErr] = useState("");
   const [vouceherAdded, setVoucherAdded] = useState("");
+  const [quantity, setQuantity] = useState(1); // Initialize quantity to 1
+  const [totalPrice, setTotalPrice] = useState(null);
   const BasketValue = 1;
   // console.log(data.length)
+  useEffect(() => {
+    if (price !== null) {
+      const newTotalPrice = price * quantity;
+      setTotalPrice(newTotalPrice);
+      localStorage.setItem("TotalPrice", newTotalPrice.toFixed(2)); // Save total price in local storage
+    }
+  }, [price, quantity]);
+  
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+  
+  const decreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -385,7 +405,14 @@ const Basket = () => {
 
             <div className="flex flex-row md:flex-col items-center justify-between">
               <div className="text-green-500 text-xl md:text-3xl font-bold mb-0 md:mb-2 order-2 md:order-1">
-                {price ? <h2> £{price.toFixed(2)}</h2> : <Loader size="xs" />}
+              {totalPrice ? (
+  <h2 className="text-green-500 text-3xl mt-1  font-semibold">
+    £{totalPrice.toFixed(2)}
+  </h2>
+) : (
+  <Loader size="xs" />
+)}
+
               </div>
 
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
@@ -410,6 +437,12 @@ const Basket = () => {
                 <div className="font-bold text-xl md:text-base order-1 md:order-2"></div>
               </div>
             )}
+            <div className="flex items-center gap-2">
+  <button onClick={decreaseQuantity} className="text-xl font-bold px-2">-</button>
+  <span className="text-xl">{quantity}</span>
+  <button onClick={increaseQuantity} className="text-xl font-bold px-2">+</button>
+</div>
+
             <button
               onClick={() => {
                 localStorage.setItem("Basket", 1);

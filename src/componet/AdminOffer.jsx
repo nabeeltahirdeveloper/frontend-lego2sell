@@ -147,6 +147,24 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
   //   return item
   // })
 
+  const getStatusClass = (status) => {
+    switch (status) {
+      case 'Pending':
+        return 'bg-[#FDEDD0] text-[#F4A414]';
+      case 'Received':
+        return 'bg-green-500 text-white';
+      case 'Checking':
+        return 'bg-yellow-500 text-white';
+      case 'Accepted':
+        return 'bg-green-500 text-white';
+      case 'Rejected':
+        return 'bg-red-500 text-white';
+      case 'Paid':
+        return 'bg-blue-500 text-white';
+      default:
+        return 'bg-bg-[#FDEDD0] text-[#F4A414]';
+    }
+  };
   return (
     <div className="">
       <div onClick={() => open()} class="py-3">
@@ -359,7 +377,7 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                     Change
                   </button>
                 </div>
-                <div className="rounded-full text-xs px-2 lg:px-6 py-2 font-bold bg-[#FDEDD0] text-[#F4A414] w-full">
+                <div className={`rounded-full text-xs px-2 lg:px-6 py-2 font-bold w-full ${getStatusClass(items.order.Status)}`}>
                   {items.order.Status}
                 </div>
                 <div className="bg-[#F8F8FE] rounded-lg p-2 lg:p-8 mt-8">

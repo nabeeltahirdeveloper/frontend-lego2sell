@@ -10,7 +10,7 @@ import baseUrl from "../context/baseUrl"
 const SuccessPage = () => {
   const location = useLocation()
   const storedUserId = localStorage.getItem("userId")
-  const price = localStorage.getItem("Price")
+  const price = localStorage.getItem("TotalPrice")
   const condition = location.state.condition
   const offerId = location.state.offerId
   const discount = location.state.discount
