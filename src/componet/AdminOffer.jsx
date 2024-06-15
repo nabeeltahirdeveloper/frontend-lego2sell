@@ -13,8 +13,11 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
     items.order.discount,
     "item for offer",
     items.order.Price,
-    (items.order.Price - items.order.discount).toFixed(3)
+    items.order.Price != null && items.order.discount != null 
+      ? (items.order.Price - items.order.discount).toFixed(3)
+      : "N/A"
   );
+  
 
   const [userId, setUserId] = useState();
   const [Status, setStatus] = useState("pending");
@@ -242,32 +245,35 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                   </h3>
                 </div>
                 <div className="flex flex-col  w-32 text-blue-500 font-bold items-center gap-6">
-                  <h2>
-                    {" "}
-                    £
-                    {items.order?.discount == null ||
-                    items.order?.discount == undefined
-                      ? items.order.Price.toFixed(2)
-                      : (items.order.Price - items.order.discount).toFixed(2)}
-                  </h2>
-                  <h2 className=" whitespace-nowrap flex">
-                 
-                    {items.order?.discount == null ||
-                    items.order?.discount == undefined ? (
-                      <h6 className="text-white text-blue-500">.</h6>
-                    ) : (
-                      <h2 className="whitespace-nowrap text-green-500">
+                <h2>
+  {" "}
+  £
+  {items.order?.Price != null && (items.order?.discount == null || items.order?.discount == undefined)
+    ? items.order.Price.toFixed(2)
+    : items.order?.Price != null && items.order?.discount != null 
+      ? (items.order.Price - items.order.discount).toFixed(2)
+      : "N/A"}
+</h2>
 
-                        +{calculatePercentageIncrease(
-                            items.order.Price - items.order.discount,
-                            items.order.Price
-                          )}% =
+<h2 className=" whitespace-nowrap flex">
+  {items.order?.discount == null ||
+  items.order?.discount == undefined ? (
+    <h6 className="text-white text-blue-500">.</h6>
+  ) : (
+    items.order?.Price != null && (
+      <h2 className="whitespace-nowrap text-green-500">
+        +{calculatePercentageIncrease(
+            items.order.Price - items.order.discount,
+            items.order.Price
+          )}% =
+        {" "}£
+        {Number(items.order.discount).toFixed(2)}
+      </h2>
+    )
+  )}
+</h2>
 
-                        {" "}£
-                        {Number(items.order.discount).toFixed(2)}
-                      </h2>
-                    )}
-                  </h2>
+
                 </div>
               </div>
             </div>
@@ -413,30 +419,25 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                           </h2>
                         )}
                     <div>
-                      {" "}
-                      <h2 className=" whitespace-nowrap flex text-green-500">
-                        {items.order?.discount == null ||
-                        items.order?.discount == undefined ? (
-                          <h6 className="text-white"></h6>
-                        ) : (
-                          <h2 className="whitespace-nowrap">
-                            +{calculatePercentageIncrease(
-                            items.order.Price - items.order.discount,
-                            items.order.Price
-                          )}% =
-                            £
-                            {Number(items.order.discount).toFixed(2)}
-                          </h2>
-                        )}
-                      </h2>
+                    <h2>
+  {" "}
+  £
+  {items.order?.Price != null && (items.order?.discount == null || items.order?.discount == undefined)
+    ? items.order.Price.toFixed(2)
+    : items.order?.Price != null && items.order?.discount != null 
+      ? (items.order.Price - items.order.discount).toFixed(2)
+      : "N/A"}
+</h2>
+
                     </div>
                   </div>
                   <hr className="mt-4" />
                   <div className="flex  flex-wrap w-full items-center justify-between mt-4">
                     <div className="font-bold text-lg">Total offer value</div>
                     <div className="font-bold text-lg text-blue-500">
-                      £{items.order.Price.toFixed(2)}
-                    </div>
+  £{items.order.Price != null ? items.order.Price.toFixed(2) : "N/A"}
+</div>
+
                   </div>
                   <div className="flex  flex-wrap flex-col mt-8">
                     <button
