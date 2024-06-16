@@ -360,7 +360,7 @@ const Adminorder = ({ items, data, disData, SearchValue, email }) => {
                         </h2>
                         </>:
                         <h2 className="text-blue-500 font-bold">
-                          £&nbsp;{value?.Price.toFixed(2)}
+                          £&nbsp;{value?.Price ? value?.Price.toFixed(2) : '0.00'}
                         </h2>
                         }
                         {/* <h2 className="text-green-500 font-semibold">
@@ -470,7 +470,7 @@ const Adminorder = ({ items, data, disData, SearchValue, email }) => {
                             Total offer value
                           </div>
                           <div className="font-bold text-lg text-blue-500">
-                            £{value?.Price.toFixed(2)}
+                          £&nbsp;{value?.Price ? value?.Price.toFixed(2) : '0.00'}
                           </div>
                         </div>
                           </>
@@ -481,7 +481,7 @@ const Adminorder = ({ items, data, disData, SearchValue, email }) => {
                             Total offer value
                           </div>
                           <div className="font-bold text-lg text-blue-500">
-                            £{value?.Price.toFixed(2)}
+                          £&nbsp;{value?.Price ? value?.Price.toFixed(2) : '0.00'}
                           </div>
                         </div>
 
