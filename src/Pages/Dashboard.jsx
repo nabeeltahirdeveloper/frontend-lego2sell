@@ -270,7 +270,7 @@ const Dashboard = (props) => {
                       "Pending",
                       "Received",
                       "Checking",
-                      "Accepted",
+                     
                     ]
                     return validStatuses.includes(value.Status)
                   })

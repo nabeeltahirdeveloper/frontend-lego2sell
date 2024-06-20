@@ -415,18 +415,26 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                           <h6 className="text-white">.</h6>
                         ) : (
                           <h2 className="whitespace-nowrap mb-4 text-green-500">
-                           Discount
+                          Discount
                           </h2>
                         )}
                     <div>
-                    <h2>
-  {" "}
-  £
-  {items.order?.Price != null && (items.order?.discount == null || items.order?.discount == undefined)
-    ? items.order.Price.toFixed(2)
-    : items.order?.Price != null && items.order?.discount != null 
-      ? (items.order.Price - items.order.discount).toFixed(2)
-      : "N/A"}
+                    <h2 className=" whitespace-nowrap flex">
+  {items.order?.discount == null ||
+  items.order?.discount == undefined ? (
+    <h6 className="text-white text-blue-500">.</h6>
+  ) : (
+    items.order?.Price != null && (
+      <h2 className="whitespace-nowrap text-green-500">
+        +{calculatePercentageIncrease(
+            items.order.Price - items.order.discount,
+            items.order.Price
+          )}% =
+        {" "}£
+        {Number(items.order.discount).toFixed(2)}
+      </h2>
+    )
+  )}
 </h2>
 
                     </div>

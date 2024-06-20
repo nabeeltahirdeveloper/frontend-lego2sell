@@ -399,7 +399,7 @@ const Basket = () => {
                 )}
               </div>
               <div className="font-bold text-xl md:text-base order-1 md:order-2">
-                1 Item
+                Item Offer
               </div>
             </div>
 
