@@ -244,7 +244,7 @@ const Adminorder = ({ items, data, SearchValue, index }) => {
                     {items.order.ProductName} {items.order.ProductId}
                   </h3>
                 </div>
-                <div className="flex flex-col  w-32 text-blue-500 font-bold items-center gap-6">
+                <div className="flex flex-col  w-32 text-blue-500 font-bold items-center mt-10">
                 <h2>
   {" "}
   £

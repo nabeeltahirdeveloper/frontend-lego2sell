@@ -87,12 +87,7 @@ const CustomerDiscounts = () => {
 
 
 
-    if (minAmount <= 0) {
-      setMinAmountError("Min Amount must be greater than or equal to 0.");
-      hasErrors = true;
-    } else {
-      setMinAmountError("");
-    }
+
 
     // Set overall validation error if there are any errors
     setValidationError(hasErrors ? "error" : "");

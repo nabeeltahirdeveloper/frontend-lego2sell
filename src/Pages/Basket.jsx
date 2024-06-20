@@ -254,9 +254,6 @@ const Basket = () => {
                     setVoucherErr("you have alredy used voucher");
                     return "you have alredy used voucher";
                   }
-                } else {
-                  setVoucherErr("Price is lower than minimum Spend");
-                  return "Price is lower than minimum Spend";
                 }
               } else {
                 setVoucherErr("discount limit exceed");
@@ -438,6 +435,7 @@ const Basket = () => {
               </div>
             )}
             <div className="flex items-center gap-2">
+              <div className="font-bold text-lg">Add more</div>
   <button onClick={decreaseQuantity} className="text-xl font-bold px-2">-</button>
   <span className="text-xl">{quantity}</span>
   <button onClick={increaseQuantity} className="text-xl font-bold px-2">+</button>
