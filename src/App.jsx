@@ -174,7 +174,17 @@ const App = () => {
                   {/* Modal content */}
                 </Modal>
 
+                <h2 style={{
+                  color: "#ff3131",
+                  fontSize: 34,
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  letterSpacing: width > 1024 ? 1 : -.5,
+                }}>
+                  Site not exist anymore
+                  </h2>  
                 <div className="w-full px-6 flex items-center justify-center">
+
                   <input
                     placeholder="Enter LEGO® Set Code here"
                     // disabled={e?.length === 5}
@@ -187,7 +197,9 @@ const App = () => {
                     required
                   />
                 </div>
-                <button className="mb-2" type="submit" onClick={handleSearch}>
+                <button className="mb-2" type="submit" 
+                // onClick={handleSearch}
+                >
                   <img
                     className="_search-btn_hj7zo_15"
                     src="/Images/search-img-6ce3ac56.png"
@@ -207,7 +219,7 @@ const App = () => {
                 >
                   <button
                     variant="outline"
-                    onClick={() => setOpened((o) => !o)}
+                    // onClick={() => setOpened((o) => !o)}
                     className={`${
                       opened1 ? "mt-16 lg:mt-0 " : ""
                     }text-base  font-medium text-gray-400`}
